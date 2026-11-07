@@ -1,35 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "foundry-portfolio-analysis",
+    "task_id": "foundry-publish-standards",
     "last_phase": "in_progress",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1794089865.166444,
+    "updated_at": 1794090768.4604168,
     "owner": "opencode:goal",
     "started_by": "opencode:goal",
     "continuations": [],
-    "completed_at": 1794089865.2304022
+    "completed_at": 1794090769.0918207
   },
   "checkpoints": [
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "in_progress",
-      "phase_num": 2,
-      "description": "[1/4] Add read-only target facts and adapters for the eight requested games",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794087574.0310156,
-      "timestamp_str": "2026-11-08 00:39:34",
-      "agent": "opencode:goal",
-      "impact_assessment": {
-        "why": "Foundry is a shared content pipeline but only crypt-crawler is a registered consumer; the user asked to add After Image, Aldervale, Shooter, Weft, Iris, Primordia, Cyberpulse and Fold as targets without editing those projects.",
-        "benefits": "One registry exposes each target's project root, lifecycle, engine, test command and authored content surfaces; static read-only extraction keeps the consumer projects untouched and catches drift.",
-        "risks": "contract: new target schema and registry API; dependency: stdlib only; concurrency: none; state: generated target manifests under targets/ plus foundry ledger",
-        "mitigation": "Read sources statically (JSON/AST/regex), validate paths and counts in tests, prove each consumer git tree stays clean, run foundry unittest suite and aikit check."
-      },
-      "plan_digest": "0b34bd49f6be295d55b2a6501bd27e15436972ec7d2c66ebeb639dcc58b2e123"
-    },
     {
       "task_id": "foundry-target-registry",
       "phase": "in_progress",
@@ -204,6 +186,73 @@
       "status": "completed",
       "timestamp": 1794089865.2304044,
       "timestamp_str": "2026-11-08 01:17:45",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-publish-standards",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[2/3] Approve media, set AL-1.1, record topics, add G-001 and publish via AIKit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794090745.8664856,
+      "timestamp_str": "2026-11-08 01:32:25",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-publish-standards",
+      "phase": "in_progress",
+      "phase_num": 2,
+      "description": "[1/3] Audit the raw-gh publish against AIKit publication standards",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794090746.1981637,
+      "timestamp_str": "2026-11-08 01:32:26",
+      "agent": "opencode:goal",
+      "impact_assessment": {
+        "why": "The first push bypassed AIKit's media, license, topic, dossier and publish-gate sequence; the user asked that it never happen again.",
+        "benefits": "A documented guideline, approved brand media, AL-1.1 license files, recorded topics and an AIKit-verified publish path.",
+        "risks": "contract: license/media/topics metadata; dependency: none; concurrency: AegeanWorks dossier is private-out and left untouched; state: README, media.json, project.json and license files",
+        "mitigation": "Run media review/apply, license set, topics review/apply, add G-001, then publish only with python aikit.py publish."
+      },
+      "plan_digest": "aa3831064b53ffd6c3a78e9fb3a782d0b13d8e3cc858dd3df9712733a2335d80"
+    },
+    {
+      "task_id": "foundry-publish-standards",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[2/3] Publish-standard fixes applied: approved media, AL-1.1, 17 topics, G-001",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794090759.5468063,
+      "timestamp_str": "2026-11-08 01:32:39",
+      "agent": "opencode:goal",
+      "impact_assessment": {
+        "why": "Bring the already-pushed repository onto AIKit's publication path and prevent raw gh/git publishing.",
+        "benefits": "Media audit clean, license recorded, topics recorded and applied, guideline G-001 binding future agents.",
+        "risks": "contract: project metadata and README; dependency: none; concurrency: private dossier entry removed; state: LICENSE/REUSE files and media approvals",
+        "mitigation": "Verify with aikit media audit, topics --review, license status and a full aikit publish run."
+      }
+    },
+    {
+      "task_id": "foundry-publish-standards",
+      "phase": "in_progress",
+      "phase_num": 4,
+      "description": "[3/3] AIKit publish passed; checklists: passed; media audit clean; topics review clean",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794090768.4604168,
+      "timestamp_str": "2026-11-08 01:32:48",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-publish-standards",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'foundry-publish-standards' completed successfully.",
+      "status": "completed",
+      "timestamp": 1794090769.0918226,
+      "timestamp_str": "2026-11-08 01:32:49",
       "agent": "opencode:goal"
     }
   ]
