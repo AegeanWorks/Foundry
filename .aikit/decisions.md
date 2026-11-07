@@ -99,3 +99,23 @@
   runs (`fair` requires an empty error list).
 - Consequences: All four `aikit check` gates run; README stays the
   cold-start contract with scaffold headings.
+
+## ADR-010: every consumer is a read-only target with a checked-in manifest
+- Date: 2026-11-08. Status: accepted.
+- Decision: Add After Image, Aldervale, Shooter, Weft, Iris, Primordia,
+  Cyberpulse and Fold to foundry as targets beside crypt-crawler. Each target
+  gets a frozen `TargetFacts` adapter (project root, lifecycle, engine, test
+  command, authored content surfaces) and a generated manifest under
+  `targets/` validated against `schemas/target.schema.json`. The new adapters
+  parse JSON, Python AST and JavaScript source text without importing or
+  executing the consumer project; the pre-existing crypt-crawler adapter
+  keeps its live `ITEM_CATALOG` import. No adapter writes a consumer project.
+  Archived consumers (Aldervale, Iris, Fold) are registered but marked
+  read-only.
+- Rationale: Foundry needs one truthful registry before it can emit content
+  for more games; a manifest plus freshness check makes drift visible without
+  coupling foundry to each consumer's runtime.
+- Consequences: `python tools/targets.py` lists targets; `generators/target.py
+  --check` and `validators/target.py "targets/*.json"` are the new gate.
+  Adding a target means adding one adapter and regenerating its manifest.
+  No consumer project file is modified by this slice.

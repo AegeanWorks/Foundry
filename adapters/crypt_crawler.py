@@ -12,13 +12,12 @@ is the adapter's other half pinned by the same pack_version.
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 from typing import Dict, FrozenSet
 
-FOUNDRY_ROOT = Path(__file__).resolve().parent.parent
-# foundry lives at <repo>/projects/foundry; the consumer sits beside it.
-REPO_ROOT = FOUNDRY_ROOT.parent.parent
-GAME_ROOT = REPO_ROOT / "projects" / "crypt-crawler"
+from adapters.base import ContentSurface, TargetFacts
+from adapters.layout import project_root
+
+GAME_ROOT = project_root("crypt-crawler")
 
 TARGET_GAME = "crypt-crawler"
 SUPPORTED_MAJOR = 1
@@ -35,3 +34,21 @@ def _load_game_tables() -> Dict[str, FrozenSet[str]]:
 
 _TABLES = _load_game_tables()
 ITEM_IDS: FrozenSet[str] = _TABLES["items"]
+
+TARGET = TargetFacts(
+    game_id=TARGET_GAME,
+    display_name="Crypt Crawler",
+    project_root=GAME_ROOT,
+    lifecycle="active",
+    engine="javascript",
+    test_command="python -m unittest discover tests",
+    pack_major=SUPPORTED_MAJOR,
+    content=(
+        ContentSurface(
+            "items",
+            "catalog",
+            ("crawler/entities.py",),
+            tuple(sorted(ITEM_IDS)),
+        ),
+    ),
+)

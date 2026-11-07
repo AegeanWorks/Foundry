@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portable-agent-kit/foundry/schemas/target.schema.json",
+  "title": "Foundry target manifest",
+  "description": "Canonical description of one consumer project foundry can target. Generated from the read-only adapter facts; the project path is relative to the portfolio root and every source path is relative to that project.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "target_game", "display_name", "project", "lifecycle", "engine", "test_command", "pack_major", "content"],
+  "properties": {
+    "schema": {
+      "const": 1,
+      "description": "Manifest format version. A loader refuses a version it does not support."
+    },
+    "target_game": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,31}$",
+      "description": "Stable target id; the same value packs use in target_game."
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "project": {
+      "type": "string",
+      "pattern": "^projects/[A-Za-z0-9._/-]+$",
+      "description": "Consumer directory relative to the portfolio root."
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": ["active", "archived"],
+      "description": "Archived projects stay readable targets; they are never edited by foundry."
+    },
+    "engine": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "test_command": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "pack_major": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9
+    },
+    "content": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Authored content surfaces foundry may emit packs for.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "sources", "items"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,31}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["catalog", "rules"]
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._/-]+$"
+            }
+          },
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          }
+        }
+      }
+    }
+  }
+}

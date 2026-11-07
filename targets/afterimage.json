@@ -1,0 +1,39 @@
+{
+  "content": [
+    {
+      "id": "modes",
+      "items": [
+        "focus",
+        "blitz",
+        "zen",
+        "nightmare",
+        "onslaught",
+        "daily"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "game.js"
+      ]
+    },
+    {
+      "id": "scripts",
+      "items": [
+        "classic",
+        "nightmare",
+        "onslaught"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "game.js"
+      ]
+    }
+  ],
+  "display_name": "After Image",
+  "engine": "javascript",
+  "lifecycle": "active",
+  "pack_major": 1,
+  "project": "projects/afterimage",
+  "schema": 1,
+  "target_game": "afterimage",
+  "test_command": "node --test tests"
+}

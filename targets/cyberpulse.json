@@ -1,0 +1,51 @@
+{
+  "content": [
+    {
+      "id": "puzzle_types",
+      "items": [
+        "frequency",
+        "buffer",
+        "hash"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "cyberpulse/puzzles.py"
+      ]
+    },
+    {
+      "id": "story_acts",
+      "items": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "cyberpulse/story.py"
+      ]
+    },
+    {
+      "id": "main_quests",
+      "items": [
+        "q_blackice",
+        "q_core",
+        "q_gateway",
+        "q_money"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "cyberpulse/story.py"
+      ]
+    }
+  ],
+  "display_name": "Cyberpulse",
+  "engine": "python",
+  "lifecycle": "active",
+  "pack_major": 1,
+  "project": "projects/cyberpulse",
+  "schema": 1,
+  "target_game": "cyberpulse",
+  "test_command": "python -m unittest discover"
+}

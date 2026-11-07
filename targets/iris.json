@@ -1,0 +1,45 @@
+{
+  "content": [
+    {
+      "id": "episodes",
+      "items": [
+        "I",
+        "II",
+        "III"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "src/game/levels.js"
+      ]
+    },
+    {
+      "id": "chambers",
+      "items": [
+        "first-light",
+        "double-bend",
+        "crossroads",
+        "the-vault",
+        "yellow-room",
+        "deep-cyan",
+        "magenta-gate",
+        "white-chapel",
+        "amber-circuit",
+        "cyan-vault",
+        "the-long-spectrum",
+        "white-crown"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "src/game/levels.js"
+      ]
+    }
+  ],
+  "display_name": "Iris",
+  "engine": "javascript",
+  "lifecycle": "archived",
+  "pack_major": 1,
+  "project": "projects/archive/iris",
+  "schema": 1,
+  "target_game": "iris",
+  "test_command": "node --test"
+}
