@@ -33,8 +33,15 @@ into `projects/crypt-crawler/packs/` (data install, no code change), then
 ```text
 foundry/
 ├── README.md
+├── .gitignore
+├── assets/
 ├── .aikit/
-│   └── decisions.md
+│   ├── codebase_map.md
+│   ├── decisions.md
+│   ├── guidelines.md
+│   ├── media.json
+│   ├── project.json
+│   └── task_ledger.json
 ├── adapters/
 │   ├── __init__.py
 │   └── crypt_crawler.py
