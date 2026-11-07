@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `26`
-- **Total Classes**: `10`
-- **Total Top-Level Functions**: `55`
-- **Total Class Methods**: `62`
-- **Total Source Lines**: `2253`
+- **Total Python Modules**: `31`
+- **Total Classes**: `14`
+- **Total Top-Level Functions**: `98`
+- **Total Class Methods**: `78`
+- **Total Source Lines**: `3378`
 
 ---
 
@@ -78,6 +78,13 @@
 
 ---
 
+### [`adapters/keystone.py`](adapters/keystone.py)
+> *Keystone target: read-only engine asset kinds, primitives and graph nodes.*
+
+**Size**: `38` lines (`1406` bytes)
+
+---
+
 ### [`adapters/layout.py`](adapters/layout.py)
 > *Filesystem boundaries shared by the target adapters (read-only).*
 
@@ -98,7 +105,7 @@
 ### [`adapters/registry.py`](adapters/registry.py)
 > *Target registry: every consumer foundry can emit content for.*
 
-**Size**: `52` lines (`1185` bytes)
+**Size**: `54` lines (`1220` bytes)
 
 **Functions:**
 - `def all_targets()` - *Registered targets in stable order.*
@@ -176,6 +183,41 @@
 
 ---
 
+### [`generators/keystone_assets.py`](generators/keystone_assets.py)
+> *Keystone asset-pack generator: deterministic meshes, textures, materials, prefab.*
+
+**Size**: `447` lines (`15554` bytes)
+
+**Classes:**
+- `class KeystonePack` - *A generated pack: relative file bytes plus the canonical manifest.*
+  - Method `.manifest_bytes()`
+
+**Functions:**
+- `def generate(seed, name)` - *Build one deterministic Keystone asset pack.*
+- `def write_pack(seed, out_dir, name)` - *Write the generated pack, creating directories as needed.*
+- `def check_pack(out_dir, seed, name)` - *Return one ``path: reason`` line per stale or missing pack file.*
+- `def _add_file(assets, asset_id, kind, relative, files, dependencies)`
+- `def _material(color, specular, shininess, checker_scale, metallic, roughness, emissive, texture)`
+- `def _palette(rng)`
+- `def _prefab()`
+- `def _obj_cube(size)`
+- `def _obj_plane(size)`
+- `def _obj_crystal(seed)`
+- `def _obj_from_quads(name, quads)`
+- `def _obj_from_triangles(name, triangles)`
+- `def _index(values, value)`
+- `def _normal(a, b, c)`
+- `def _png_checker(size, cell, dark, light)`
+- `def _png_gradient(size, accent)`
+- `def _rgba(color)`
+- `def _channel(value)`
+- `def _png_bytes(width, height, rgba)`
+- `def _chunk(kind, payload)`
+- `def _canonical_json(payload)`
+- `def main(argv)`
+
+---
+
 ### [`generators/target.py`](generators/target.py)
 > *Target manifest generator: deterministic bytes from read-only adapter facts.*
 
@@ -210,10 +252,43 @@
 
 ---
 
+### [`tests/test_keystone_assets.py`](tests/test_keystone_assets.py)
+> *Keystone asset-pack tests: determinism, integrity and engine compatibility.*
+
+**Size**: `178` lines (`7030` bytes)
+
+**Classes:**
+- `class TestKeystonePackGenerator`
+  - Method `.test_generate_is_deterministic()`
+  - Method `.test_distinct_seeds_change_content()`
+  - Method `.test_generated_pack_validates()`
+  - Method `.test_checked_in_pack_is_fresh()`
+  - Method `.test_manifest_records_every_file()`
+- `class TestKeystonePackValidation`
+  - Method `.pack(tmp)`
+  - Method `.test_rejects_tampered_texture()`
+  - Method `.test_rejects_missing_material_dependency()`
+  - Method `.test_rejects_missing_prefab_dependency()`
+  - Method `.test_rejects_later_loaded_dependency()`
+  - Method `.test_rejects_duplicate_asset()`
+  - Method `.test_schema_file_is_valid_json()`
+- `class TestKeystoneRuntime`
+  - Method `.test_checked_in_pack_loads_and_instantiates()`
+  - Method `.test_mesh_winding_matches_normals()`
+  - Method `.test_texture_png_roundtrip()`
+
+**Functions:**
+- `def _keystone_available()`
+- `def _sub(a, b)`
+- `def _cross(a, b)`
+- `def _dot(a, b)`
+
+---
+
 ### [`tests/test_targets.py`](tests/test_targets.py)
 > *Target registry tests: every requested consumer is present and read-only.*
 
-**Size**: `211` lines (`7531` bytes)
+**Size**: `217` lines (`7664` bytes)
 
 **Classes:**
 - `class TestTargetRegistry`
@@ -307,6 +382,19 @@
 
 ---
 
+### [`tools/keystone_assets.py`](tools/keystone_assets.py)
+> *Keystone asset cockpit: validate a pack and prove it loads in the engine.*
+
+**Size**: `164` lines (`6004` bytes)
+
+**Functions:**
+- `def _import_keystone()`
+- `def load_pack(pack_dir)` - *Register every asset in manifest order and return (registry, manifest).*
+- `def verify_pack(pack_dir)` - *Validate a pack, load it through Keystone and instantiate its prefab.*
+- `def main(argv)`
+
+---
+
 ### [`tools/targets.py`](tools/targets.py)
 > *Target cockpit: list registered targets, write manifests, verify freshness.*
 
@@ -334,6 +422,28 @@
 - `def max_theoretical_hit(attack)` - *Worst-case single-turn damage for a slice-1 boss: phase-3 attack.*
 - `def validate(pack)` - *Return a list of ``field: reason`` violations (empty == valid).*
 - `def validate_file(path)`
+- `def main(argv)`
+
+---
+
+### [`validators/keystone_assets.py`](validators/keystone_assets.py)
+> *Keystone asset-pack validator: manifest shape, file digests and load order.*
+
+**Size**: `290` lines (`11282` bytes)
+
+**Functions:**
+- `def _is_int(value)`
+- `def _is_number(value)`
+- `def _safe_relative(value)`
+- `def validate_pack(pack_dir)` - *Validate one pack directory and return ``field: reason`` lines.*
+- `def validate_manifest(manifest, pack_dir)` - *Validate a parsed manifest against its pack directory.*
+- `def _validate_generator(generator, errors)`
+- `def _validate_assets(assets, pack_dir, errors)`
+- `def _dependencies(value, field, asset_id, seen, errors)`
+- `def _validate_path(asset, field, kind, pack_dir, errors)`
+- `def _validate_material(asset, field, dependencies, seen, errors)`
+- `def _validate_prefab(asset, field, dependencies, pack_dir, seen, errors)`
+- `def _prefab_asset_ids(prefab)`
 - `def main(argv)`
 
 ---

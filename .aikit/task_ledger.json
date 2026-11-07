@@ -1,15 +1,15 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "foundry-target-registry",
+    "task_id": "foundry-keystone-assets",
     "last_phase": "in_progress",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1794088142.061922,
+    "updated_at": 1794089177.8323433,
     "owner": "opencode:goal",
     "started_by": "opencode:goal",
     "continuations": [],
-    "completed_at": 1794088146.2844958
+    "completed_at": 1794089177.901722
   },
   "checkpoints": [
     {
@@ -82,6 +82,67 @@
       "status": "completed",
       "timestamp": 1794088146.2844992,
       "timestamp_str": "2026-11-08 00:49:06",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-keystone-assets",
+      "phase": "in_progress",
+      "phase_num": 2,
+      "description": "[1/4] Plan Keystone asset-pack mode for foundry",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089135.6519961,
+      "timestamp_str": "2026-11-08 01:05:35",
+      "agent": "opencode:goal",
+      "impact_assessment": {
+        "why": "The user asked whether foundry can become a Keystone asset pipeline; foundry currently emits game-rule JSON only, while Keystone games need file-backed meshes, textures, materials and prefabs.",
+        "benefits": "One deterministic asset pack format with digests, dependency order and a runtime proof through Keystone's real AssetRegistry; Keystone and the games stay read-only.",
+        "risks": "contract: new pack schema and CLI; dependency: Keystone only for the optional runtime proof; concurrency: none; state: baseline pack under packs/keystone/starter plus target manifest and ledger",
+        "mitigation": "Generate with stdlib (OBJ, PNG, KPREFAB), validate hashes and dependencies, load/instantiate through Keystone, run the foundry suite and aikit check."
+      },
+      "plan_digest": "5e6855d15f3d504207d07fd112d85bea62c9f6f2ba90b9fb8de2e35b6106f320"
+    },
+    {
+      "task_id": "foundry-keystone-assets",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[3/4] Pack validator, runtime verifier, tests, README and ADR",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089143.2952788,
+      "timestamp_str": "2026-11-08 01:05:43",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-keystone-assets",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[2/4] Keystone target adapter and deterministic asset-pack generator",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089143.554901,
+      "timestamp_str": "2026-11-08 01:05:43",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-keystone-assets",
+      "phase": "in_progress",
+      "phase_num": 4,
+      "description": "[4/4] Phase 4 gates pass; checklists: passed; Keystone pack loads with 9 assets and 5 prefab nodes",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089177.8323433,
+      "timestamp_str": "2026-11-08 01:06:17",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-keystone-assets",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'foundry-keystone-assets' completed successfully.",
+      "status": "completed",
+      "timestamp": 1794089177.9017239,
+      "timestamp_str": "2026-11-08 01:06:17",
       "agent": "opencode:goal"
     }
   ]

@@ -1,0 +1,67 @@
+{
+  "content": [
+    {
+      "id": "asset_kinds",
+      "items": [
+        "mesh",
+        "material",
+        "texture",
+        "prefab"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "keystone/asset_io.py"
+      ]
+    },
+    {
+      "id": "file_suffixes",
+      "items": [
+        ".obj",
+        ".png",
+        ".kprefab"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "keystone/asset_io.py"
+      ]
+    },
+    {
+      "id": "primitives",
+      "items": [
+        "cube",
+        "plane",
+        "cone",
+        "cylinder",
+        "sphere"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "keystone/primitives.py"
+      ]
+    },
+    {
+      "id": "material_nodes",
+      "items": [
+        "color",
+        "float",
+        "checker",
+        "texture",
+        "mix",
+        "material",
+        "pbr"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "keystone/material_graph.py"
+      ]
+    }
+  ],
+  "display_name": "Keystone",
+  "engine": "python",
+  "lifecycle": "active",
+  "pack_major": 1,
+  "project": "projects/keystone",
+  "schema": 1,
+  "target_game": "keystone",
+  "test_command": "python -m pytest -q"
+}

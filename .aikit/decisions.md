@@ -119,3 +119,21 @@
   --check` and `validators/target.py "targets/*.json"` are the new gate.
   Adding a target means adding one adapter and regenerating its manifest.
   No consumer project file is modified by this slice.
+
+## ADR-011: foundry emits Keystone asset packs, proven by the real registry
+- Date: 2026-11-08. Status: accepted.
+- Decision: Add a Keystone asset mode beside the boss-pack and target-manifest
+  slices. `generators/keystone_assets.py` deterministically emits OBJ meshes,
+  RGBA PNG textures, material descriptors and a `.kprefab`, plus
+  `keystone-assets.json` with file digests and dependency order.
+  `validators/keystone_assets.py` gates the manifest, file hashes, load order
+  and prefab references. `tools/keystone_assets.py --verify` registers the
+  pack through Keystone's `AssetRegistry`, checks material parameters and
+  instantiates the prefab; Keystone stays an external read-only project.
+- Rationale: A Keystone game needs file-backed meshes, textures and prefabs,
+  not game-rule JSON. Producing them here gives the engine portfolio one
+  deterministic asset pipeline without hard-coding assets into each game.
+- Consequences: `packs/keystone/starter/` is the baselined seed-42 pack.
+  Generation remains stdlib-only; only the runtime proof imports Keystone.
+  The target registry now also exposes Keystone's asset kinds, suffixes,
+  primitives and material-graph node kinds as read-only target facts.

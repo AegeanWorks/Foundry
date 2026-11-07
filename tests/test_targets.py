@@ -38,6 +38,12 @@ REQUESTED = (
 
 EXPECTED_SURFACES = {
     "crypt-crawler": {"items": 25},
+    "keystone": {
+        "asset_kinds": 4,
+        "file_suffixes": 3,
+        "primitives": 5,
+        "material_nodes": 7,
+    },
     "afterimage": {"modes": 6, "scripts": 3},
     "aldervale": {"items": 12, "shop_stock": 7, "weapons": 4, "armor": 4},
     "shooter": {"enemies": 4, "weapons": 4, "waves": 5, "arena_covers": 7},

@@ -11,6 +11,7 @@ from adapters import (
     cyberpulse,
     fold,
     iris,
+    keystone,
     primordia,
     shooter,
     weft,
@@ -19,6 +20,7 @@ from adapters.base import TargetFacts
 
 TARGETS: Tuple[TargetFacts, ...] = (
     crypt_crawler.TARGET,
+    keystone.TARGET,
     afterimage.TARGET,
     aldervale.TARGET,
     shooter.TARGET,

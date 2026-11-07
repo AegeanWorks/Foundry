@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portable-agent-kit/foundry/schemas/keystone_assets.schema.json",
+  "title": "Foundry Keystone asset pack",
+  "description": "A deterministic pack of Keystone meshes, textures, materials and prefabs. File-backed assets carry a sha256; materials are parameter objects because Keystone registers them programmatically.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "pack", "seed", "generator", "assets"],
+  "properties": {
+    "schema": {"const": 1},
+    "pack": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}$"},
+    "seed": {"type": "integer", "minimum": 0},
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "integer", "minimum": 1}
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "path", "dependencies"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{1,63}$"},
+          "kind": {"type": "string", "enum": ["mesh", "material", "texture", "prefab"]},
+          "path": {"type": ["string", "null"]},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "dependencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "material": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["color", "specular", "shininess", "checker_scale", "metallic", "roughness", "emissive", "texture"],
+            "properties": {
+              "color": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+              "specular": {"type": "number"},
+              "shininess": {"type": "number"},
+              "checker_scale": {"type": "number"},
+              "metallic": {"type": "number"},
+              "roughness": {"type": "number"},
+              "emissive": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+              "texture": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"kind": {"const": "material"}}},
+            "then": {
+              "required": ["material"],
+              "properties": {"path": {"const": null}},
+              "not": {"required": ["sha256"]}
+            },
+            "else": {
+              "required": ["sha256"],
+              "properties": {"path": {"type": "string"}},
+              "not": {"required": ["material"]}
+            }
+          }
+        ]
+      }
+    }
+  }
+}

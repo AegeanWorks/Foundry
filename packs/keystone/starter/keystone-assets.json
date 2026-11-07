@@ -1,0 +1,136 @@
+{
+  "assets": [
+    {
+      "dependencies": [],
+      "id": "texture.checker",
+      "kind": "texture",
+      "path": "textures/texture_checker.png",
+      "sha256": "6cfa3a5c5c76ce5544ba3715c1d0451591a06dc395085e710dfb11d005b269f1"
+    },
+    {
+      "dependencies": [],
+      "id": "texture.gradient",
+      "kind": "texture",
+      "path": "textures/texture_gradient.png",
+      "sha256": "af1f16f951009f3fa9c27dd926973c1e84460a56f265633e2d3bf51308f664a3"
+    },
+    {
+      "dependencies": [],
+      "id": "mesh.cube",
+      "kind": "mesh",
+      "path": "meshes/mesh_cube.obj",
+      "sha256": "553596b167c979fbf7b9c466eda1ee1c77ff4dbd951089edc7b17792f25294ac"
+    },
+    {
+      "dependencies": [],
+      "id": "mesh.plane",
+      "kind": "mesh",
+      "path": "meshes/mesh_plane.obj",
+      "sha256": "27534cad7473453686f7198d6be2910fe1595e92c394b5d27e99002c4d836b5a"
+    },
+    {
+      "dependencies": [],
+      "id": "mesh.crystal",
+      "kind": "mesh",
+      "path": "meshes/mesh_crystal.obj",
+      "sha256": "8c083bf771051d9620025e18d0d44129fb31bc44b61b4b825d3e4d57ea8aad45"
+    },
+    {
+      "dependencies": [
+        "texture.checker"
+      ],
+      "id": "material.base",
+      "kind": "material",
+      "material": {
+        "checker_scale": 0.0,
+        "color": [
+          0.220858,
+          0.353047,
+          0.553749
+        ],
+        "emissive": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.7,
+        "shininess": 32.0,
+        "specular": 0.3,
+        "texture": "texture.checker"
+      },
+      "path": null
+    },
+    {
+      "dependencies": [],
+      "id": "material.accent",
+      "kind": "material",
+      "material": {
+        "checker_scale": 0.0,
+        "color": [
+          0.824526,
+          0.260857,
+          0.495345
+        ],
+        "emissive": [
+          0.824526,
+          0.260857,
+          0.495345
+        ],
+        "metallic": 0.0,
+        "roughness": 0.6,
+        "shininess": 64.0,
+        "specular": 0.6,
+        "texture": null
+      },
+      "path": null
+    },
+    {
+      "dependencies": [
+        "texture.gradient"
+      ],
+      "id": "material.crystal",
+      "kind": "material",
+      "material": {
+        "checker_scale": 0.0,
+        "color": [
+          0.218575,
+          0.339186,
+          0.654919
+        ],
+        "emissive": [
+          0.218575,
+          0.339186,
+          0.654919
+        ],
+        "metallic": 0.4,
+        "roughness": 0.25,
+        "shininess": 48.0,
+        "specular": 0.5,
+        "texture": "texture.gradient"
+      },
+      "path": null
+    },
+    {
+      "dependencies": [
+        "mesh.cube",
+        "mesh.plane",
+        "mesh.crystal",
+        "material.base",
+        "material.accent",
+        "material.crystal"
+      ],
+      "id": "prefab.starter",
+      "kind": "prefab",
+      "path": "prefabs/prefab_starter.kprefab",
+      "sha256": "bedc362e20d2310d3b75e7df899d115c6887f17093a723fe2c03ea89a3a7c77c"
+    }
+  ],
+  "generator": {
+    "name": "foundry.keystone-assets",
+    "version": 1
+  },
+  "pack": "starter",
+  "schema": 1,
+  "seed": 42
+}
