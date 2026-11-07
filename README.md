@@ -35,6 +35,7 @@ Target cockpit (read-only adapters over the consumer projects):
 python tools/targets.py                      # list every target and its surfaces
 python generators/target.py --check          # manifests match the consumer sources
 python validators/target.py "targets/*.json" # every manifest passes
+python tools/portfolio_analysis.py --check   # every playable project is a target
 ```
 
 Consumer side (crypt-crawler): install packs by copying the JSON files
@@ -86,7 +87,11 @@ foundry/
 │   ├── iris.py
 │   ├── primordia.py
 │   ├── cyberpulse.py
-│   └── fold.py
+│   ├── fold.py
+│   ├── dustline.py
+│   ├── memoryreconstruction.py
+│   ├── prism_relay.py
+│   └── voidfarer.py
 ├── generators/
 │   ├── __init__.py
 │   ├── boss.py
@@ -106,15 +111,21 @@ foundry/
 │   ├── iris.json
 │   ├── primordia.json
 │   ├── cyberpulse.json
-│   └── fold.json
+│   ├── fold.json
+│   ├── dustline.json
+│   ├── memoryreconstruction.json
+│   ├── prism-relay.json
+│   └── voidfarer.json
 ├── tests/
 │   ├── test_generator.py
 │   ├── test_keystone_assets.py
+│   ├── test_portfolio_analysis.py
 │   ├── test_targets.py
 │   └── test_validator.py
 ├── tools/
 │   ├── bot_clear.py
 │   ├── keystone_assets.py
+│   ├── portfolio_analysis.py
 │   └── targets.py
 ├── validators/
 │   ├── __init__.py
@@ -166,6 +177,7 @@ foundry/
 - `targets/` — checked-in manifests for every registered target.
 - `tools/bot_clear.py` — bot-clear proof against the shipped engine.
 - `tools/keystone_assets.py` — validate and load a pack through Keystone.
+- `tools/portfolio_analysis.py` — classify every project and check target coverage.
 - `tools/targets.py` — list targets, write manifests, verify freshness.
 - `.aikit/decisions.md` — ADRs, append-only.
 
@@ -183,9 +195,32 @@ foundry/
 | primordia | `projects/primordia` | active | genes, shocks, hunter traits |
 | cyberpulse | `projects/cyberpulse` | active | puzzle types, story acts, main quests |
 | fold | `projects/archive/fold` | archived | directions, rules |
+| dustline | `projects/dustline` | active | maps, weapons, enemies, bosses, mega bosses, operators, modes, mutators |
+| memoryreconstruction | `projects/MemoryReconstruction` | active | player/enemy abilities, biomes, enemies, equipment, items, lore, memory fragments |
+| prism-relay | `projects/prism-relay` | active | episodes, chambers, emitter directions |
+| voidfarer | `projects/voidfarer` | active | weapons, enemies, factions, drones, systems, surface types |
 
 Archived targets stay readable and are never edited; foundry only parses
 their files.
+
+## Portfolio Analysis
+
+Every playable project in `projects/` is now a target: thirteen games plus
+the Keystone engine. The remaining projects fall into non-target groups
+because they do not consume authored game content:
+
+| Group | Examples | Why not a target |
+|---|---|---|
+| Tooling / developer utilities | `assay`, `cairn`, `driftwood`, `dupefinder`, `gauge`, `lacon`, `merklock`, `pebble`, `research-engine`, `tally` | CLI/library tools with no game-content surface |
+| AI / agent platforms | `Atlas`, `chatduck`, `modelduck`, `neurocore` | applications over models/documents, not content consumers |
+| Science / research | `article-writer`, `fluid-universe`, `obezite-mekanizma-projesi`, `orrery`, `PNN` | simulations and papers, not shipped game assets |
+| Desktop / mobile / health | `NeuralBeat`, `NeuralDeck`, `NeuroOptic`, `NobetWizard`, `noesis`, `nomoreclutter`, `photo-harbor` | end-user apps whose content is user data or generated media |
+| Creative / design tools | `muse`, `palette`, `tessera`, `ui-sandbox` | authoring tools, not consumers of Foundry packs |
+| Licensing / profile / samples | `aegean-licensing`, `aegean-licensing-ops`, `AegeanWorks`, `capability-showcase`, `compat-sample-*`, `lattice`, `N1-Engine`, `NeurologyClinicTemplates-TR`, `tempo` | infrastructure, documentation or samples |
+
+The analysis rule is simple: a target must read authored content from its
+own project and expose stable assets/ids; otherwise it is out of scope until
+it gains such a surface.
 
 ## Gates (never lowered)
 
@@ -201,3 +236,5 @@ their files.
    (`python generators/keystone_assets.py --check`,
    `python validators/keystone_assets.py`), and the runtime proof loads it
    (`python tools/keystone_assets.py --verify`).
+6. Portfolio coverage is complete: every project classified as a game or
+   engine has a target (`python tools/portfolio_analysis.py --check`).

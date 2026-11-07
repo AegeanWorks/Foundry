@@ -137,3 +137,21 @@
   Generation remains stdlib-only; only the runtime proof imports Keystone.
   The target registry now also exposes Keystone's asset kinds, suffixes,
   primitives and material-graph node kinds as read-only target facts.
+
+## ADR-012: complete the playable portfolio as targets
+- Date: 2026-11-08. Status: accepted.
+- Decision: Finish the project analysis by adding Dustline, VoidFarer,
+  Memory Reconstruction and Prism Relay as read-only targets. Every playable
+  project now has a target adapter: After Image, Aldervale, crypt-crawler,
+  Cyberpulse, Dustline, Fold, Iris, Memory Reconstruction, Primordia,
+  Prism Relay, Shooter, VoidFarer and Weft, plus the Keystone engine.
+  Non-game projects remain out of scope because they expose tools, science,
+  user data or generated media rather than authored game-content surfaces.
+- Rationale: A target is only useful when it can name stable authored ids and
+  source files. Extending the same TargetFacts contract to the remaining
+  games completes the portfolio map without inventing content for tools.
+- Consequences: 14 target manifests are checked in. The new adapters parse
+  Dustline's JS tables, VoidFarer's Python catalogs and Memory
+  Reconstruction's JSON data; none imports or writes those projects.
+  `tools/portfolio_analysis.py --check` now gates the classification so a
+  future game project cannot silently fall outside the target registry.

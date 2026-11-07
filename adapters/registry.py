@@ -9,11 +9,15 @@ from adapters import (
     aldervale,
     crypt_crawler,
     cyberpulse,
+    dustline,
     fold,
     iris,
     keystone,
+    memoryreconstruction,
     primordia,
+    prism_relay,
     shooter,
+    voidfarer,
     weft,
 )
 from adapters.base import TargetFacts
@@ -29,6 +33,10 @@ TARGETS: Tuple[TargetFacts, ...] = (
     primordia.TARGET,
     cyberpulse.TARGET,
     fold.TARGET,
+    dustline.TARGET,
+    memoryreconstruction.TARGET,
+    prism_relay.TARGET,
+    voidfarer.TARGET,
 )
 
 _BY_ID: Dict[str, TargetFacts] = {target.game_id: target for target in TARGETS}

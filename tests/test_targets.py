@@ -25,15 +25,20 @@ from generators.target import (  # noqa: E402
 )
 from validators.target import validate  # noqa: E402
 
-REQUESTED = (
+PORTFOLIO_GAME_TARGETS = (
     "afterimage",
     "aldervale",
-    "shooter",
-    "weft",
-    "iris",
-    "primordia",
+    "crypt-crawler",
     "cyberpulse",
+    "dustline",
     "fold",
+    "iris",
+    "memoryreconstruction",
+    "primordia",
+    "prism-relay",
+    "shooter",
+    "voidfarer",
+    "weft",
 )
 
 EXPECTED_SURFACES = {
@@ -52,6 +57,35 @@ EXPECTED_SURFACES = {
     "primordia": {"genes": 12, "shocks": 7, "hunter_traits": 10},
     "cyberpulse": {"puzzle_types": 3, "story_acts": 5, "main_quests": 4},
     "fold": {"directions": 4, "rules": 2},
+    "dustline": {
+        "maps": 7,
+        "weapons": 6,
+        "enemies": 19,
+        "bosses": 5,
+        "mega_bosses": 3,
+        "operators": 7,
+        "modes": 3,
+        "mutators": 6,
+    },
+    "memoryreconstruction": {
+        "player_abilities": 9,
+        "enemy_abilities": 31,
+        "biomes": 16,
+        "enemies": 78,
+        "equipment": 20,
+        "items": 14,
+        "lore_entries": 12,
+        "memory_fragments": 45,
+    },
+    "prism-relay": {"episodes": 4, "chambers": 18, "emitter_directions": 4},
+    "voidfarer": {
+        "weapons": 8,
+        "enemies": 5,
+        "factions": 9,
+        "drones": 3,
+        "systems": 32,
+        "surface_types": 4,
+    },
 }
 
 
@@ -70,8 +104,11 @@ def _snapshot(targets):
 
 
 class TestTargetRegistry(unittest.TestCase):
-    def test_requested_targets_are_registered(self):
-        self.assertTrue(set(REQUESTED).issubset(target_ids()))
+    def test_portfolio_targets_are_registered(self):
+        self.assertTrue(set(PORTFOLIO_GAME_TARGETS).issubset(target_ids()))
+
+    def test_engine_target_is_registered(self):
+        self.assertIn("keystone", target_ids())
 
     def test_registry_ids_are_unique(self):
         ids = target_ids()

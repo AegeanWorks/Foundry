@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `31`
-- **Total Classes**: `14`
-- **Total Top-Level Functions**: `98`
-- **Total Class Methods**: `78`
-- **Total Source Lines**: `3378`
+- **Total Python Modules**: `37`
+- **Total Classes**: `16`
+- **Total Top-Level Functions**: `110`
+- **Total Class Methods**: `85`
+- **Total Source Lines**: `3897`
 
 ---
 
@@ -64,6 +64,13 @@
 
 ---
 
+### [`adapters/dustline.py`](adapters/dustline.py)
+> *Dustline target: read-only maps, weapons, enemies, bosses and run modes.*
+
+**Size**: `45` lines (`1576` bytes)
+
+---
+
 ### [`adapters/fold.py`](adapters/fold.py)
 > *Fold target: read-only board rules and direction set.*
 
@@ -95,6 +102,17 @@
 
 ---
 
+### [`adapters/memoryreconstruction.py`](adapters/memoryreconstruction.py)
+> *Memory Reconstruction target: read-only authored JSON content tables.*
+
+**Size**: `85` lines (`2430` bytes)
+
+**Functions:**
+- `def _load(name)`
+- `def _ids(items)`
+
+---
+
 ### [`adapters/primordia.py`](adapters/primordia.py)
 > *Primordia target: read-only genome, shock and hunter-trait catalogs.*
 
@@ -102,10 +120,17 @@
 
 ---
 
+### [`adapters/prism_relay.py`](adapters/prism_relay.py)
+> *Prism Relay target: read-only episodes, chambers and emitter directions.*
+
+**Size**: `43` lines (`1416` bytes)
+
+---
+
 ### [`adapters/registry.py`](adapters/registry.py)
 > *Target registry: every consumer foundry can emit content for.*
 
-**Size**: `54` lines (`1220` bytes)
+**Size**: `62` lines (`1392` bytes)
 
 **Functions:**
 - `def all_targets()` - *Registered targets in stable order.*
@@ -128,14 +153,18 @@
 ### [`adapters/source_js.py`](adapters/source_js.py)
 > *Read-only JavaScript source probes for the target adapters.*
 
-**Size**: `121` lines (`4153` bytes)
+**Size**: `174` lines (`6134` bytes)
 
 **Functions:**
 - `def read_text(path)`
 - `def object_keys(text, const_name)` - *Top-level keys of a `const NAME = { ... }` object literal.*
 - `def string_values(text, field)` - *Every quoted value assigned to `field:` in source order.*
+- `def array_strings(text, const_name)` - *Quoted strings inside a `const NAME = [ ... ]` array literal.*
+- `def array_object_ids(text, const_name, field)` - *Quoted `field:` values inside a `const NAME = [ ... ]` array literal.*
 - `def int_values(text, field)` - *Every integer value assigned to `field:` in source order.*
 - `def _object_body(text, const_name)`
+- `def _array_body(text, const_name)`
+- `def _balanced_body(text, start, opener, closer, label)`
 - `def _mask(text)` - *Blank strings, template literals and comments without moving offsets.*
 
 ---
@@ -143,17 +172,25 @@
 ### [`adapters/source_py.py`](adapters/source_py.py)
 > *Read-only Python AST probes for the target adapters.*
 
-**Size**: `116` lines (`4453` bytes)
+**Size**: `134` lines (`5289` bytes)
 
 **Functions:**
 - `def dict_keys(path, name)` - *String-or-int keys of a module-level dict literal, in source order.*
 - `def tuple_strings(path, name)` - *String items of a module-level tuple or list literal.*
 - `def set_strings(path, name)` - *String items of a module-level set literal.*
+- `def list_tuple_first_strings(path, name)` - *First string of every tuple in a module-level list of tuples.*
 - `def call_first_args(path, call_name)` - *First positional string argument of every `call_name(...)` in source order.*
 - `def top_level_functions(path)` - *Public function names defined at module level, in source order.*
 - `def int_constants(path, names)` - *Module-level integer constants by name.*
 - `def _parse(path)`
 - `def _assigned_value(tree, name)`
+
+---
+
+### [`adapters/voidfarer.py`](adapters/voidfarer.py)
+> *VoidFarer target: read-only weapons, enemies, factions, drones and systems.*
+
+**Size**: `38` lines (`1649` bytes)
 
 ---
 
@@ -285,14 +322,30 @@
 
 ---
 
+### [`tests/test_portfolio_analysis.py`](tests/test_portfolio_analysis.py)
+> *Portfolio analysis tests: every playable project is covered by a target.*
+
+**Size**: `50` lines (`1611` bytes)
+
+**Classes:**
+- `class TestPortfolioAnalysis`
+  - Method `.setUpClass()`
+  - Method `.test_every_playable_project_is_targeted()`
+  - Method `.test_scan_finds_the_remaining_game_projects()`
+  - Method `.test_classification_separates_games_from_tools()`
+  - Method `.test_report_is_json_safe()`
+
+---
+
 ### [`tests/test_targets.py`](tests/test_targets.py)
 > *Target registry tests: every requested consumer is present and read-only.*
 
-**Size**: `217` lines (`7664` bytes)
+**Size**: `254` lines (`8583` bytes)
 
 **Classes:**
 - `class TestTargetRegistry`
-  - Method `.test_requested_targets_are_registered()`
+  - Method `.test_portfolio_targets_are_registered()`
+  - Method `.test_engine_target_is_registered()`
   - Method `.test_registry_ids_are_unique()`
   - Method `.test_every_target_project_exists()`
   - Method `.test_every_source_exists()`
@@ -391,6 +444,24 @@
 - `def _import_keystone()`
 - `def load_pack(pack_dir)` - *Register every asset in manifest order and return (registry, manifest).*
 - `def verify_pack(pack_dir)` - *Validate a pack, load it through Keystone and instantiate its prefab.*
+- `def main(argv)`
+
+---
+
+### [`tools/portfolio_analysis.py`](tools/portfolio_analysis.py)
+> *Portfolio analysis: classify every project and prove target coverage.*
+
+**Size**: `142` lines (`4817` bytes)
+
+**Classes:**
+- `class ProjectAnalysis` - *One project's manifest facts and portfolio classification.*
+  - Property `.kind`
+
+**Functions:**
+- `def scan(projects_root)` - *Read every project.json under projects/ and projects/archive/.*
+- `def target_paths()` - *Map each registered target's project directory to its target id.*
+- `def analyze(projects)` - *Return one JSON-safe row per project, including target coverage.*
+- `def check(projects)` - *Return coverage problems: playable projects without a target, dead targets.*
 - `def main(argv)`
 
 ---

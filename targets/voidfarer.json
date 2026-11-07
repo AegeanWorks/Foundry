@@ -1,0 +1,127 @@
+{
+  "content": [
+    {
+      "id": "weapons",
+      "items": [
+        "pulse_laser",
+        "railgun",
+        "missile_pod",
+        "plasma_lance",
+        "ion_disruptor",
+        "quantum_lance",
+        "entangled_torpedo",
+        "drone_swarm"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/weapons.py"
+      ]
+    },
+    {
+      "id": "enemies",
+      "items": [
+        "corsair_interceptor",
+        "syndicate_marauder",
+        "corporate_enforcer",
+        "precursor_sentinel",
+        "warlord_dreadnought"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/enemies.py"
+      ]
+    },
+    {
+      "id": "factions",
+      "items": [
+        "sol_coalition",
+        "vanguard_syndicate",
+        "precursor_watch",
+        "nebula_collective",
+        "outlaw_corsairs",
+        "kepler_concord",
+        "helios_compact",
+        "ashen_choir",
+        "iron_meridian"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/factions.py"
+      ]
+    },
+    {
+      "id": "drones",
+      "items": [
+        "mining",
+        "scout",
+        "combat_escort"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/upgrades.py"
+      ]
+    },
+    {
+      "id": "systems",
+      "items": [
+        "sol",
+        "alpha_centauri",
+        "sirius",
+        "procyon",
+        "vega",
+        "arcturus",
+        "betelgeuse",
+        "cygnus_x1",
+        "pulsar_psr",
+        "rift_station",
+        "orion_belt",
+        "trappist",
+        "wolf_359",
+        "golconda",
+        "cyclops",
+        "kepler",
+        "helios",
+        "ashen",
+        "meridian",
+        "vela",
+        "lyra",
+        "draco",
+        "phoenix",
+        "altair",
+        "deneb",
+        "rigel",
+        "capella",
+        "tau_ceti",
+        "epsilon_eridani",
+        "luyten",
+        "pollux",
+        "barnard"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/galaxy.py"
+      ]
+    },
+    {
+      "id": "surface_types",
+      "items": [
+        "gas_giant",
+        "ringed_giant",
+        "ice_giant",
+        "methane_storm"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "voidfarer/surface.py"
+      ]
+    }
+  ],
+  "display_name": "VoidFarer",
+  "engine": "python",
+  "lifecycle": "active",
+  "pack_major": 1,
+  "project": "projects/voidfarer",
+  "schema": 1,
+  "target_game": "voidfarer",
+  "test_command": "python -m unittest discover"
+}

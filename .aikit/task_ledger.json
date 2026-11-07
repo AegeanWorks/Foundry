@@ -1,15 +1,15 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "foundry-keystone-assets",
+    "task_id": "foundry-portfolio-analysis",
     "last_phase": "in_progress",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1794089177.8323433,
+    "updated_at": 1794089865.166444,
     "owner": "opencode:goal",
     "started_by": "opencode:goal",
     "continuations": [],
-    "completed_at": 1794089177.901722
+    "completed_at": 1794089865.2304022
   },
   "checkpoints": [
     {
@@ -143,6 +143,67 @@
       "status": "completed",
       "timestamp": 1794089177.9017239,
       "timestamp_str": "2026-11-08 01:06:17",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-portfolio-analysis",
+      "phase": "in_progress",
+      "phase_num": 2,
+      "description": "[1/4] Inventory and classify every project in the portfolio",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089688.5358708,
+      "timestamp_str": "2026-11-08 01:14:48",
+      "agent": "opencode:goal",
+      "impact_assessment": {
+        "why": "The user asked to continue analyzing the projects after the first target and Keystone slices; the remaining playable projects were not yet registered in foundry.",
+        "benefits": "A complete portfolio map that separates game/content targets from tools, science and apps, backed by source-derived content surfaces rather than guesses.",
+        "risks": "contract: registry grows to 14 targets plus the Keystone engine; dependency: stdlib only for adapters; concurrency: none; state: four new adapters and manifests",
+        "mitigation": "Read each candidate project's README and source, add only targets with authored content surfaces, validate counts, run the suite and aikit check."
+      },
+      "plan_digest": "31afc1115e4ac3a4a303b623c4a844994abbbe866a5e973fa1c4aa63281cc6ab"
+    },
+    {
+      "task_id": "foundry-portfolio-analysis",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[3/4] Regenerate 14 target manifests; document portfolio analysis and ADR-012",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089698.1697462,
+      "timestamp_str": "2026-11-08 01:14:58",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-portfolio-analysis",
+      "phase": "in_progress",
+      "phase_num": 3,
+      "description": "[2/4] Add Dustline, VoidFarer, Memory Reconstruction and Prism Relay adapters",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089698.1754353,
+      "timestamp_str": "2026-11-08 01:14:58",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-portfolio-analysis",
+      "phase": "in_progress",
+      "phase_num": 4,
+      "description": "[4/4] Phase 4 gates pass; checklists: passed; 62 projects scanned, all 13 games + Keystone covered",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1794089865.166444,
+      "timestamp_str": "2026-11-08 01:17:45",
+      "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-portfolio-analysis",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'foundry-portfolio-analysis' completed successfully.",
+      "status": "completed",
+      "timestamp": 1794089865.2304044,
+      "timestamp_str": "2026-11-08 01:17:45",
       "agent": "opencode:goal"
     }
   ]

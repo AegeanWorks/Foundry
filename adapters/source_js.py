@@ -29,6 +29,23 @@ def object_keys(text: str, const_name: str) -> Tuple[str, ...]:
             depth += 1
         elif char == "}":
             depth -= 1
+        elif depth == 0 and body[index] in "'\"":
+            quote = body[index]
+            end = index + 1
+            while end < len(body):
+                if body[end] == "\\":
+                    end += 2
+                    continue
+                if body[end] == quote:
+                    break
+                end += 1
+            probe = end + 1
+            while probe < len(body) and body[probe].isspace():
+                probe += 1
+            if end < len(body) and probe < len(body) and body[probe] == ":":
+                keys.append(body[index + 1:end])
+            index = end + 1
+            continue
         elif depth == 0 and (char.isalpha() or char in "_$"):
             end = index + 1
             while end < len(masked) and (masked[end].isalnum() or masked[end] in "_$"):
@@ -54,6 +71,24 @@ def string_values(text: str, field: str) -> Tuple[str, ...]:
     return values
 
 
+def array_strings(text: str, const_name: str) -> Tuple[str, ...]:
+    """Quoted strings inside a `const NAME = [ ... ]` array literal."""
+    body = _array_body(text, const_name)
+    values = tuple(re.findall(r"[\"']([^\"']+)[\"']", body))
+    if not values:
+        raise ValueError(f"{const_name}: array literal has no strings")
+    return values
+
+
+def array_object_ids(text: str, const_name: str, field: str = "id") -> Tuple[str, ...]:
+    """Quoted `field:` values inside a `const NAME = [ ... ]` array literal."""
+    body = _array_body(text, const_name)
+    values = tuple(re.findall(rf"\b{re.escape(field)}\s*:\s*[\"']([^\"']+)[\"']", body))
+    if not values:
+        raise ValueError(f"{const_name}: array literal has no {field} values")
+    return values
+
+
 def int_values(text: str, field: str) -> Tuple[int, ...]:
     """Every integer value assigned to `field:` in source order."""
     values = tuple(int(value) for value in re.findall(
@@ -65,20 +100,38 @@ def int_values(text: str, field: str) -> Tuple[int, ...]:
 
 
 def _object_body(text: str, const_name: str) -> str:
-    match = re.search(rf"\b(?:const|let|var)\s+{re.escape(const_name)}\s*=\s*\{{", text)
+    match = re.search(
+        rf"\b(?:const|let|var)\s+{re.escape(const_name)}\s*=\s*(?:Object\.freeze\()?\s*\{{",
+        text,
+    )
     if match is None:
         raise ValueError(f"{const_name}: object anchor not found")
-    start = match.end() - 1
+    start = text.rfind("{", 0, match.end())
+    return _balanced_body(text, start, "{", "}", const_name)
+
+
+def _array_body(text: str, const_name: str) -> str:
+    match = re.search(
+        rf"\b(?:const|let|var)\s+{re.escape(const_name)}\s*=\s*(?:Object\.freeze\()?\s*\[",
+        text,
+    )
+    if match is None:
+        raise ValueError(f"{const_name}: array anchor not found")
+    start = text.rfind("[", 0, match.end())
+    return _balanced_body(text, start, "[", "]", const_name)
+
+
+def _balanced_body(text: str, start: int, opener: str, closer: str, label: str) -> str:
     depth = 0
     masked = _mask(text)
     for index in range(start, len(masked)):
-        if masked[index] == "{":
+        if masked[index] == opener:
             depth += 1
-        elif masked[index] == "}":
+        elif masked[index] == closer:
             depth -= 1
             if depth == 0:
                 return text[start + 1:index]
-    raise ValueError(f"{const_name}: object literal is not closed")
+    raise ValueError(f"{label}: literal is not closed")
 
 
 def _mask(text: str) -> str:

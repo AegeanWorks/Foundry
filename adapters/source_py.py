@@ -56,6 +56,24 @@ def set_strings(path: Path, name: str) -> Tuple[str, ...]:
     return tuple(items)
 
 
+def list_tuple_first_strings(path: Path, name: str) -> Tuple[str, ...]:
+    """First string of every tuple in a module-level list of tuples."""
+    value = _assigned_value(_parse(path), name)
+    if not isinstance(value, (ast.List, ast.Tuple)):
+        raise ValueError(f"{name}: assignment is not a list literal")
+    items = []
+    for element in value.elts:
+        if not isinstance(element, (ast.Tuple, ast.List)) or not element.elts:
+            raise ValueError(f"{name}: item is not a non-empty tuple")
+        first = element.elts[0]
+        if not isinstance(first, ast.Constant) or not isinstance(first.value, str):
+            raise ValueError(f"{name}: tuple does not start with a string")
+        items.append(first.value)
+    if not items:
+        raise ValueError(f"{name}: list has no items")
+    return tuple(items)
+
+
 def call_first_args(path: Path, call_name: str) -> Tuple[str, ...]:
     """First positional string argument of every `call_name(...)` in source order."""
     tree = _parse(path)
