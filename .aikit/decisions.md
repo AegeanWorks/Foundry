@@ -1,6 +1,6 @@
 # foundry decisions (append-only)
 
-## ADR-001: crypt-crawler is the first consumer, bosses the first content type
+### ADR-001: crypt-crawler is the first consumer, bosses the first content type
 - Date: 2026-11-03. Status: accepted.
 - Decision: Slice 1 targets crypt-crawler (stdlib-only, data-table precedent
   ITEM_CATALOG/GUARDIAN_TEMPLATES/BOSS_TEMPLATES, single boss spawn call
@@ -10,7 +10,7 @@
 - Consequences: All foundry contracts are proven against one real loader
   before the loop repeats per content type and per game.
 
-## ADR-002: "no code change" means loader-once, data-after
+### ADR-002: "no code change" means loader-once, data-after
 - Date: 2026-11-03. Status: accepted.
 - Decision: Stage 2 refuted literal zero-code-change loading (no JSON
   loading in the game, hardcoded spawn sites in server.py, per-type engine
@@ -21,7 +21,7 @@
 - Consequences: Per-pack content work is a data task. Loader/hook changes
   are versioned integration work, not content.
 
-## ADR-003: slice-1 bosses live inside the generic is_boss envelope
+### ADR-003: slice-1 bosses live inside the generic is_boss envelope
 - Date: 2026-11-03. Status: accepted.
 - Decision: The engine applies fixed phase behavior to ANY is_boss monster
   (50%: summon <=2 skeletons + log tell; 25%: attack x1.3 + log tell).
@@ -33,7 +33,7 @@
 - Consequences: New bosses get telegraphed phases with no engine edits.
   Slice 2 adds the interpreter; the schema's envelope check is the seam.
 
-## ADR-004: replacement spawning preserves consumer invariants
+### ADR-004: replacement spawning preserves consumer invariants
 - Date: 2026-11-03. Status: accepted.
 - Decision: Pack spawn claims (depth 3, anchor stairs, replaces boss_lich,
   seeds [...]). The server spawns the pack boss INSTEAD of the lich for
@@ -44,7 +44,7 @@
 - Consequences: Baselines can overlap the consumer's own sweep seeds
   (42/777) and both suites stay green.
 
-## ADR-005: loudness is split across the boundary
+### ADR-005: loudness is split across the boundary
 - Date: 2026-11-03. Status: accepted.
 - Decision: foundry's validators/boss.py is the shipping gate (exit 2 +
   `field: reason` lines; full semantic checks incl. catalog membership and
@@ -53,7 +53,7 @@
   so one bad pack cannot brick the game; tests assert the recording.
 - Consequences: Fail-fast at generation time, fail-safe at load time.
 
-## ADR-006: the proof bot plays the shipped engine with a stated loadout
+### ADR-006: the proof bot plays the shipped engine with a stated loadout
 - Date: 2026-11-03. Status: accepted.
 - Decision: Keystone playtest.py uses an ActionState contract crypt-crawler
   does not implement (not landed for this consumer), so the proof bot runs
@@ -66,7 +66,7 @@
   selftest failures (2 omen checks, unrelated to bosses) are baselined, not
   fixed here.
 
-## ADR-007: empty loot overlap fails loud at generation time
+### ADR-007: empty loot overlap fails loud at generation time
 - Date: 2026-11-03. Status: accepted.
 - Decision: If no LOOT_POOL id resolves in the consumer ITEM_CATALOG,
   generate() raises ValueError naming the cause instead of crashing in
@@ -77,7 +77,7 @@
   as `loot pool has no ITEM_CATALOG overlap` with a fix direction, covered
   by test_empty_loot_pool_fails_loud.
 
-## ADR-008: validator hardening without contract change
+### ADR-008: validator hardening without contract change
 - Date: 2026-11-03. Status: accepted.
 - Decision: Harden validators/boss.py only: fullmatch for pack_version and
   boss_id (close trailing-newline bypass), int-type guard for spawn.depth
@@ -88,7 +88,7 @@
 - Consequences: Six new TestValidatorHardening tests lock the fixes;
   validator stays the shipping gate with field+reason lines.
 
-## ADR-009: attach to AIKit and conform README to the scaffold
+### ADR-009: attach to AIKit and conform README to the scaffold
 - Date: 2026-11-03. Status: accepted.
 - Decision: Register the existing folder via `aikit attach` (badge under
   the README title) so `aikit check foundry` runs; rename README headings
@@ -100,7 +100,7 @@
 - Consequences: All four `aikit check` gates run; README stays the
   cold-start contract with scaffold headings.
 
-## ADR-010: every consumer is a read-only target with a checked-in manifest
+### ADR-010: every consumer is a read-only target with a checked-in manifest
 - Date: 2026-11-08. Status: accepted.
 - Decision: Add After Image, Aldervale, Shooter, Weft, Iris, Primordia,
   Cyberpulse and Fold to foundry as targets beside crypt-crawler. Each target
@@ -120,7 +120,7 @@
   Adding a target means adding one adapter and regenerating its manifest.
   No consumer project file is modified by this slice.
 
-## ADR-011: foundry emits Keystone asset packs, proven by the real registry
+### ADR-011: foundry emits Keystone asset packs, proven by the real registry
 - Date: 2026-11-08. Status: accepted.
 - Decision: Add a Keystone asset mode beside the boss-pack and target-manifest
   slices. `generators/keystone_assets.py` deterministically emits OBJ meshes,
@@ -138,7 +138,7 @@
   The target registry now also exposes Keystone's asset kinds, suffixes,
   primitives and material-graph node kinds as read-only target facts.
 
-## ADR-012: complete the playable portfolio as targets
+### ADR-012: complete the playable portfolio as targets
 - Date: 2026-11-08. Status: accepted.
 - Decision: Finish the project analysis by adding Dustline, VoidFarer,
   Memory Reconstruction and Prism Relay as read-only targets. Every playable
@@ -156,7 +156,7 @@
   `tools/portfolio_analysis.py --check` now gates the classification so a
   future game project cannot silently fall outside the target registry.
 
-## ADR-013: publish only through AIKit, with approved media, license and topics
+### ADR-013: publish only through AIKit, with approved media, license and topics
 - Date: 2026-11-08. Status: accepted.
 - Decision: Foundry is published with `python aikit.py publish foundry`;
   raw `gh repo create` and `git push` are forbidden by project guideline
