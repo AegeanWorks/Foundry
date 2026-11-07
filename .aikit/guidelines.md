@@ -9,3 +9,4 @@ Persisted state carries a format version. A loader refuses a version it does not
 without modifying or quarantining that file; older versions migrate when a migration exists.
 
 ## Rules
+- **G-001** (user): Publish only through python aikit.py publish foundry; never create or push the repository with raw gh or git commands.

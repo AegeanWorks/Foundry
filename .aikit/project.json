@@ -3,7 +3,23 @@
   "name": "foundry",
   "test_command": "python -m unittest discover tests",
   "topics": [
-    "aikit"
+    "aikit",
+    "aegean-license",
+    "aegeanworks",
+    "aikit-integrated",
+    "asset-pipeline",
+    "cli",
+    "commercial-license",
+    "content-pipeline",
+    "deterministic",
+    "gamedev",
+    "keystone",
+    "python",
+    "quality-assurance",
+    "source-available",
+    "testing",
+    "game-content",
+    "game-tools"
   ],
   "gates": {},
   "ui_required": false,
@@ -13,10 +29,19 @@
   "ui_kind": "cli",
   "ui_evidence": [
     "generators/boss.py",
+    "generators/keystone_assets.py",
+    "generators/target.py",
     "tests/test_validator.py",
     "tools/bot_clear.py",
-    "validators/boss.py"
+    "tools/keystone_assets.py",
+    "tools/portfolio_analysis.py",
+    "tools/targets.py",
+    "validators/boss.py",
+    "validators/keystone_assets.py",
+    "validators/target.py"
   ],
-  "ui_checked_at": "2026-11-07",
-  "ui_source": "detected"
+  "ui_checked_at": "2026-11-08",
+  "ui_source": "detected",
+  "topics_source": "manual",
+  "topics_reviewed_at": "2026-11-08"
 }

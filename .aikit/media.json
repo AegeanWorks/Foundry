@@ -15,17 +15,31 @@
   "assets": {
     "logo": {
       "path": "assets/logo.svg",
-      "status": "pending_review",
+      "status": "approved",
       "commit": "",
-      "generated_at": "2026-11-04T01:42:50",
-      "review": null
+      "generated_at": "2026-11-08T01:24:36",
+      "review": {
+        "status": "approved",
+        "reviewer": "agent:opencode",
+        "method": "structural",
+        "notes": "512x512 SVG, aegis mark, brand palette, crisp vector shapes, title/desc present, no external references.",
+        "score": 88,
+        "reviewed_at": "2026-11-08T01:25:04"
+      }
     },
     "social_preview": {
       "path": "assets/social-preview.svg",
-      "status": "pending_review",
+      "status": "approved",
       "commit": "",
-      "generated_at": "2026-11-04T01:42:50",
-      "review": null
+      "generated_at": "2026-11-08T01:24:36",
+      "review": {
+        "status": "approved",
+        "reviewer": "agent:opencode",
+        "method": "structural",
+        "notes": "1280x640 SVG, current README summary, brand palette, readable hierarchy, repo URL, no external references.",
+        "score": 88,
+        "reviewed_at": "2026-11-08T01:25:04"
+      }
     }
   },
   "screenshots": []

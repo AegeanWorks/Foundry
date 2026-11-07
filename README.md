@@ -1,6 +1,10 @@
 # foundry
 
-[![AIKit Integrated](https://img.shields.io/badge/AIKit-integrated-6f42c1)](https://github.com/AegeanWorks/AIKit)
+<!-- aegean:media:start -->
+<p align="center"><img src="assets/social-preview.svg" alt="Foundry social preview" width="100%"></p>
+<p align="center"><a href="LICENSE"><img src="https://img.shields.io/badge/license-AL--1.1-1c7ed6" alt="License"></a> <a href="https://github.com/AegeanWorks/AIKit"><img src="https://img.shields.io/badge/AIKit-integrated-6f42c1" alt="AIKit Integrated"></a></p>
+<!-- aegean:media:end -->
+
 
 Shared content pipeline for the game portfolio: validated schemas plus a
 generator that emits per-game data packs, with the fairness validator as
@@ -63,6 +67,10 @@ python tools/keystone_assets.py --verify
 foundry/
 ├── README.md
 ├── .gitignore
+├── COMMERCIAL.md
+├── LICENSE
+├── LICENSES/
+├── REUSE.toml
 ├── assets/
 ├── .aikit/
 │   ├── codebase_map.md
@@ -238,3 +246,15 @@ it gains such a surface.
    (`python tools/keystone_assets.py --verify`).
 6. Portfolio coverage is complete: every project classified as a game or
    engine has a target (`python tools/portfolio_analysis.py --check`).
+
+<!-- aegean:brand-assets:start -->
+## 🎨 Brand Assets
+
+> **AI-Generated Brand Artwork.** The banner and logo are **AI-generated brand assets**. They are illustrative and may not literally depict every feature or the full project scope.
+<!-- aegean:brand-assets:end -->
+
+## 📜 License
+
+<!-- aegean:license:start -->
+Free for personal use under the Aegean License 1.1 (AL-1.1); see [LICENSE](LICENSE). Any commercial use needs the Aegean Commercial License 1.0 (ACL-1.0); see [COMMERCIAL.md](COMMERCIAL.md).
+<!-- aegean:license:end -->

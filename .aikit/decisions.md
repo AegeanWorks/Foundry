@@ -155,3 +155,18 @@
   Reconstruction's JSON data; none imports or writes those projects.
   `tools/portfolio_analysis.py --check` now gates the classification so a
   future game project cannot silently fall outside the target registry.
+
+## ADR-013: publish only through AIKit, with approved media, license and topics
+- Date: 2026-11-08. Status: accepted.
+- Decision: Foundry is published with `python aikit.py publish foundry`;
+  raw `gh repo create` and `git push` are forbidden by project guideline
+  G-001. The tree now carries the AL-1.1 software license
+  (`LICENSE`, `LICENSES/`, `COMMERCIAL.md`, `REUSE.toml`), approved brand
+  media, recorded GitHub topics and the AegeanWorks dossier entry.
+- Rationale: the first publish used raw GitHub CLI commands, which skipped
+  AIKit's media review, license state, topic policy, dossier sync and
+  publish-time gate sequence. A future agent must not repeat that shortcut.
+- Consequences: `aikit media status foundry` shows both assets approved;
+  `aikit topics foundry --review` reports no policy problem; publishing the
+  committed tree runs the full AIKit sequence. The AegeanWorks dossier media
+  files are committed in their own repository.
