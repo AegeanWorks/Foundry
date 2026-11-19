@@ -1,4 +1,4 @@
-"""Target registry tests: every requested consumer is present and read-only."""
+"""Target registry tests: only Shooter and Keystone are in scope, read-only."""
 
 from __future__ import annotations
 
@@ -25,32 +25,15 @@ from generators.target import (  # noqa: E402
 )
 from validators.target import validate  # noqa: E402
 
-PORTFOLIO_GAME_TARGETS = (
-    "afterimage",
-    "aldervale",
-    "crypt-crawler",
-    "cyberpulse",
-    "dustline",
-    "fold",
-    "iris",
-    "memoryreconstruction",
-    "primordia",
-    "prism-relay",
-    "shooter",
-    "voidfarer",
-    "weft",
-)
+TARGET_IDS = ("shooter", "keystone")
 
 EXPECTED_SURFACES = {
-    "crypt-crawler": {"items": 25},
     "keystone": {
         "asset_kinds": 4,
         "file_suffixes": 3,
         "primitives": 5,
         "material_nodes": 7,
     },
-    "afterimage": {"modes": 6, "scripts": 3},
-    "aldervale": {"items": 12, "shop_stock": 7, "weapons": 4, "armor": 4},
     "shooter": {
         "enemies": 4,
         "weapons": 4,
@@ -60,40 +43,6 @@ EXPECTED_SURFACES = {
         "grade": 1,
         "juice": 32,
         "core_material": 2,
-    },
-    "weft": {"chambers": 24, "sizes": 8},
-    "iris": {"episodes": 3, "chambers": 12},
-    "primordia": {"genes": 12, "shocks": 7, "hunter_traits": 10},
-    "cyberpulse": {"puzzle_types": 3, "story_acts": 5, "main_quests": 4},
-    "fold": {"directions": 4, "rules": 2},
-    "dustline": {
-        "maps": 7,
-        "weapons": 6,
-        "enemies": 24,
-        "bosses": 5,
-        "mega_bosses": 3,
-        "operators": 10,
-        "modes": 3,
-        "mutators": 8,
-    },
-    "memoryreconstruction": {
-        "player_abilities": 9,
-        "enemy_abilities": 31,
-        "biomes": 16,
-        "enemies": 105,
-        "equipment": 28,
-        "items": 14,
-        "lore_entries": 13,
-        "memory_fragments": 53,
-    },
-    "prism-relay": {"episodes": 4, "chambers": 18, "emitter_directions": 4},
-    "voidfarer": {
-        "weapons": 8,
-        "enemies": 5,
-        "factions": 9,
-        "drones": 3,
-        "systems": 32,
-        "surface_types": 4,
     },
 }
 
@@ -113,11 +62,8 @@ def _snapshot(targets):
 
 
 class TestTargetRegistry(unittest.TestCase):
-    def test_portfolio_targets_are_registered(self):
-        self.assertTrue(set(PORTFOLIO_GAME_TARGETS).issubset(target_ids()))
-
-    def test_engine_target_is_registered(self):
-        self.assertIn("keystone", target_ids())
+    def test_only_shooter_and_keystone_are_registered(self):
+        self.assertEqual(set(target_ids()), set(TARGET_IDS))
 
     def test_registry_ids_are_unique(self):
         ids = target_ids()
@@ -148,12 +94,10 @@ class TestTargetRegistry(unittest.TestCase):
                 counts = {surface.id: len(surface.items) for surface in target.content}
                 self.assertEqual(counts, EXPECTED_SURFACES[target.game_id])
 
-    def test_lifecycle_is_known_and_archived_projects_stay_read_only(self):
-        archived = {"aldervale", "iris", "fold"}
+    def test_lifecycle_is_known(self):
         for target in all_targets():
             with self.subTest(target=target.game_id):
                 self.assertIn(target.lifecycle, {"active", "archived"})
-                self.assertEqual(target.lifecycle == "archived", target.game_id in archived)
 
 
 class TestTargetManifests(unittest.TestCase):
@@ -185,16 +129,16 @@ class TestTargetManifests(unittest.TestCase):
             out = Path(tmp)
             for target in all_targets():
                 write_manifest(target, out)
-            stale = out / "afterimage.json"
+            stale = out / "shooter.json"
             stale.write_text("{}\n", encoding="utf-8")
             problems = check_manifests(out)
         self.assertEqual(len(problems), 1)
-        self.assertIn("afterimage.json: stale manifest", problems[0])
+        self.assertIn("shooter.json: stale manifest", problems[0])
 
 
 class TestTargetValidation(unittest.TestCase):
     def good(self):
-        return copy.deepcopy(manifest(get_target("afterimage")))
+        return copy.deepcopy(manifest(get_target("keystone")))
 
     def check(self, mutate, field_prefix):
         value = mutate(self.good())
@@ -219,11 +163,11 @@ class TestTargetValidation(unittest.TestCase):
         self.check(drop, "engine:")
 
     def test_rejects_project_traversal(self):
-        self.check(lambda m: m.update(project="projects/../afterimage") or m, "project:")
+        self.check(lambda m: m.update(project="projects/../keystone") or m, "project:")
 
     def test_rejects_missing_source(self):
         def mutate(manifest):
-            manifest["content"][0]["sources"] = ["missing.js"]
+            manifest["content"][0]["sources"] = ["missing.py"]
             return manifest
 
         self.check(mutate, "content[0].sources:")
@@ -241,7 +185,7 @@ class TestTargetValidation(unittest.TestCase):
             manifest["content"].append(copy.deepcopy(manifest["content"][0]))
             return manifest
 
-        self.check(mutate, "content[2].id:")
+        self.check(mutate, "content[4].id:")
 
     def test_rejects_non_object(self):
         self.assertEqual(validate([]), ["manifest: must be a JSON object"])

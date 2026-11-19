@@ -1,42 +1,15 @@
-"""Target registry: every consumer foundry can emit content for."""
+"""Target registry: the two consumers Foundry serves — Shooter and Keystone."""
 
 from __future__ import annotations
 
 from typing import Dict, Tuple
 
-from adapters import (
-    afterimage,
-    aldervale,
-    crypt_crawler,
-    cyberpulse,
-    dustline,
-    fold,
-    iris,
-    keystone,
-    memoryreconstruction,
-    primordia,
-    prism_relay,
-    shooter,
-    voidfarer,
-    weft,
-)
+from adapters import keystone, shooter
 from adapters.base import TargetFacts
 
 TARGETS: Tuple[TargetFacts, ...] = (
-    crypt_crawler.TARGET,
-    keystone.TARGET,
-    afterimage.TARGET,
-    aldervale.TARGET,
     shooter.TARGET,
-    weft.TARGET,
-    iris.TARGET,
-    primordia.TARGET,
-    cyberpulse.TARGET,
-    fold.TARGET,
-    dustline.TARGET,
-    memoryreconstruction.TARGET,
-    prism_relay.TARGET,
-    voidfarer.TARGET,
+    keystone.TARGET,
 )
 
 _BY_ID: Dict[str, TargetFacts] = {target.game_id: target for target in TARGETS}

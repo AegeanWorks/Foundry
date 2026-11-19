@@ -6,14 +6,14 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `42`
-- **Total Classes**: `21`
-- **Total Top-Level Functions**: `129`
-- **Total Class Methods**: `105`
-- **Total Source Lines**: `4663`
+- **Total Python Modules**: `22`
+- **Total Classes**: `15`
+- **Total Top-Level Functions**: `96`
+- **Total Class Methods**: `61`
+- **Total Source Lines**: `2765`
 
 ## 🧭 Map Coverage
-- **Indexed**: python (`42` module(s))
+- **Indexed**: python (`22` module(s))
 - **Not indexed by this map**: none (no non-Python source files were found)
 
 ---
@@ -22,20 +22,6 @@
 
 ### [`adapters/__init__.py`](adapters/__init__.py)
 **Size**: `0` lines
-
----
-
-### [`adapters/afterimage.py`](adapters/afterimage.py)
-> *Afterimage target: read-only authored modes and scripts.*
-
-**Size**: `28` lines
-
----
-
-### [`adapters/aldervale.py`](adapters/aldervale.py)
-> *Aldervale target: read-only item and equipment tables.*
-
-**Size**: `31` lines
 
 ---
 
@@ -48,44 +34,6 @@
 - `class ContentSurface` - *One authored content surface a target exposes to foundry.*
 - `class TargetFacts` - *The read-only facts foundry needs to target one consumer project.*
   - Method `.as_manifest(portfolio_root)` - *Serialize the facts as the canonical target manifest.*
-
----
-
-### [`adapters/crypt_crawler.py`](adapters/crypt_crawler.py)
-> *crypt-crawler adapter: the versioned boundary foundry never crosses.*
-
-**Size**: `54` lines
-
-**Functions:**
-- `def _load_game_tables()`
-
----
-
-### [`adapters/cyberpulse.py`](adapters/cyberpulse.py)
-> *Cyberpulse target: read-only puzzle, story-act and campaign-quest catalogs.*
-
-**Size**: `30` lines
-
----
-
-### [`adapters/dustline.py`](adapters/dustline.py)
-> *Dustline target: read-only maps, weapons, enemies, bosses and run modes.*
-
-**Size**: `45` lines
-
----
-
-### [`adapters/fold.py`](adapters/fold.py)
-> *Fold target: read-only board rules and direction set.*
-
-**Size**: `31` lines
-
----
-
-### [`adapters/iris.py`](adapters/iris.py)
-> *Iris target: read-only episode and chamber catalog.*
-
-**Size**: `28` lines
 
 ---
 
@@ -106,35 +54,10 @@
 
 ---
 
-### [`adapters/memoryreconstruction.py`](adapters/memoryreconstruction.py)
-> *Memory Reconstruction target: read-only authored JSON content tables.*
-
-**Size**: `85` lines
-
-**Functions:**
-- `def _load(name)`
-- `def _ids(items)`
-
----
-
-### [`adapters/primordia.py`](adapters/primordia.py)
-> *Primordia target: read-only genome, shock and hunter-trait catalogs.*
-
-**Size**: `30` lines
-
----
-
-### [`adapters/prism_relay.py`](adapters/prism_relay.py)
-> *Prism Relay target: read-only episodes, chambers and emitter directions.*
-
-**Size**: `43` lines
-
----
-
 ### [`adapters/registry.py`](adapters/registry.py)
-> *Target registry: every consumer foundry can emit content for.*
+> *Target registry: the two consumers Foundry serves — Shooter and Keystone.*
 
-**Size**: `62` lines
+**Size**: `35` lines
 
 **Functions:**
 - `def all_targets()` - *Registered targets in stable order.*
@@ -152,25 +75,6 @@
 - `def _load(name)`
 - `def _ids(payload, key)`
 - `def _fields(payload)` - *The tuned field names of a table, without metadata or prose.*
-
----
-
-### [`adapters/source_js.py`](adapters/source_js.py)
-> *Read-only JavaScript source probes for the target adapters.*
-
-**Size**: `174` lines
-
-**Functions:**
-- `def read_text(path)`
-- `def object_keys(text, const_name)` - *Top-level keys of a `const NAME = { ... }` object literal.*
-- `def string_values(text, field)` - *Every quoted value assigned to `field:` in source order.*
-- `def array_strings(text, const_name)` - *Quoted strings inside a `const NAME = [ ... ]` array literal.*
-- `def array_object_ids(text, const_name, field)` - *Quoted `field:` values inside a `const NAME = [ ... ]` array literal.*
-- `def int_values(text, field)` - *Every integer value assigned to `field:` in source order.*
-- `def _object_body(text, const_name)`
-- `def _array_body(text, const_name)`
-- `def _balanced_body(text, start, opener, closer, label)`
-- `def _mask(text)` - *Blank strings, template literals and comments without moving offsets.*
 
 ---
 
@@ -192,36 +96,8 @@
 
 ---
 
-### [`adapters/voidfarer.py`](adapters/voidfarer.py)
-> *VoidFarer target: read-only weapons, enemies, factions, drones and systems.*
-
-**Size**: `38` lines
-
----
-
-### [`adapters/weft.py`](adapters/weft.py)
-> *Weft target: read-only chamber catalog and size ladder.*
-
-**Size**: `28` lines
-
----
-
 ### [`generators/__init__.py`](generators/__init__.py)
 **Size**: `0` lines
-
----
-
-### [`generators/boss.py`](generators/boss.py)
-> *Foundry boss generator: seeded, deterministic, valid-by-construction.*
-
-**Size**: `162` lines
-
-**Functions:**
-- `def _clamp(value, lo, hi)`
-- `def generate(seed)` - *Build the canonical boss pack for a seed (pure, deterministic).*
-- `def pack_bytes(pack)`
-- `def write_pack(seed, out_dir)`
-- `def main(argv)`
 
 ---
 
@@ -322,25 +198,6 @@
 
 ---
 
-### [`tests/test_generator.py`](tests/test_generator.py)
-> *Generator tests: determinism, validity, uniqueness, catalog honesty.*
-
-**Size**: `74` lines
-
-**Classes:**
-- `class TestGenerator`
-  - Method `.test_deterministic_per_seed()`
-  - Method `.test_distinct_seeds_distinct_packs()`
-  - Method `.test_baseline_seeds_valid()`
-  - Method `.test_wide_seed_range_valid()`
-  - Method `.test_boss_ids_unique_over_range()`
-  - Method `.test_loot_resolves_in_catalog()`
-  - Method `.test_no_one_shot_over_range()`
-  - Method `.test_empty_loot_pool_fails_loud()`
-  - Method `.test_spawn_claims_own_seed()`
-
----
-
 ### [`tests/test_keystone_assets.py`](tests/test_keystone_assets.py)
 > *Keystone asset-pack tests: determinism, integrity and engine compatibility.*
 
@@ -375,21 +232,6 @@
 
 ---
 
-### [`tests/test_portfolio_analysis.py`](tests/test_portfolio_analysis.py)
-> *Portfolio analysis tests: every playable project is covered by a target.*
-
-**Size**: `50` lines
-
-**Classes:**
-- `class TestPortfolioAnalysis`
-  - Method `.setUpClass()`
-  - Method `.test_every_playable_project_is_targeted()`
-  - Method `.test_scan_finds_the_remaining_game_projects()`
-  - Method `.test_classification_separates_games_from_tools()`
-  - Method `.test_report_is_json_safe()`
-
----
-
 ### [`tests/test_shooter_surfaces.py`](tests/test_shooter_surfaces.py)
 > *Shooter target surfaces: every authored table is exposed read-only.*
 
@@ -403,20 +245,19 @@
 ---
 
 ### [`tests/test_targets.py`](tests/test_targets.py)
-> *Target registry tests: every requested consumer is present and read-only.*
+> *Target registry tests: only Shooter and Keystone are in scope, read-only.*
 
-**Size**: `263` lines
+**Size**: `207` lines
 
 **Classes:**
 - `class TestTargetRegistry`
-  - Method `.test_portfolio_targets_are_registered()`
-  - Method `.test_engine_target_is_registered()`
+  - Method `.test_only_shooter_and_keystone_are_registered()`
   - Method `.test_registry_ids_are_unique()`
   - Method `.test_every_target_project_exists()`
   - Method `.test_every_source_exists()`
   - Method `.test_every_surface_is_non_empty_and_unique()`
   - Method `.test_authored_content_counts()`
-  - Method `.test_lifecycle_is_known_and_archived_projects_stay_read_only()`
+  - Method `.test_lifecycle_is_known()`
 - `class TestTargetManifests`
   - Method `.test_checked_in_manifests_match_the_registry()`
   - Method `.test_every_manifest_validates()`
@@ -444,62 +285,6 @@
 
 ---
 
-### [`tests/test_validator.py`](tests/test_validator.py)
-> *Validator tests: valid packs pass, broken packs fail with field + reason.*
-
-**Size**: `268` lines
-
-**Classes:**
-- `class TestValidatorAccepts`
-  - Method `.test_good_pack_is_valid()`
-- `class TestValidatorRejects`
-  - Method `.check(mutate, field_prefix)`
-  - Method `.test_rejects_unknown_top_field()`
-  - Method `.test_rejects_missing_field()`
-  - Method `.test_rejects_bad_pack_version()`
-  - Method `.test_rejects_wrong_game()`
-  - Method `.test_rejects_bad_boss_id()`
-  - Method `.test_rejects_empty_name()`
-  - Method `.test_rejects_out_of_band_stat()`
-  - Method `.test_rejects_bool_stat()`
-  - Method `.test_rejects_one_shot_attack()`
-  - Method `.test_cap_math_matches_schema_doc()`
-  - Method `.test_rejects_wrong_phase_count()`
-  - Method `.test_rejects_off_envelope_threshold()`
-  - Method `.test_rejects_custom_effect()`
-  - Method `.test_rejects_empty_tell()`
-  - Method `.test_rejects_unknown_loot()`
-  - Method `.test_rejects_wrong_depth()`
-  - Method `.test_rejects_vault_anchor()`
-  - Method `.test_rejects_empty_seeds()`
-  - Method `.test_rejects_non_object_pack()`
-  - Method `.test_rejects_deliberately_unfair_generated_pack()`
-- `class TestValidatorHardening`
-  - Method `.test_rejects_version_trailing_newline()`
-  - Method `.test_rejects_boss_id_trailing_newline()`
-  - Method `.test_mixed_type_unknown_fields_no_crash()`
-  - Method `.test_rejects_float_depth()`
-  - Method `.test_validate_file_directory_returns_error()`
-  - Method `.test_validate_file_invalid_utf8_returns_error()`
-
-**Functions:**
-- `def good_pack()`
-
----
-
-### [`tools/bot_clear.py`](tools/bot_clear.py)
-> *Bot-clear proof: a reference policy beats a generated boss in the real game.*
-
-**Size**: `225` lines
-
-**Functions:**
-- `def _sign(value)`
-- `def _boss(monsters, boss_id)`
-- `def clear_pack(pack_path)`
-- `def main(argv)`
-
----
-
 ### [`tools/game_assets.py`](tools/game_assets.py)
 > *Install a validated game asset pack into a consumer project.*
 
@@ -524,24 +309,6 @@
 
 ---
 
-### [`tools/portfolio_analysis.py`](tools/portfolio_analysis.py)
-> *Portfolio analysis: classify every project and prove target coverage.*
-
-**Size**: `142` lines
-
-**Classes:**
-- `class ProjectAnalysis` - *One project's manifest facts and portfolio classification.*
-  - Property `.kind`
-
-**Functions:**
-- `def scan(projects_root)` - *Read every project.json under projects/ and projects/archive/.*
-- `def target_paths()` - *Map each registered target's project directory to its target id.*
-- `def analyze(projects)` - *Return one JSON-safe row per project, including target coverage.*
-- `def check(projects)` - *Return coverage problems: playable projects without a target, dead targets.*
-- `def main(argv)`
-
----
-
 ### [`tools/targets.py`](tools/targets.py)
 > *Target cockpit: list registered targets, write manifests, verify freshness.*
 
@@ -556,20 +323,6 @@
 
 ### [`validators/__init__.py`](validators/__init__.py)
 **Size**: `0` lines
-
----
-
-### [`validators/boss.py`](validators/boss.py)
-> *Foundry boss-pack validator: every generated pack validates before it ships.*
-
-**Size**: `249` lines
-
-**Functions:**
-- `def _is_int(value)`
-- `def max_theoretical_hit(attack)` - *Worst-case single-turn damage for a slice-1 boss: phase-3 attack.*
-- `def validate(pack)` - *Return a list of ``field: reason`` violations (empty == valid).*
-- `def validate_file(path)`
-- `def main(argv)`
 
 ---
 
