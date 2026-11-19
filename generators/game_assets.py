@@ -139,7 +139,10 @@ def write_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SO
 
 def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:
     """Return one ``path: reason`` line per stale or missing pack file."""
-    pack = generate(name, source)
+    try:
+        pack = generate(name, source)
+    except OSError as exc:
+        return [f"source files: cannot generate pack: {exc}"]
     out_dir = Path(out_dir)
     expected = dict(pack.files)
     expected[MANIFEST_NAME] = pack.manifest_bytes()

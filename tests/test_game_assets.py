@@ -6,7 +6,6 @@ into any other project as files plus a digest-verified manifest.
 
 from __future__ import annotations
 
-import copy
 import hashlib
 import json
 import sys

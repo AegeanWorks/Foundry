@@ -22,56 +22,6 @@
   },
   "checkpoints": [
     {
-      "task_id": "foundry-shooter-keystone-surfaces",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[3/3] Verification: 17 focused tests green, full suite 21 tests with only the 4 pre-existing import errors; 3/4 gates pass (test gate infra-red on missing sibling projects)",
-      "files_affected": [
-        ".aikit/codebase_map.md",
-        ".aikit/task_ledger.json",
-        "README.md",
-        "adapters/shooter.py",
-        "generators/keystone_assets.py",
-        "packs/keystone/starter/keystone-assets.json",
-        "packs/keystone/starter/meshes/mesh_crystal.obj",
-        "packs/keystone/starter/meshes/mesh_cube.obj",
-        "packs/keystone/starter/meshes/mesh_plane.obj",
-        "packs/keystone/starter/prefabs/prefab_starter.kprefab",
-        "targets/shooter.json",
-        "tests/test_keystone_assets.py",
-        "tests/test_targets.py",
-        ".aikit/task_ledger_archive.jsonl",
-        "packs/keystone/starter/meshes/mesh_octahedron.obj",
-        "tests/test_shooter_surfaces.py"
-      ],
-      "status": "in_progress",
-      "timestamp": 1795118947.3950443,
-      "timestamp_str": "2026-11-19 23:09:07",
-      "agent": "opencode:session",
-      "checklists": "failed:test",
-      "handoff": {
-        "next": "commit and push when authorized",
-        "failed": "test gate (crypt-crawler module and afterimage/game.js absent)",
-        "evidence": "17 focused tests OK"
-      },
-      "workspaces": [
-        {
-          "name": "foundry",
-          "path": "projects/foundry"
-        }
-      ]
-    },
-    {
-      "task_id": "foundry-shooter-keystone-surfaces",
-      "phase": "suspended",
-      "phase_num": 4,
-      "description": "Task 'foundry-shooter-keystone-surfaces' suspended: uncommitted Shooter/Keystone surface work left in place; switching to the reusable asset-pack program",
-      "status": "suspended",
-      "timestamp": 1795119227.5213757,
-      "timestamp_str": "2026-11-19 23:13:47",
-      "agent": "opencode:session"
-    },
-    {
       "task_id": "foundry-reusable-pack-installer",
       "phase": "phase 2",
       "phase_num": 2,
@@ -283,17 +233,6 @@
     },
     {
       "task_id": "foundry-shooter-keystone-surfaces",
-      "phase": "resumed",
-      "phase_num": 4,
-      "description": "Resumed 'foundry-shooter-keystone-surfaces' after a pause",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795120567.0399601,
-      "timestamp_str": "2026-11-19 23:36:07",
-      "agent": "opencode:session"
-    },
-    {
-      "task_id": "foundry-shooter-keystone-surfaces",
       "phase": "phase 4",
       "phase_num": 4,
       "description": "Phase 4 passed after restoring sibling project checkouts: suite 96/96 green; committed in f1831f1",
@@ -418,6 +357,44 @@
       "status": "in_progress",
       "timestamp": 1795122199.6619117,
       "timestamp_str": "2026-11-20 00:03:19",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 2",
+      "phase_num": 3,
+      "description": "Reforge stage 2: window 6, 3 commit(s), 28 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit, 1 binary not analysed",
+      "files_affected": [
+        "packs/keystone/runtime/textures/engine.png"
+      ],
+      "status": "in_progress",
+      "timestamp": 1795122280.0423467,
+      "timestamp_str": "2026-11-20 00:04:40",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 2",
+      "phase_num": 3,
+      "description": "Reforge stage 2: stage 2 host review reviewed; run active; coverage 41/41",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122488.031022,
+      "timestamp_str": "2026-11-20 00:08:08",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 2",
+      "phase_num": 3,
+      "description": "Reforge stage 2: stage 2 host review reviewed; run active; coverage 41/41",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122522.804369,
+      "timestamp_str": "2026-11-20 00:08:42",
       "agent": "opencode",
       "operator_task": "foundry-reusable-pack-installer"
     }

@@ -10,7 +10,7 @@
 - **Total Classes**: `15`
 - **Total Top-Level Functions**: `96`
 - **Total Class Methods**: `61`
-- **Total Source Lines**: `2765`
+- **Total Source Lines**: `2767`
 
 ## 🧭 Map Coverage
 - **Indexed**: python (`22` module(s))
@@ -104,7 +104,7 @@
 ### [`generators/game_assets.py`](generators/game_assets.py)
 > *Generic game-asset-pack generator: file-backed assets copied verbatim.*
 
-**Size**: `185` lines
+**Size**: `188` lines
 
 **Classes:**
 - `class GameAssetPack` - *A generated pack: relative file bytes plus the canonical manifest.*
@@ -173,7 +173,7 @@
 ### [`tests/test_game_assets.py`](tests/test_game_assets.py)
 > *Generic game-asset packs: deterministic generation, validation and install.*
 
-**Size**: `164` lines
+**Size**: `163` lines
 
 **Classes:**
 - `class TestGameAssetPack`
