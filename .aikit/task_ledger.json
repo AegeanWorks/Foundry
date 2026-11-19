@@ -279,42 +279,6 @@
     },
     {
       "task_id": "reforge:run-1",
-      "phase": "reforge stage 1",
-      "phase_num": 3,
-      "description": "Reforge stage 1: window 3, 3 commit(s), 5 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122060.1269841,
-      "timestamp_str": "2026-11-20 00:01:00",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 1",
-      "phase_num": 3,
-      "description": "Reforge stage 1: stage 1 host review reviewed; run active; coverage 17/17",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122192.278655,
-      "timestamp_str": "2026-11-20 00:03:12",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 1",
-      "phase_num": 3,
-      "description": "Reforge stage 1: stage 1 host review reviewed; run active; coverage 17/17",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122199.6619117,
-      "timestamp_str": "2026-11-20 00:03:19",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
       "phase": "reforge stage 2",
       "phase_num": 3,
       "description": "Reforge stage 2: window 6, 3 commit(s), 28 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit, 1 binary not analysed",
@@ -384,6 +348,42 @@
       "status": "in_progress",
       "timestamp": 1795122755.0931702,
       "timestamp_str": "2026-11-20 00:12:35",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 4",
+      "phase_num": 3,
+      "description": "Reforge stage 4: window 12, 3 commit(s), 24 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122814.6525283,
+      "timestamp_str": "2026-11-20 00:13:34",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 4",
+      "phase_num": 3,
+      "description": "Reforge stage 4: stage 4 host review reviewed; run active; coverage 27/27",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122997.404823,
+      "timestamp_str": "2026-11-20 00:16:37",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 4",
+      "phase_num": 3,
+      "description": "Reforge stage 4: stage 4 host review reviewed; run active; coverage 27/27",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795123014.2939696,
+      "timestamp_str": "2026-11-20 00:16:54",
       "agent": "opencode",
       "operator_task": "foundry-reusable-pack-installer"
     }
