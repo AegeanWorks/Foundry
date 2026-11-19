@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "next_run_id": 2,
-  "active_run": "run-1",
+  "active_run": null,
   "last_run": "run-1",
   "runs": [
     {
@@ -9,8 +9,8 @@
       "start": 3,
       "step": 3,
       "stop": null,
-      "stage": 5,
-      "window": 15,
+      "stage": 6,
+      "window": 18,
       "audited_commits": [
         "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
         "c13799210d94a03eb754fccc0558fdb6295c9fcf",
@@ -26,16 +26,20 @@
         "97aef61043aff8ce7536898f7223be7d438e5e21",
         "875d173338ffe660bb4b813c876dff1c5874dcd6",
         "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-        "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+        "b9555b1f9d4df2dee507c8466f0723e97e05b116",
+        "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+        "7c37c922647abb51775e312415a9ff66f873329e",
+        "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
       ],
-      "status": "active",
+      "status": "stopped",
       "created": "2026-11-20T00:00:51",
-      "updated": "2026-11-20T00:22:08",
+      "updated": "2026-11-20T00:26:14",
       "last_audit": {
         "run": "run-1",
-        "stage": 5,
-        "window": 15,
+        "stage": 6,
+        "window": 18,
         "commits": [
+          "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
           "875d173338ffe660bb4b813c876dff1c5874dcd6",
           "966544fa92b12c79664f4b175906ef6e3dbd73d5",
           "53c714f30976abcb24619a9d7c206d0ab23412d8",
@@ -50,12 +54,14 @@
           "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
           "97aef61043aff8ce7536898f7223be7d438e5e21",
           "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-          "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+          "b9555b1f9d4df2dee507c8466f0723e97e05b116",
+          "7c37c922647abb51775e312415a9ff66f873329e",
+          "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
         ],
         "new_commits": [
-          "875d173338ffe660bb4b813c876dff1c5874dcd6",
-          "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-          "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+          "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+          "7c37c922647abb51775e312415a9ff66f873329e",
+          "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
         ],
         "prior_commits": [
           "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
@@ -69,64 +75,32 @@
           "9e2516152f456c1c7d2dddeee41326bf10bfffbd",
           "966544fa92b12c79664f4b175906ef6e3dbd73d5",
           "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
-          "97aef61043aff8ce7536898f7223be7d438e5e21"
+          "97aef61043aff8ce7536898f7223be7d438e5e21",
+          "875d173338ffe660bb4b813c876dff1c5874dcd6",
+          "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
+          "b9555b1f9d4df2dee507c8466f0723e97e05b116"
         ],
         "findings": [],
         "repairs": [],
         "counts": {},
-        "reviewed": 42,
+        "reviewed": 7,
         "review": {
           "status": "reviewed",
           "rejected": [],
           "files": [
-            ".aikit/decisions.md",
+            ".aikit/guidelines.md",
+            ".aikit/media.json",
+            ".aikit/project.json",
+            ".gitignore",
             "README.md",
-            "adapters/afterimage.py",
-            "adapters/aldervale.py",
-            "adapters/base.py",
-            "adapters/crypt_crawler.py",
-            "adapters/cyberpulse.py",
-            "adapters/fold.py",
-            "adapters/iris.py",
-            "adapters/keystone.py",
-            "adapters/layout.py",
-            "adapters/primordia.py",
-            "adapters/registry.py",
-            "adapters/shooter.py",
-            "adapters/source_js.py",
-            "adapters/source_py.py",
-            "adapters/weft.py",
-            "generators/keystone_assets.py",
-            "generators/target.py",
-            "packs/keystone/starter/keystone-assets.json",
-            "packs/keystone/starter/meshes/mesh_crystal.obj",
-            "packs/keystone/starter/meshes/mesh_cube.obj",
-            "packs/keystone/starter/meshes/mesh_plane.obj",
-            "packs/keystone/starter/prefabs/prefab_starter.kprefab",
-            "schemas/keystone_assets.schema.json",
-            "schemas/target.schema.json",
-            "targets/afterimage.json",
-            "targets/aldervale.json",
-            "targets/crypt-crawler.json",
-            "targets/cyberpulse.json",
-            "targets/fold.json",
-            "targets/iris.json",
-            "targets/keystone.json",
-            "targets/primordia.json",
-            "targets/shooter.json",
-            "targets/weft.json",
-            "tests/test_keystone_assets.py",
-            "tests/test_targets.py",
-            "tools/keystone_assets.py",
-            "tools/targets.py",
-            "validators/keystone_assets.py",
-            "validators/target.py"
+            "assets/logo.svg",
+            "assets/social-preview.svg"
           ],
-          "packet": ".aikit/reforge.reviews/stage-run-1-5-875d173338ff.md",
+          "packet": ".aikit/reforge.reviews/stage-run-1-6-20859d3f7ca8.md",
           "redacted": 0,
           "coverage": {
-            "reported": 39,
-            "total": 39,
+            "reported": 8,
+            "total": 8,
             "carried": [],
             "missing": [],
             "unknown": [],
@@ -135,10 +109,7 @@
           "findings": [],
           "attestations": []
         },
-        "skipped": [
-          "packs/keystone/starter/textures/texture_checker.png",
-          "packs/keystone/starter/textures/texture_gradient.png"
-        ],
+        "skipped": [],
         "tests": {},
         "gates": {},
         "delivery": {
@@ -147,9 +118,9 @@
           "pushed": false,
           "push_error": null,
           "empty": true,
-          "timestamp": "2026-11-20T00:18:14"
+          "timestamp": "2026-11-20T00:23:34"
         },
-        "timestamp": "2026-11-20T00:18:14"
+        "timestamp": "2026-11-20T00:23:34"
       },
       "history": [
         {
@@ -851,13 +822,102 @@
             "timestamp": "2026-11-20T00:18:14"
           },
           "timestamp": "2026-11-20T00:18:14"
+        },
+        {
+          "run": "run-1",
+          "stage": 6,
+          "window": 18,
+          "commits": [
+            "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+            "875d173338ffe660bb4b813c876dff1c5874dcd6",
+            "966544fa92b12c79664f4b175906ef6e3dbd73d5",
+            "53c714f30976abcb24619a9d7c206d0ab23412d8",
+            "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+            "f1831f114b8c8673786e468865d0df75443c19dc",
+            "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+            "84b0cce5eff10bc56f379ae74056c6432737e221",
+            "9e2516152f456c1c7d2dddeee41326bf10bfffbd",
+            "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
+            "97aef61043aff8ce7536898f7223be7d438e5e21",
+            "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
+            "b9555b1f9d4df2dee507c8466f0723e97e05b116",
+            "7c37c922647abb51775e312415a9ff66f873329e",
+            "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
+          ],
+          "new_commits": [
+            "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+            "7c37c922647abb51775e312415a9ff66f873329e",
+            "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
+          ],
+          "prior_commits": [
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+            "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+            "f1831f114b8c8673786e468865d0df75443c19dc",
+            "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+            "53c714f30976abcb24619a9d7c206d0ab23412d8",
+            "84b0cce5eff10bc56f379ae74056c6432737e221",
+            "9e2516152f456c1c7d2dddeee41326bf10bfffbd",
+            "966544fa92b12c79664f4b175906ef6e3dbd73d5",
+            "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
+            "97aef61043aff8ce7536898f7223be7d438e5e21",
+            "875d173338ffe660bb4b813c876dff1c5874dcd6",
+            "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
+            "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+          ],
+          "findings": [],
+          "repairs": [],
+          "counts": {},
+          "reviewed": 7,
+          "review": {
+            "status": "reviewed",
+            "rejected": [],
+            "files": [
+              ".aikit/guidelines.md",
+              ".aikit/media.json",
+              ".aikit/project.json",
+              ".gitignore",
+              "README.md",
+              "assets/logo.svg",
+              "assets/social-preview.svg"
+            ],
+            "packet": ".aikit/reforge.reviews/stage-run-1-6-20859d3f7ca8.md",
+            "redacted": 0,
+            "coverage": {
+              "reported": 8,
+              "total": 8,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [],
+            "attestations": []
+          },
+          "skipped": [],
+          "tests": {},
+          "gates": {},
+          "delivery": {
+            "commit": "",
+            "short": "",
+            "pushed": false,
+            "push_error": null,
+            "empty": true,
+            "timestamp": "2026-11-20T00:23:34"
+          },
+          "timestamp": "2026-11-20T00:23:34"
         }
       ],
-      "total_commits": 21
+      "total_commits": 22,
+      "abandoned_answers": []
     }
   ],
-  "stage": 5,
-  "window": 15,
+  "stage": 6,
+  "window": 18,
   "audited_commits": [
     "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
     "c13799210d94a03eb754fccc0558fdb6295c9fcf",
@@ -873,13 +933,17 @@
     "97aef61043aff8ce7536898f7223be7d438e5e21",
     "875d173338ffe660bb4b813c876dff1c5874dcd6",
     "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-    "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+    "b9555b1f9d4df2dee507c8466f0723e97e05b116",
+    "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+    "7c37c922647abb51775e312415a9ff66f873329e",
+    "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
   ],
   "last_audit": {
     "run": "run-1",
-    "stage": 5,
-    "window": 15,
+    "stage": 6,
+    "window": 18,
     "commits": [
+      "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
       "875d173338ffe660bb4b813c876dff1c5874dcd6",
       "966544fa92b12c79664f4b175906ef6e3dbd73d5",
       "53c714f30976abcb24619a9d7c206d0ab23412d8",
@@ -894,12 +958,14 @@
       "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
       "97aef61043aff8ce7536898f7223be7d438e5e21",
       "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-      "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+      "b9555b1f9d4df2dee507c8466f0723e97e05b116",
+      "7c37c922647abb51775e312415a9ff66f873329e",
+      "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
     ],
     "new_commits": [
-      "875d173338ffe660bb4b813c876dff1c5874dcd6",
-      "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
-      "b9555b1f9d4df2dee507c8466f0723e97e05b116"
+      "20859d3f7ca86d248d80a621c2d26a707e34b0bd",
+      "7c37c922647abb51775e312415a9ff66f873329e",
+      "100ec36b5fadb8fc289f2e537c7b5c3708dca6bf"
     ],
     "prior_commits": [
       "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
@@ -913,64 +979,32 @@
       "9e2516152f456c1c7d2dddeee41326bf10bfffbd",
       "966544fa92b12c79664f4b175906ef6e3dbd73d5",
       "0b3c6cd20dbb539ead7488ce0586a5ef872b6ec3",
-      "97aef61043aff8ce7536898f7223be7d438e5e21"
+      "97aef61043aff8ce7536898f7223be7d438e5e21",
+      "875d173338ffe660bb4b813c876dff1c5874dcd6",
+      "a7a455b8eb0dde5e9f88854f967f81d54e23f7d6",
+      "b9555b1f9d4df2dee507c8466f0723e97e05b116"
     ],
     "findings": [],
     "repairs": [],
     "counts": {},
-    "reviewed": 42,
+    "reviewed": 7,
     "review": {
       "status": "reviewed",
       "rejected": [],
       "files": [
-        ".aikit/decisions.md",
+        ".aikit/guidelines.md",
+        ".aikit/media.json",
+        ".aikit/project.json",
+        ".gitignore",
         "README.md",
-        "adapters/afterimage.py",
-        "adapters/aldervale.py",
-        "adapters/base.py",
-        "adapters/crypt_crawler.py",
-        "adapters/cyberpulse.py",
-        "adapters/fold.py",
-        "adapters/iris.py",
-        "adapters/keystone.py",
-        "adapters/layout.py",
-        "adapters/primordia.py",
-        "adapters/registry.py",
-        "adapters/shooter.py",
-        "adapters/source_js.py",
-        "adapters/source_py.py",
-        "adapters/weft.py",
-        "generators/keystone_assets.py",
-        "generators/target.py",
-        "packs/keystone/starter/keystone-assets.json",
-        "packs/keystone/starter/meshes/mesh_crystal.obj",
-        "packs/keystone/starter/meshes/mesh_cube.obj",
-        "packs/keystone/starter/meshes/mesh_plane.obj",
-        "packs/keystone/starter/prefabs/prefab_starter.kprefab",
-        "schemas/keystone_assets.schema.json",
-        "schemas/target.schema.json",
-        "targets/afterimage.json",
-        "targets/aldervale.json",
-        "targets/crypt-crawler.json",
-        "targets/cyberpulse.json",
-        "targets/fold.json",
-        "targets/iris.json",
-        "targets/keystone.json",
-        "targets/primordia.json",
-        "targets/shooter.json",
-        "targets/weft.json",
-        "tests/test_keystone_assets.py",
-        "tests/test_targets.py",
-        "tools/keystone_assets.py",
-        "tools/targets.py",
-        "validators/keystone_assets.py",
-        "validators/target.py"
+        "assets/logo.svg",
+        "assets/social-preview.svg"
       ],
-      "packet": ".aikit/reforge.reviews/stage-run-1-5-875d173338ff.md",
+      "packet": ".aikit/reforge.reviews/stage-run-1-6-20859d3f7ca8.md",
       "redacted": 0,
       "coverage": {
-        "reported": 39,
-        "total": 39,
+        "reported": 8,
+        "total": 8,
         "carried": [],
         "missing": [],
         "unknown": [],
@@ -979,10 +1013,7 @@
       "findings": [],
       "attestations": []
     },
-    "skipped": [
-      "packs/keystone/starter/textures/texture_checker.png",
-      "packs/keystone/starter/textures/texture_gradient.png"
-    ],
+    "skipped": [],
     "tests": {},
     "gates": {},
     "delivery": {
@@ -991,9 +1022,9 @@
       "pushed": false,
       "push_error": null,
       "empty": true,
-      "timestamp": "2026-11-20T00:18:14"
+      "timestamp": "2026-11-20T00:23:34"
     },
-    "timestamp": "2026-11-20T00:18:14"
+    "timestamp": "2026-11-20T00:23:34"
   },
   "history": []
 }
