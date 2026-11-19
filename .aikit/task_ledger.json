@@ -279,44 +279,6 @@
     },
     {
       "task_id": "reforge:run-1",
-      "phase": "reforge stage 2",
-      "phase_num": 3,
-      "description": "Reforge stage 2: window 6, 3 commit(s), 28 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit, 1 binary not analysed",
-      "files_affected": [
-        "packs/keystone/runtime/textures/engine.png"
-      ],
-      "status": "in_progress",
-      "timestamp": 1795122280.0423467,
-      "timestamp_str": "2026-11-20 00:04:40",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 2",
-      "phase_num": 3,
-      "description": "Reforge stage 2: stage 2 host review reviewed; run active; coverage 41/41",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122488.031022,
-      "timestamp_str": "2026-11-20 00:08:08",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 2",
-      "phase_num": 3,
-      "description": "Reforge stage 2: stage 2 host review reviewed; run active; coverage 41/41",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122522.804369,
-      "timestamp_str": "2026-11-20 00:08:42",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
-    {
-      "task_id": "reforge:run-1",
       "phase": "reforge stage 3",
       "phase_num": 3,
       "description": "Reforge stage 3: window 9, 3 commit(s), 3 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
@@ -384,6 +346,45 @@
       "status": "in_progress",
       "timestamp": 1795123014.2939696,
       "timestamp_str": "2026-11-20 00:16:54",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: window 15, 3 commit(s), 42 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit, 2 binary not analysed",
+      "files_affected": [
+        "packs/keystone/starter/textures/texture_checker.png",
+        "packs/keystone/starter/textures/texture_gradient.png"
+      ],
+      "status": "in_progress",
+      "timestamp": 1795123094.9161963,
+      "timestamp_str": "2026-11-20 00:18:14",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: stage 5 host review reviewed; run active; coverage 39/39",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795123328.9920754,
+      "timestamp_str": "2026-11-20 00:22:08",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: stage 5 host review reviewed; run active; coverage 39/39",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795123359.308163,
+      "timestamp_str": "2026-11-20 00:22:39",
       "agent": "opencode",
       "operator_task": "foundry-reusable-pack-installer"
     }
