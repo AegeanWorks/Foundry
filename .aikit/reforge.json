@@ -9,222 +9,87 @@
       "start": 3,
       "step": 3,
       "stop": null,
-      "stage": 2,
-      "window": 6,
+      "stage": 3,
+      "window": 9,
       "audited_commits": [
         "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
         "c13799210d94a03eb754fccc0558fdb6295c9fcf",
         "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
         "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
         "f1831f114b8c8673786e468865d0df75443c19dc",
-        "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+        "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+        "53c714f30976abcb24619a9d7c206d0ab23412d8",
+        "84b0cce5eff10bc56f379ae74056c6432737e221",
+        "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
       ],
       "status": "active",
       "created": "2026-11-20T00:00:51",
-      "updated": "2026-11-20T00:08:42",
+      "updated": "2026-11-20T00:12:31",
       "last_audit": {
         "run": "run-1",
-        "stage": 2,
-        "window": 6,
+        "stage": 3,
+        "window": 9,
         "commits": [
+          "53c714f30976abcb24619a9d7c206d0ab23412d8",
           "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
           "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
           "c13799210d94a03eb754fccc0558fdb6295c9fcf",
           "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
           "f1831f114b8c8673786e468865d0df75443c19dc",
-          "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+          "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+          "84b0cce5eff10bc56f379ae74056c6432737e221",
+          "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
         ],
         "new_commits": [
-          "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
-          "f1831f114b8c8673786e468865d0df75443c19dc",
-          "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+          "53c714f30976abcb24619a9d7c206d0ab23412d8",
+          "84b0cce5eff10bc56f379ae74056c6432737e221",
+          "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
         ],
         "prior_commits": [
           "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
           "c13799210d94a03eb754fccc0558fdb6295c9fcf",
-          "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+          "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+          "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+          "f1831f114b8c8673786e468865d0df75443c19dc",
+          "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
         ],
-        "findings": [
-          {
-            "code": "review-drop-unused-copy-import",
-            "category": "improvement",
-            "severity": "low",
-            "path": "tests/test_game_assets.py",
-            "line": 9,
-            "message": "The new test module imports copy but never uses it; the copy-based mutation helpers live in test_targets.py, so this import is dead weight in a stdlib-only suite.",
-            "evidence": "import copy",
-            "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-            "hunk": "f1831f114b8c:tests/test_game_assets.py#1",
-            "symbol": "",
-            "introduced": true,
-            "reproducible": false,
-            "fixable": true,
-            "interaction": "",
-            "repaired": true,
-            "source": "review",
-            "patch_old": "import copy\n",
-            "patch_new": ""
-          },
-          {
-            "code": "review-check-pack-reports-missing-source",
-            "category": "improvement",
-            "severity": "low",
-            "path": "generators/game_assets.py",
-            "line": 142,
-            "message": "check_pack promises a path:reason line per stale or missing file, but a missing source project makes generate() raise FileNotFoundError instead of returning a reason, so the check command cannot report the real problem.",
-            "evidence": "pack = generate(name, source)",
-            "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-            "hunk": "f1831f114b8c:generators/game_assets.py#1",
-            "symbol": "",
-            "introduced": true,
-            "reproducible": false,
-            "fixable": true,
-            "interaction": "",
-            "repaired": true,
-            "source": "review",
-            "patch_old": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    pack = generate(name, source)\n",
-            "patch_new": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    try:\n        pack = generate(name, source)\n    except OSError as exc:\n        return [f\"source files: cannot generate pack: {exc}\"]\n"
-          }
-        ],
-        "repairs": [
-          {
-            "code": "review-check-pack-reports-missing-source",
-            "path": "generators/game_assets.py",
-            "line": 142,
-            "summary": "applied review suggestion: check_pack promises a path:reason line per stale or missing file, but a missing ",
-            "test_name": "",
-            "applied": true
-          },
-          {
-            "code": "review-drop-unused-copy-import",
-            "path": "tests/test_game_assets.py",
-            "line": 9,
-            "summary": "applied review suggestion: The new test module imports copy but never uses it; the copy-based mutation help",
-            "test_name": "",
-            "applied": true
-          }
-        ],
-        "counts": {
-          "improvement": 2
-        },
-        "reviewed": 28,
+        "findings": [],
+        "repairs": [],
+        "counts": {},
+        "reviewed": 3,
         "review": {
           "status": "reviewed",
           "rejected": [],
           "files": [
             ".aikit/decisions.md",
-            ".aikit/guidelines.md",
-            ".aikit/project.json",
-            ".gitignore",
-            "README.md",
-            "adapters/shooter.py",
             "generators/game_assets.py",
-            "generators/keystone_assets.py",
-            "packs/keystone/runtime/game-assets.json",
-            "packs/keystone/runtime/meshes/octahedron.obj",
-            "packs/keystone/starter/keystone-assets.json",
-            "packs/keystone/starter/meshes/mesh_octahedron.obj",
-            "packs/shooter/runtime/camera_paths/campaign_clear.kpath",
-            "packs/shooter/runtime/game-assets.json",
-            "packs/shooter/runtime/materials/cache_material.kmaterial",
-            "packs/shooter/runtime/meshes/cache_crate.obj",
-            "packs/shooter/runtime/prefabs/pickup_beacon.kprefab",
-            "packs/shooter/runtime/states/warden_core.kstate",
-            "schemas/game_assets.schema.json",
-            "targets/dustline.json",
-            "targets/memoryreconstruction.json",
-            "targets/shooter.json",
-            "tests/test_game_assets.py",
-            "tests/test_keystone_assets.py",
-            "tests/test_shooter_surfaces.py",
-            "tests/test_targets.py",
-            "tools/game_assets.py",
-            "validators/game_assets.py"
+            "tests/test_game_assets.py"
           ],
-          "packet": ".aikit/reforge.reviews/stage-run-1-2-3353261273ce.md",
+          "packet": ".aikit/reforge.reviews/stage-run-1-3-53c714f30976.md",
           "redacted": 0,
           "coverage": {
-            "reported": 41,
-            "total": 41,
+            "reported": 15,
+            "total": 15,
             "carried": [],
             "missing": [],
             "unknown": [],
             "invalid": []
           },
-          "findings": [
-            {
-              "code": "review-drop-unused-copy-import",
-              "category": "improvement",
-              "severity": "low",
-              "path": "tests/test_game_assets.py",
-              "line": 9,
-              "message": "The new test module imports copy but never uses it; the copy-based mutation helpers live in test_targets.py, so this import is dead weight in a stdlib-only suite.",
-              "evidence": "import copy",
-              "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-              "hunk": "f1831f114b8c:tests/test_game_assets.py#1",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": true,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "import copy\n",
-              "patch_new": ""
-            },
-            {
-              "code": "review-check-pack-reports-missing-source",
-              "category": "improvement",
-              "severity": "low",
-              "path": "generators/game_assets.py",
-              "line": 142,
-              "message": "check_pack promises a path:reason line per stale or missing file, but a missing source project makes generate() raise FileNotFoundError instead of returning a reason, so the check command cannot report the real problem.",
-              "evidence": "pack = generate(name, source)",
-              "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-              "hunk": "f1831f114b8c:generators/game_assets.py#1",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": true,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    pack = generate(name, source)\n",
-              "patch_new": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    try:\n        pack = generate(name, source)\n    except OSError as exc:\n        return [f\"source files: cannot generate pack: {exc}\"]\n"
-            }
-          ],
+          "findings": [],
           "attestations": []
         },
-        "skipped": [
-          "packs/keystone/runtime/textures/engine.png"
-        ],
-        "tests": {
-          "command": "C:\\Python314\\python.exe -m unittest discover tests",
-          "code": 0,
-          "passed": true,
-          "output": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 1.420s\n\nOK",
-          "tail": [
-            ".......................................................",
-            "----------------------------------------------------------------------",
-            "Ran 55 tests in 1.420s",
-            "OK"
-          ]
-        },
-        "gates": {
-          "artifacts": [
-            ".aikit/codebase_map.md"
-          ]
-        },
+        "skipped": [],
+        "tests": {},
+        "gates": {},
         "delivery": {
           "commit": "",
           "short": "",
           "pushed": false,
           "push_error": null,
-          "empty": false,
-          "timestamp": "2026-11-20T00:08:42"
+          "empty": true,
+          "timestamp": "2026-11-20T00:10:09"
         },
-        "timestamp": "2026-11-20T00:04:39",
-        "dirty_targets": []
+        "timestamp": "2026-11-20T00:10:09"
       },
       "history": [
         {
@@ -647,224 +512,155 @@
           },
           "timestamp": "2026-11-20T00:04:39",
           "dirty_targets": []
+        },
+        {
+          "run": "run-1",
+          "stage": 3,
+          "window": 9,
+          "commits": [
+            "53c714f30976abcb24619a9d7c206d0ab23412d8",
+            "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+            "f1831f114b8c8673786e468865d0df75443c19dc",
+            "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+            "84b0cce5eff10bc56f379ae74056c6432737e221",
+            "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
+          ],
+          "new_commits": [
+            "53c714f30976abcb24619a9d7c206d0ab23412d8",
+            "84b0cce5eff10bc56f379ae74056c6432737e221",
+            "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
+          ],
+          "prior_commits": [
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+            "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+            "f1831f114b8c8673786e468865d0df75443c19dc",
+            "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+          ],
+          "findings": [],
+          "repairs": [],
+          "counts": {},
+          "reviewed": 3,
+          "review": {
+            "status": "reviewed",
+            "rejected": [],
+            "files": [
+              ".aikit/decisions.md",
+              "generators/game_assets.py",
+              "tests/test_game_assets.py"
+            ],
+            "packet": ".aikit/reforge.reviews/stage-run-1-3-53c714f30976.md",
+            "redacted": 0,
+            "coverage": {
+              "reported": 15,
+              "total": 15,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [],
+            "attestations": []
+          },
+          "skipped": [],
+          "tests": {},
+          "gates": {},
+          "delivery": {
+            "commit": "",
+            "short": "",
+            "pushed": false,
+            "push_error": null,
+            "empty": true,
+            "timestamp": "2026-11-20T00:10:09"
+          },
+          "timestamp": "2026-11-20T00:10:09"
         }
       ],
-      "total_commits": 18
+      "total_commits": 19
     }
   ],
-  "stage": 2,
-  "window": 6,
+  "stage": 3,
+  "window": 9,
   "audited_commits": [
     "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
     "c13799210d94a03eb754fccc0558fdb6295c9fcf",
     "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
     "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
     "f1831f114b8c8673786e468865d0df75443c19dc",
-    "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+    "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+    "53c714f30976abcb24619a9d7c206d0ab23412d8",
+    "84b0cce5eff10bc56f379ae74056c6432737e221",
+    "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
   ],
   "last_audit": {
     "run": "run-1",
-    "stage": 2,
-    "window": 6,
+    "stage": 3,
+    "window": 9,
     "commits": [
+      "53c714f30976abcb24619a9d7c206d0ab23412d8",
       "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
       "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
       "c13799210d94a03eb754fccc0558fdb6295c9fcf",
       "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
       "f1831f114b8c8673786e468865d0df75443c19dc",
-      "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+      "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94",
+      "84b0cce5eff10bc56f379ae74056c6432737e221",
+      "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
     ],
     "new_commits": [
-      "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
-      "f1831f114b8c8673786e468865d0df75443c19dc",
-      "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
+      "53c714f30976abcb24619a9d7c206d0ab23412d8",
+      "84b0cce5eff10bc56f379ae74056c6432737e221",
+      "9e2516152f456c1c7d2dddeee41326bf10bfffbd"
     ],
     "prior_commits": [
       "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
       "c13799210d94a03eb754fccc0558fdb6295c9fcf",
-      "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+      "81fb5abd3107ffc28017c96b29ca070a9fa2a211",
+      "3353261273ce9a64c698a0e4aadec2ba4efdad2d",
+      "f1831f114b8c8673786e468865d0df75443c19dc",
+      "0daa6270ff90a8bfaaa5aaeee86bb09bc12bdc94"
     ],
-    "findings": [
-      {
-        "code": "review-drop-unused-copy-import",
-        "category": "improvement",
-        "severity": "low",
-        "path": "tests/test_game_assets.py",
-        "line": 9,
-        "message": "The new test module imports copy but never uses it; the copy-based mutation helpers live in test_targets.py, so this import is dead weight in a stdlib-only suite.",
-        "evidence": "import copy",
-        "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-        "hunk": "f1831f114b8c:tests/test_game_assets.py#1",
-        "symbol": "",
-        "introduced": true,
-        "reproducible": false,
-        "fixable": true,
-        "interaction": "",
-        "repaired": true,
-        "source": "review",
-        "patch_old": "import copy\n",
-        "patch_new": ""
-      },
-      {
-        "code": "review-check-pack-reports-missing-source",
-        "category": "improvement",
-        "severity": "low",
-        "path": "generators/game_assets.py",
-        "line": 142,
-        "message": "check_pack promises a path:reason line per stale or missing file, but a missing source project makes generate() raise FileNotFoundError instead of returning a reason, so the check command cannot report the real problem.",
-        "evidence": "pack = generate(name, source)",
-        "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-        "hunk": "f1831f114b8c:generators/game_assets.py#1",
-        "symbol": "",
-        "introduced": true,
-        "reproducible": false,
-        "fixable": true,
-        "interaction": "",
-        "repaired": true,
-        "source": "review",
-        "patch_old": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    pack = generate(name, source)\n",
-        "patch_new": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    try:\n        pack = generate(name, source)\n    except OSError as exc:\n        return [f\"source files: cannot generate pack: {exc}\"]\n"
-      }
-    ],
-    "repairs": [
-      {
-        "code": "review-check-pack-reports-missing-source",
-        "path": "generators/game_assets.py",
-        "line": 142,
-        "summary": "applied review suggestion: check_pack promises a path:reason line per stale or missing file, but a missing ",
-        "test_name": "",
-        "applied": true
-      },
-      {
-        "code": "review-drop-unused-copy-import",
-        "path": "tests/test_game_assets.py",
-        "line": 9,
-        "summary": "applied review suggestion: The new test module imports copy but never uses it; the copy-based mutation help",
-        "test_name": "",
-        "applied": true
-      }
-    ],
-    "counts": {
-      "improvement": 2
-    },
-    "reviewed": 28,
+    "findings": [],
+    "repairs": [],
+    "counts": {},
+    "reviewed": 3,
     "review": {
       "status": "reviewed",
       "rejected": [],
       "files": [
         ".aikit/decisions.md",
-        ".aikit/guidelines.md",
-        ".aikit/project.json",
-        ".gitignore",
-        "README.md",
-        "adapters/shooter.py",
         "generators/game_assets.py",
-        "generators/keystone_assets.py",
-        "packs/keystone/runtime/game-assets.json",
-        "packs/keystone/runtime/meshes/octahedron.obj",
-        "packs/keystone/starter/keystone-assets.json",
-        "packs/keystone/starter/meshes/mesh_octahedron.obj",
-        "packs/shooter/runtime/camera_paths/campaign_clear.kpath",
-        "packs/shooter/runtime/game-assets.json",
-        "packs/shooter/runtime/materials/cache_material.kmaterial",
-        "packs/shooter/runtime/meshes/cache_crate.obj",
-        "packs/shooter/runtime/prefabs/pickup_beacon.kprefab",
-        "packs/shooter/runtime/states/warden_core.kstate",
-        "schemas/game_assets.schema.json",
-        "targets/dustline.json",
-        "targets/memoryreconstruction.json",
-        "targets/shooter.json",
-        "tests/test_game_assets.py",
-        "tests/test_keystone_assets.py",
-        "tests/test_shooter_surfaces.py",
-        "tests/test_targets.py",
-        "tools/game_assets.py",
-        "validators/game_assets.py"
+        "tests/test_game_assets.py"
       ],
-      "packet": ".aikit/reforge.reviews/stage-run-1-2-3353261273ce.md",
+      "packet": ".aikit/reforge.reviews/stage-run-1-3-53c714f30976.md",
       "redacted": 0,
       "coverage": {
-        "reported": 41,
-        "total": 41,
+        "reported": 15,
+        "total": 15,
         "carried": [],
         "missing": [],
         "unknown": [],
         "invalid": []
       },
-      "findings": [
-        {
-          "code": "review-drop-unused-copy-import",
-          "category": "improvement",
-          "severity": "low",
-          "path": "tests/test_game_assets.py",
-          "line": 9,
-          "message": "The new test module imports copy but never uses it; the copy-based mutation helpers live in test_targets.py, so this import is dead weight in a stdlib-only suite.",
-          "evidence": "import copy",
-          "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-          "hunk": "f1831f114b8c:tests/test_game_assets.py#1",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": true,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "import copy\n",
-          "patch_new": ""
-        },
-        {
-          "code": "review-check-pack-reports-missing-source",
-          "category": "improvement",
-          "severity": "low",
-          "path": "generators/game_assets.py",
-          "line": 142,
-          "message": "check_pack promises a path:reason line per stale or missing file, but a missing source project makes generate() raise FileNotFoundError instead of returning a reason, so the check command cannot report the real problem.",
-          "evidence": "pack = generate(name, source)",
-          "commit": "f1831f114b8c8673786e468865d0df75443c19dc",
-          "hunk": "f1831f114b8c:generators/game_assets.py#1",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": true,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    pack = generate(name, source)\n",
-          "patch_new": "def check_pack(out_dir: Path, name: str = DEFAULT_NAME, source: str = DEFAULT_SOURCE) -> List[str]:\n    \"\"\"Return one ``path: reason`` line per stale or missing pack file.\"\"\"\n    try:\n        pack = generate(name, source)\n    except OSError as exc:\n        return [f\"source files: cannot generate pack: {exc}\"]\n"
-        }
-      ],
+      "findings": [],
       "attestations": []
     },
-    "skipped": [
-      "packs/keystone/runtime/textures/engine.png"
-    ],
-    "tests": {
-      "command": "C:\\Python314\\python.exe -m unittest discover tests",
-      "code": 0,
-      "passed": true,
-      "output": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 1.420s\n\nOK",
-      "tail": [
-        ".......................................................",
-        "----------------------------------------------------------------------",
-        "Ran 55 tests in 1.420s",
-        "OK"
-      ]
-    },
-    "gates": {
-      "artifacts": [
-        ".aikit/codebase_map.md"
-      ]
-    },
+    "skipped": [],
+    "tests": {},
+    "gates": {},
     "delivery": {
       "commit": "",
       "short": "",
       "pushed": false,
       "push_error": null,
-      "empty": false,
-      "timestamp": "2026-11-20T00:08:42"
+      "empty": true,
+      "timestamp": "2026-11-20T00:10:09"
     },
-    "timestamp": "2026-11-20T00:04:39",
-    "dirty_targets": []
+    "timestamp": "2026-11-20T00:10:09"
   },
   "history": []
 }

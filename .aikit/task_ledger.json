@@ -232,41 +232,6 @@
       "agent": "opencode:session"
     },
     {
-      "task_id": "foundry-shooter-keystone-surfaces",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "Phase 4 passed after restoring sibling project checkouts: suite 96/96 green; committed in f1831f1",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795120569.2608,
-      "timestamp_str": "2026-11-19 23:36:09",
-      "agent": "opencode:session",
-      "checklists": "passed",
-      "workspaces": [
-        {
-          "name": "foundry",
-          "path": "projects/foundry"
-        }
-      ]
-    },
-    {
-      "task_id": "foundry-shooter-keystone-surfaces",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'foundry-shooter-keystone-surfaces' completed successfully.",
-      "status": "completed",
-      "timestamp": 1795120615.4148595,
-      "timestamp_str": "2026-11-19 23:36:55",
-      "agent": "opencode:session",
-      "head": "f1831f114b8c8673786e468865d0df75443c19dc",
-      "delivery": {
-        "roots": [
-          "."
-        ],
-        "forced": false
-      }
-    },
-    {
       "task_id": "foundry-reusable-pack-installer",
       "phase": "resumed",
       "phase_num": 4,
@@ -311,18 +276,6 @@
         ],
         "forced": false
       }
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge run",
-      "phase_num": 3,
-      "description": "run started (start=3, step=3, stop=None)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122051.6940687,
-      "timestamp_str": "2026-11-20 00:00:51",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
     },
     {
       "task_id": "reforge:run-1",
@@ -395,6 +348,42 @@
       "status": "in_progress",
       "timestamp": 1795122522.804369,
       "timestamp_str": "2026-11-20 00:08:42",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: window 9, 3 commit(s), 3 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122610.708504,
+      "timestamp_str": "2026-11-20 00:10:10",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 15/15",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122751.2981434,
+      "timestamp_str": "2026-11-20 00:12:31",
+      "agent": "opencode",
+      "operator_task": "foundry-reusable-pack-installer"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 15/15",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795122755.0931702,
+      "timestamp_str": "2026-11-20 00:12:35",
       "agent": "opencode",
       "operator_task": "foundry-reusable-pack-installer"
     }
