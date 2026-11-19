@@ -1,7 +1,7 @@
 # Codebase Map & Symbol Catalog 🗺️
 
 > **AUTO-GENERATED & VERIFIED BY `scripts/update_knowledge_base.py`**
-> This document provides an automated, up-to-date registry of all modules, classes, and exported functions across this repository.
+> This document catalogues Python modules, classes, and exported functions. See Map Coverage for any stack it does not index.
 
 ---
 
@@ -12,33 +12,37 @@
 - **Total Class Methods**: `85`
 - **Total Source Lines**: `3897`
 
+## 🧭 Map Coverage
+- **Indexed**: python (`37` module(s))
+- **Not indexed by this map**: none (no non-Python source files were found)
+
 ---
 
 ## 📦 Modules & Exported Symbols
 
 ### [`adapters/__init__.py`](adapters/__init__.py)
-**Size**: `0` lines (`0` bytes)
+**Size**: `0` lines
 
 ---
 
 ### [`adapters/afterimage.py`](adapters/afterimage.py)
 > *Afterimage target: read-only authored modes and scripts.*
 
-**Size**: `28` lines (`803` bytes)
+**Size**: `28` lines
 
 ---
 
 ### [`adapters/aldervale.py`](adapters/aldervale.py)
 > *Aldervale target: read-only item and equipment tables.*
 
-**Size**: `31` lines (`1101` bytes)
+**Size**: `31` lines
 
 ---
 
 ### [`adapters/base.py`](adapters/base.py)
 > *Frozen target facts shared by adapters, validators and generators.*
 
-**Size**: `54` lines (`1543` bytes)
+**Size**: `54` lines
 
 **Classes:**
 - `class ContentSurface` - *One authored content surface a target exposes to foundry.*
@@ -50,7 +54,7 @@
 ### [`adapters/crypt_crawler.py`](adapters/crypt_crawler.py)
 > *crypt-crawler adapter: the versioned boundary foundry never crosses.*
 
-**Size**: `54` lines (`1661` bytes)
+**Size**: `54` lines
 
 **Functions:**
 - `def _load_game_tables()`
@@ -60,42 +64,42 @@
 ### [`adapters/cyberpulse.py`](adapters/cyberpulse.py)
 > *Cyberpulse target: read-only puzzle, story-act and campaign-quest catalogs.*
 
-**Size**: `30` lines (`1108` bytes)
+**Size**: `30` lines
 
 ---
 
 ### [`adapters/dustline.py`](adapters/dustline.py)
 > *Dustline target: read-only maps, weapons, enemies, bosses and run modes.*
 
-**Size**: `45` lines (`1576` bytes)
+**Size**: `45` lines
 
 ---
 
 ### [`adapters/fold.py`](adapters/fold.py)
 > *Fold target: read-only board rules and direction set.*
 
-**Size**: `31` lines (`959` bytes)
+**Size**: `31` lines
 
 ---
 
 ### [`adapters/iris.py`](adapters/iris.py)
 > *Iris target: read-only episode and chamber catalog.*
 
-**Size**: `28` lines (`842` bytes)
+**Size**: `28` lines
 
 ---
 
 ### [`adapters/keystone.py`](adapters/keystone.py)
 > *Keystone target: read-only engine asset kinds, primitives and graph nodes.*
 
-**Size**: `38` lines (`1406` bytes)
+**Size**: `38` lines
 
 ---
 
 ### [`adapters/layout.py`](adapters/layout.py)
 > *Filesystem boundaries shared by the target adapters (read-only).*
 
-**Size**: `14` lines (`482` bytes)
+**Size**: `14` lines
 
 **Functions:**
 - `def project_root(*parts)` - *Resolve a consumer project below the portfolio's projects/ directory.*
@@ -105,7 +109,7 @@
 ### [`adapters/memoryreconstruction.py`](adapters/memoryreconstruction.py)
 > *Memory Reconstruction target: read-only authored JSON content tables.*
 
-**Size**: `85` lines (`2430` bytes)
+**Size**: `85` lines
 
 **Functions:**
 - `def _load(name)`
@@ -116,21 +120,21 @@
 ### [`adapters/primordia.py`](adapters/primordia.py)
 > *Primordia target: read-only genome, shock and hunter-trait catalogs.*
 
-**Size**: `30` lines (`1088` bytes)
+**Size**: `30` lines
 
 ---
 
 ### [`adapters/prism_relay.py`](adapters/prism_relay.py)
 > *Prism Relay target: read-only episodes, chambers and emitter directions.*
 
-**Size**: `43` lines (`1416` bytes)
+**Size**: `43` lines
 
 ---
 
 ### [`adapters/registry.py`](adapters/registry.py)
 > *Target registry: every consumer foundry can emit content for.*
 
-**Size**: `62` lines (`1392` bytes)
+**Size**: `62` lines
 
 **Functions:**
 - `def all_targets()` - *Registered targets in stable order.*
@@ -142,7 +146,7 @@
 ### [`adapters/shooter.py`](adapters/shooter.py)
 > *Shooter target: read-only JSON content tables.*
 
-**Size**: `51` lines (`1519` bytes)
+**Size**: `51` lines
 
 **Functions:**
 - `def _load(name)`
@@ -153,7 +157,7 @@
 ### [`adapters/source_js.py`](adapters/source_js.py)
 > *Read-only JavaScript source probes for the target adapters.*
 
-**Size**: `174` lines (`6134` bytes)
+**Size**: `174` lines
 
 **Functions:**
 - `def read_text(path)`
@@ -172,7 +176,7 @@
 ### [`adapters/source_py.py`](adapters/source_py.py)
 > *Read-only Python AST probes for the target adapters.*
 
-**Size**: `134` lines (`5289` bytes)
+**Size**: `134` lines
 
 **Functions:**
 - `def dict_keys(path, name)` - *String-or-int keys of a module-level dict literal, in source order.*
@@ -190,26 +194,26 @@
 ### [`adapters/voidfarer.py`](adapters/voidfarer.py)
 > *VoidFarer target: read-only weapons, enemies, factions, drones and systems.*
 
-**Size**: `38` lines (`1649` bytes)
+**Size**: `38` lines
 
 ---
 
 ### [`adapters/weft.py`](adapters/weft.py)
 > *Weft target: read-only chamber catalog and size ladder.*
 
-**Size**: `28` lines (`873` bytes)
+**Size**: `28` lines
 
 ---
 
 ### [`generators/__init__.py`](generators/__init__.py)
-**Size**: `0` lines (`0` bytes)
+**Size**: `0` lines
 
 ---
 
 ### [`generators/boss.py`](generators/boss.py)
 > *Foundry boss generator: seeded, deterministic, valid-by-construction.*
 
-**Size**: `162` lines (`5152` bytes)
+**Size**: `162` lines
 
 **Functions:**
 - `def _clamp(value, lo, hi)`
@@ -223,7 +227,7 @@
 ### [`generators/keystone_assets.py`](generators/keystone_assets.py)
 > *Keystone asset-pack generator: deterministic meshes, textures, materials, prefab.*
 
-**Size**: `447` lines (`15554` bytes)
+**Size**: `447` lines
 
 **Classes:**
 - `class KeystonePack` - *A generated pack: relative file bytes plus the canonical manifest.*
@@ -258,7 +262,7 @@
 ### [`generators/target.py`](generators/target.py)
 > *Target manifest generator: deterministic bytes from read-only adapter facts.*
 
-**Size**: `79` lines (`2679` bytes)
+**Size**: `79` lines
 
 **Functions:**
 - `def manifest(target)` - *Build the canonical manifest dict for one target.*
@@ -273,7 +277,7 @@
 ### [`tests/test_generator.py`](tests/test_generator.py)
 > *Generator tests: determinism, validity, uniqueness, catalog honesty.*
 
-**Size**: `74` lines (`2599` bytes)
+**Size**: `74` lines
 
 **Classes:**
 - `class TestGenerator`
@@ -292,7 +296,7 @@
 ### [`tests/test_keystone_assets.py`](tests/test_keystone_assets.py)
 > *Keystone asset-pack tests: determinism, integrity and engine compatibility.*
 
-**Size**: `178` lines (`7030` bytes)
+**Size**: `178` lines
 
 **Classes:**
 - `class TestKeystonePackGenerator`
@@ -325,7 +329,7 @@
 ### [`tests/test_portfolio_analysis.py`](tests/test_portfolio_analysis.py)
 > *Portfolio analysis tests: every playable project is covered by a target.*
 
-**Size**: `50` lines (`1611` bytes)
+**Size**: `50` lines
 
 **Classes:**
 - `class TestPortfolioAnalysis`
@@ -340,7 +344,7 @@
 ### [`tests/test_targets.py`](tests/test_targets.py)
 > *Target registry tests: every requested consumer is present and read-only.*
 
-**Size**: `254` lines (`8583` bytes)
+**Size**: `254` lines
 
 **Classes:**
 - `class TestTargetRegistry`
@@ -382,7 +386,7 @@
 ### [`tests/test_validator.py`](tests/test_validator.py)
 > *Validator tests: valid packs pass, broken packs fail with field + reason.*
 
-**Size**: `268` lines (`8390` bytes)
+**Size**: `268` lines
 
 **Classes:**
 - `class TestValidatorAccepts`
@@ -425,7 +429,7 @@
 ### [`tools/bot_clear.py`](tools/bot_clear.py)
 > *Bot-clear proof: a reference policy beats a generated boss in the real game.*
 
-**Size**: `225` lines (`8759` bytes)
+**Size**: `225` lines
 
 **Functions:**
 - `def _sign(value)`
@@ -438,7 +442,7 @@
 ### [`tools/keystone_assets.py`](tools/keystone_assets.py)
 > *Keystone asset cockpit: validate a pack and prove it loads in the engine.*
 
-**Size**: `164` lines (`6004` bytes)
+**Size**: `164` lines
 
 **Functions:**
 - `def _import_keystone()`
@@ -451,7 +455,7 @@
 ### [`tools/portfolio_analysis.py`](tools/portfolio_analysis.py)
 > *Portfolio analysis: classify every project and prove target coverage.*
 
-**Size**: `142` lines (`4817` bytes)
+**Size**: `142` lines
 
 **Classes:**
 - `class ProjectAnalysis` - *One project's manifest facts and portfolio classification.*
@@ -469,7 +473,7 @@
 ### [`tools/targets.py`](tools/targets.py)
 > *Target cockpit: list registered targets, write manifests, verify freshness.*
 
-**Size**: `56` lines (`2012` bytes)
+**Size**: `56` lines
 
 **Functions:**
 - `def list_targets()`
@@ -479,14 +483,14 @@
 ---
 
 ### [`validators/__init__.py`](validators/__init__.py)
-**Size**: `0` lines (`0` bytes)
+**Size**: `0` lines
 
 ---
 
 ### [`validators/boss.py`](validators/boss.py)
 > *Foundry boss-pack validator: every generated pack validates before it ships.*
 
-**Size**: `249` lines (`9468` bytes)
+**Size**: `249` lines
 
 **Functions:**
 - `def _is_int(value)`
@@ -500,7 +504,7 @@
 ### [`validators/keystone_assets.py`](validators/keystone_assets.py)
 > *Keystone asset-pack validator: manifest shape, file digests and load order.*
 
-**Size**: `290` lines (`11282` bytes)
+**Size**: `290` lines
 
 **Functions:**
 - `def _is_int(value)`
@@ -522,7 +526,7 @@
 ### [`validators/target.py`](validators/target.py)
 > *Target-manifest validator: every registered target ships a truthful manifest.*
 
-**Size**: `261` lines (`9461` bytes)
+**Size**: `261` lines
 
 **Functions:**
 - `def _is_int(value)`

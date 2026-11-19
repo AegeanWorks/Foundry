@@ -141,10 +141,6 @@ foundry/
 │   ├── keystone_assets.py
 │   └── target.py
 └── packs/
-    ├── crypt-crawler/
-    │   ├── boss_ashen_warden_s42.json
-    │   ├── boss_pale_warden_s1337.json
-    │   └── boss_ruin_vesper_s777.json
     └── keystone/
         └── starter/
             ├── keystone-assets.json
@@ -180,7 +176,6 @@ foundry/
   `crawler/foundry_packs.py`; the pair is the versioned adapter.
 - `adapters/<game>.py` — read-only facts for the other targets; source
   readers parse JSON, Python AST or JavaScript without importing the game.
-- `packs/crypt-crawler/` — baselined generated packs (seed set 42/777/1337).
 - `packs/keystone/starter/` — baselined Keystone assets (seed 42).
 - `targets/` — checked-in manifests for every registered target.
 - `tools/bot_clear.py` — bot-clear proof against the shipped engine.
