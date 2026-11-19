@@ -177,3 +177,10 @@
 - **Context**: The user's purpose for Foundry is to use assets to speed up future game creation. Today Foundry generates validated Keystone packs but has only one documented consumer install hook (crypt-crawler); Shooter has none, and Keystone's registry recognizes only mesh, texture and prefab while games already author material, state and camera-path files.
 - **Decision**: Treat a generic, versioned pack format plus a consumer-side install path and broader asset-kind coverage as the program's north star. Work proceeds in bounded milestones, starting with the pack schema and installer, with Shooter as the first real consumer.
 - **Consequences**: New pack schema, generator and installer surfaces with deterministic tests; per-game one-off content work is deprioritized. The uncommitted Shooter/Keystone surface change set stays suspended and is not folded into this program.
+
+### ADR-015: sibling project checkouts are required for the full gate
+- **Date**: 2026-11-19
+- **Status**: Accepted
+- **Context**: Foundry's adapters read consumer projects at import time and its tests assert their source files exist. Eight sibling repos were absent from the workspace, producing four loader errors; adapter-level fallbacks made the registry import but exposed 53 downstream assertion failures, so they were reverted.
+- **Decision**: Restore the missing sibling repositories from their canonical AegeanWorks remotes at their documented paths, regenerate target manifests from live sources, and keep the adapters strict. A baselined-manifest fallback is not used because it makes freshness checks self-referential.
+- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).
