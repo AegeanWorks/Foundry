@@ -1,0 +1,686 @@
+{
+  "schema": 2,
+  "next_run_id": 2,
+  "active_run": "run-1",
+  "last_run": "run-1",
+  "runs": [
+    {
+      "id": "run-1",
+      "start": 3,
+      "step": 3,
+      "stop": null,
+      "stage": 1,
+      "window": 3,
+      "audited_commits": [
+        "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+        "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+        "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+      ],
+      "status": "active",
+      "created": "2026-11-20T00:00:51",
+      "updated": "2026-11-20T00:03:19",
+      "last_audit": {
+        "run": "run-1",
+        "stage": 1,
+        "window": 3,
+        "commits": [
+          "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+          "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+          "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+        ],
+        "new_commits": [
+          "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+          "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+          "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+        ],
+        "prior_commits": [],
+        "findings": [
+          {
+            "code": "review-stale-adr-scope",
+            "category": "review",
+            "severity": "medium",
+            "path": ".aikit/decisions.md",
+            "line": 186,
+            "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+            "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+            "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "hunk": "c13799210d94:.aikit/decisions.md#1",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": true,
+            "interaction": "",
+            "repaired": true,
+            "source": "review",
+            "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+            "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+          },
+          {
+            "code": "review-precise-keystone-gate-name",
+            "category": "improvement",
+            "severity": "low",
+            "path": "README.md",
+            "line": 192,
+            "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+            "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+            "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "hunk": "8cd644ca66c8:README.md#6",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": true,
+            "interaction": "",
+            "repaired": true,
+            "source": "review",
+            "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+            "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+          },
+          {
+            "code": "review-generic-gate-checks-one-pack",
+            "category": "review",
+            "severity": "medium",
+            "path": "README.md",
+            "line": 195,
+            "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+            "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+            "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "hunk": "8cd644ca66c8:README.md#6",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": true,
+            "interaction": "",
+            "repaired": true,
+            "source": "review",
+            "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+            "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+          }
+        ],
+        "repairs": [
+          {
+            "code": "review-stale-adr-scope",
+            "path": ".aikit/decisions.md",
+            "line": 186,
+            "summary": "applied review suggestion: ADR-015 still records that eight sibling repos were restored and the suite reach",
+            "test_name": "",
+            "applied": true
+          },
+          {
+            "code": "review-generic-gate-checks-one-pack",
+            "path": "README.md",
+            "line": 195,
+            "summary": "applied review suggestion: Gate 5 claims both generic packs are valid, but the documented command checks on",
+            "test_name": "",
+            "applied": true
+          },
+          {
+            "code": "review-precise-keystone-gate-name",
+            "path": "README.md",
+            "line": 192,
+            "summary": "applied review suggestion: Gate 4 calls both packs Keystone packs, but the listed commands validate only th",
+            "test_name": "",
+            "applied": true
+          }
+        ],
+        "counts": {
+          "review": 2,
+          "improvement": 1
+        },
+        "reviewed": 5,
+        "review": {
+          "status": "reviewed",
+          "rejected": [],
+          "files": [
+            ".aikit/decisions.md",
+            ".aikit/project.json",
+            "README.md",
+            "adapters/registry.py",
+            "tests/test_targets.py"
+          ],
+          "packet": ".aikit/reforge.reviews/stage-run-1-1-8cd644ca66c8.md",
+          "redacted": 0,
+          "coverage": {
+            "reported": 17,
+            "total": 17,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review-stale-adr-scope",
+              "category": "review",
+              "severity": "medium",
+              "path": ".aikit/decisions.md",
+              "line": 186,
+              "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+              "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+              "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+              "hunk": "c13799210d94:.aikit/decisions.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+              "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+            },
+            {
+              "code": "review-precise-keystone-gate-name",
+              "category": "improvement",
+              "severity": "low",
+              "path": "README.md",
+              "line": 192,
+              "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+              "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+              "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+              "hunk": "8cd644ca66c8:README.md#6",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+              "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+            },
+            {
+              "code": "review-generic-gate-checks-one-pack",
+              "category": "review",
+              "severity": "medium",
+              "path": "README.md",
+              "line": 195,
+              "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+              "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+              "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+              "hunk": "8cd644ca66c8:README.md#6",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+              "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+            }
+          ],
+          "attestations": []
+        },
+        "skipped": [],
+        "tests": {
+          "command": "C:\\Python314\\python.exe -m unittest discover tests",
+          "code": 0,
+          "passed": true,
+          "output": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 0.454s\n\nOK",
+          "tail": [
+            ".......................................................",
+            "----------------------------------------------------------------------",
+            "Ran 55 tests in 0.454s",
+            "OK"
+          ]
+        },
+        "gates": {},
+        "delivery": {
+          "commit": "",
+          "short": "",
+          "pushed": false,
+          "push_error": null,
+          "empty": false,
+          "timestamp": "2026-11-20T00:03:19"
+        },
+        "timestamp": "2026-11-20T00:00:59",
+        "dirty_targets": []
+      },
+      "history": [
+        {
+          "run": "run-1",
+          "stage": 1,
+          "window": 3,
+          "commits": [
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+          ],
+          "new_commits": [
+            "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+            "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+            "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+          ],
+          "prior_commits": [],
+          "findings": [
+            {
+              "code": "review-stale-adr-scope",
+              "category": "review",
+              "severity": "medium",
+              "path": ".aikit/decisions.md",
+              "line": 186,
+              "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+              "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+              "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+              "hunk": "c13799210d94:.aikit/decisions.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": true,
+              "source": "review",
+              "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+              "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+            },
+            {
+              "code": "review-precise-keystone-gate-name",
+              "category": "improvement",
+              "severity": "low",
+              "path": "README.md",
+              "line": 192,
+              "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+              "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+              "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+              "hunk": "8cd644ca66c8:README.md#6",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": true,
+              "source": "review",
+              "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+              "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+            },
+            {
+              "code": "review-generic-gate-checks-one-pack",
+              "category": "review",
+              "severity": "medium",
+              "path": "README.md",
+              "line": 195,
+              "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+              "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+              "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+              "hunk": "8cd644ca66c8:README.md#6",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": true,
+              "source": "review",
+              "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+              "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+            }
+          ],
+          "repairs": [
+            {
+              "code": "review-stale-adr-scope",
+              "path": ".aikit/decisions.md",
+              "line": 186,
+              "summary": "applied review suggestion: ADR-015 still records that eight sibling repos were restored and the suite reach",
+              "test_name": "",
+              "applied": true
+            },
+            {
+              "code": "review-generic-gate-checks-one-pack",
+              "path": "README.md",
+              "line": 195,
+              "summary": "applied review suggestion: Gate 5 claims both generic packs are valid, but the documented command checks on",
+              "test_name": "",
+              "applied": true
+            },
+            {
+              "code": "review-precise-keystone-gate-name",
+              "path": "README.md",
+              "line": 192,
+              "summary": "applied review suggestion: Gate 4 calls both packs Keystone packs, but the listed commands validate only th",
+              "test_name": "",
+              "applied": true
+            }
+          ],
+          "counts": {
+            "review": 2,
+            "improvement": 1
+          },
+          "reviewed": 5,
+          "review": {
+            "status": "reviewed",
+            "rejected": [],
+            "files": [
+              ".aikit/decisions.md",
+              ".aikit/project.json",
+              "README.md",
+              "adapters/registry.py",
+              "tests/test_targets.py"
+            ],
+            "packet": ".aikit/reforge.reviews/stage-run-1-1-8cd644ca66c8.md",
+            "redacted": 0,
+            "coverage": {
+              "reported": 17,
+              "total": 17,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review-stale-adr-scope",
+                "category": "review",
+                "severity": "medium",
+                "path": ".aikit/decisions.md",
+                "line": 186,
+                "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+                "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+                "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+                "hunk": "c13799210d94:.aikit/decisions.md#1",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": true,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+                "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+              },
+              {
+                "code": "review-precise-keystone-gate-name",
+                "category": "improvement",
+                "severity": "low",
+                "path": "README.md",
+                "line": 192,
+                "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+                "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+                "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+                "hunk": "8cd644ca66c8:README.md#6",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": true,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+                "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+              },
+              {
+                "code": "review-generic-gate-checks-one-pack",
+                "category": "review",
+                "severity": "medium",
+                "path": "README.md",
+                "line": 195,
+                "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+                "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+                "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+                "hunk": "8cd644ca66c8:README.md#6",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": true,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+                "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+              }
+            ],
+            "attestations": []
+          },
+          "skipped": [],
+          "tests": {
+            "command": "C:\\Python314\\python.exe -m unittest discover tests",
+            "code": 0,
+            "passed": true,
+            "output": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 0.454s\n\nOK",
+            "tail": [
+              ".......................................................",
+              "----------------------------------------------------------------------",
+              "Ran 55 tests in 0.454s",
+              "OK"
+            ]
+          },
+          "gates": {},
+          "delivery": {
+            "commit": "",
+            "short": "",
+            "pushed": false,
+            "push_error": null,
+            "empty": false,
+            "timestamp": "2026-11-20T00:03:19"
+          },
+          "timestamp": "2026-11-20T00:00:59",
+          "dirty_targets": []
+        }
+      ],
+      "total_commits": 17
+    }
+  ],
+  "stage": 1,
+  "window": 3,
+  "audited_commits": [
+    "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+    "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+    "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+  ],
+  "last_audit": {
+    "run": "run-1",
+    "stage": 1,
+    "window": 3,
+    "commits": [
+      "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+      "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+      "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+    ],
+    "new_commits": [
+      "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+      "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+      "81fb5abd3107ffc28017c96b29ca070a9fa2a211"
+    ],
+    "prior_commits": [],
+    "findings": [
+      {
+        "code": "review-stale-adr-scope",
+        "category": "review",
+        "severity": "medium",
+        "path": ".aikit/decisions.md",
+        "line": 186,
+        "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+        "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+        "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+        "hunk": "c13799210d94:.aikit/decisions.md#1",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": true,
+        "interaction": "",
+        "repaired": true,
+        "source": "review",
+        "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+        "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+      },
+      {
+        "code": "review-precise-keystone-gate-name",
+        "category": "improvement",
+        "severity": "low",
+        "path": "README.md",
+        "line": 192,
+        "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+        "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+        "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+        "hunk": "8cd644ca66c8:README.md#6",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": true,
+        "interaction": "",
+        "repaired": true,
+        "source": "review",
+        "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+        "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+      },
+      {
+        "code": "review-generic-gate-checks-one-pack",
+        "category": "review",
+        "severity": "medium",
+        "path": "README.md",
+        "line": 195,
+        "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+        "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+        "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+        "hunk": "8cd644ca66c8:README.md#6",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": true,
+        "interaction": "",
+        "repaired": true,
+        "source": "review",
+        "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+        "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+      }
+    ],
+    "repairs": [
+      {
+        "code": "review-stale-adr-scope",
+        "path": ".aikit/decisions.md",
+        "line": 186,
+        "summary": "applied review suggestion: ADR-015 still records that eight sibling repos were restored and the suite reach",
+        "test_name": "",
+        "applied": true
+      },
+      {
+        "code": "review-generic-gate-checks-one-pack",
+        "path": "README.md",
+        "line": 195,
+        "summary": "applied review suggestion: Gate 5 claims both generic packs are valid, but the documented command checks on",
+        "test_name": "",
+        "applied": true
+      },
+      {
+        "code": "review-precise-keystone-gate-name",
+        "path": "README.md",
+        "line": 192,
+        "summary": "applied review suggestion: Gate 4 calls both packs Keystone packs, but the listed commands validate only th",
+        "test_name": "",
+        "applied": true
+      }
+    ],
+    "counts": {
+      "review": 2,
+      "improvement": 1
+    },
+    "reviewed": 5,
+    "review": {
+      "status": "reviewed",
+      "rejected": [],
+      "files": [
+        ".aikit/decisions.md",
+        ".aikit/project.json",
+        "README.md",
+        "adapters/registry.py",
+        "tests/test_targets.py"
+      ],
+      "packet": ".aikit/reforge.reviews/stage-run-1-1-8cd644ca66c8.md",
+      "redacted": 0,
+      "coverage": {
+        "reported": 17,
+        "total": 17,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review-stale-adr-scope",
+          "category": "review",
+          "severity": "medium",
+          "path": ".aikit/decisions.md",
+          "line": 186,
+          "message": "ADR-015 still records that eight sibling repos were restored and the suite reached 96/96; the current tree keeps only Shooter and Keystone with 55 tests, so the accepted decision contradicts the shipped scope.",
+          "evidence": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+          "commit": "c13799210d94a03eb754fccc0558fdb6295c9fcf",
+          "hunk": "c13799210d94:.aikit/decisions.md#1",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": true,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).",
+          "patch_new": "- **Consequences**: The full suite is 96/96 green and all four gates pass. A checkout that omits consumer projects cannot run Foundry's gates; dustline and MemoryReconstruction expected counts moved with their current sources (24/10/8 and 105/28/13/53).\n\n### ADR-016: Foundry serves only Shooter and Keystone\n- **Date**: 2026-11-20\n- **Status**: Accepted\n- **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.\n- **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.\n- **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative."
+        },
+        {
+          "code": "review-precise-keystone-gate-name",
+          "category": "improvement",
+          "severity": "low",
+          "path": "README.md",
+          "line": 192,
+          "message": "Gate 4 calls both packs Keystone packs, but the listed commands validate only the starter pack; the Keystone runtime pack is a generic pack covered by the next gate.",
+          "evidence": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+          "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+          "hunk": "8cd644ca66c8:README.md#6",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": true,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py",
+          "patch_new": "4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py"
+        },
+        {
+          "code": "review-generic-gate-checks-one-pack",
+          "category": "review",
+          "severity": "medium",
+          "path": "README.md",
+          "line": 195,
+          "message": "Gate 5 claims both generic packs are valid, but the documented command checks only the default Shooter pack; the Keystone runtime pack needs an explicit --source and --out and is never verified.",
+          "evidence": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+          "commit": "8cd644ca66c8ec8508beb92fc6741fc0448d66f4",
+          "hunk": "8cd644ca66c8:README.md#6",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": true,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "5. Both generic packs are valid (`python generators/game_assets.py --check`)",
+          "patch_new": "5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)"
+        }
+      ],
+      "attestations": []
+    },
+    "skipped": [],
+    "tests": {
+      "command": "C:\\Python314\\python.exe -m unittest discover tests",
+      "code": 0,
+      "passed": true,
+      "output": ".......................................................\n----------------------------------------------------------------------\nRan 55 tests in 0.454s\n\nOK",
+      "tail": [
+        ".......................................................",
+        "----------------------------------------------------------------------",
+        "Ran 55 tests in 0.454s",
+        "OK"
+      ]
+    },
+    "gates": {},
+    "delivery": {
+      "commit": "",
+      "short": "",
+      "pushed": false,
+      "push_error": null,
+      "empty": false,
+      "timestamp": "2026-11-20T00:03:19"
+    },
+    "timestamp": "2026-11-20T00:00:59",
+    "dirty_targets": []
+  },
+  "history": []
+}

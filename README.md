@@ -75,6 +75,7 @@ foundry/
 │   ├── guidelines.md
 │   ├── media.json
 │   ├── project.json
+│   ├── reforge.json
 │   ├── task_ledger.json
 │   └── task_ledger_archive.jsonl
 ├── adapters/
@@ -189,10 +190,10 @@ Foundry only reads these two projects; neither is ever written.
 2. Every pack validates before it ships; invalid packs fail with field+reason.
 3. Both target manifests are fresh and valid (`python generators/target.py
    --check`, `python validators/target.py "targets/*.json"`).
-4. Both Keystone packs are fresh and valid (`python generators/keystone_assets.py
+4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py
    --check`, `python validators/keystone_assets.py`), and the runtime proof
    loads the starter pack (`python tools/keystone_assets.py --verify`).
-5. Both generic packs are valid (`python generators/game_assets.py --check`)
+5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)
    and an installed copy re-validates after install.
 
 <!-- aegean:brand-assets:start -->
