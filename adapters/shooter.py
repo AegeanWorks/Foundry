@@ -20,9 +20,18 @@ def _ids(payload: Dict[str, Any], key: str) -> Tuple[str, ...]:
     return tuple(str(item["id"]) for item in payload[key])
 
 
+def _fields(payload: Dict[str, Any]) -> Tuple[str, ...]:
+    """The tuned field names of a table, without metadata or prose."""
+    return tuple(sorted(key for key in payload if key not in ("schema", "notes")))
+
+
 _ENEMIES = _load("enemies.json")
 _WEAPONS = _load("weapons.json")
 _LEVELS = _load("levels.json")
+_ENGAGEMENT = _load("engagement.json")
+_GRADE = _load("grade.json")
+_JUICE = _load("juice.json")
+_CORE_MATERIAL = _load("core_material.json")
 
 TARGET = TargetFacts(
     game_id="shooter",
@@ -46,6 +55,15 @@ TARGET = TargetFacts(
             "catalog",
             ("shooter/data/levels.json",),
             tuple(f"cover-{index}" for index in range(1, len(_LEVELS["arena"]["covers"]) + 1)),
+        ),
+        ContentSurface("engagement", "rules", ("shooter/data/engagement.json",), _fields(_ENGAGEMENT)),
+        ContentSurface("grade", "rules", ("shooter/data/grade.json",), _fields(_GRADE)),
+        ContentSurface("juice", "rules", ("shooter/data/juice.json",), _fields(_JUICE)),
+        ContentSurface(
+            "core_material",
+            "catalog",
+            ("shooter/data/core_material.json",),
+            _ids(_CORE_MATERIAL, "nodes"),
         ),
     ),
 )

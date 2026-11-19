@@ -33,6 +33,7 @@ MANIFEST_NAME = "keystone-assets.json"
 MESH_CUBE = "meshes/mesh_cube.obj"
 MESH_PLANE = "meshes/mesh_plane.obj"
 MESH_CRYSTAL = "meshes/mesh_crystal.obj"
+MESH_OCTAHEDRON = "meshes/mesh_octahedron.obj"
 TEXTURE_CHECKER = "textures/texture_checker.png"
 TEXTURE_GRADIENT = "textures/texture_gradient.png"
 PREFAB_STARTER = "prefabs/prefab_starter.kprefab"
@@ -75,6 +76,8 @@ def generate(seed: int = DEFAULT_SEED, name: str = DEFAULT_NAME) -> KeystonePack
     _add_file(assets, "mesh.plane", "mesh", MESH_PLANE, files, ())
     files[MESH_CRYSTAL] = _obj_crystal(seed)
     _add_file(assets, "mesh.crystal", "mesh", MESH_CRYSTAL, files, ())
+    files[MESH_OCTAHEDRON] = _obj_octahedron()
+    _add_file(assets, "mesh.octahedron", "mesh", MESH_OCTAHEDRON, files, ())
 
     materials = (
         (
@@ -307,6 +310,25 @@ def _obj_crystal(seed: int) -> bytes:
         faces.append(((top, second, first), f"top-{index}"))
         faces.append(((bottom, first, second), f"bottom-{index}"))
     return _obj_from_triangles("crystal", faces)
+
+
+def _obj_octahedron(radius: float = 1.0) -> bytes:
+    """The engine's flat-shaded unit octahedron, generated with UVs and normals."""
+    top = (0.0, radius, 0.0)
+    bottom = (0.0, -radius, 0.0)
+    equator = [
+        (radius, 0.0, 0.0),
+        (0.0, 0.0, radius),
+        (-radius, 0.0, 0.0),
+        (0.0, 0.0, -radius),
+    ]
+    faces: List[Tuple[Tuple[Tuple[float, float, float], ...], str]] = []
+    for index in range(4):
+        first = equator[index]
+        second = equator[(index + 1) % 4]
+        faces.append(((top, second, first), f"top-{index}"))
+        faces.append(((bottom, first, second), f"bottom-{index}"))
+    return _obj_from_triangles("octahedron", faces)
 
 
 def _obj_from_quads(name: str, quads: Sequence[Tuple[Tuple[Tuple[float, float, float], ...], str]]) -> bytes:

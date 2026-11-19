@@ -36,6 +36,13 @@
       "sha256": "8c083bf771051d9620025e18d0d44129fb31bc44b61b4b825d3e4d57ea8aad45"
     },
     {
+      "dependencies": [],
+      "id": "mesh.octahedron",
+      "kind": "mesh",
+      "path": "meshes/mesh_octahedron.obj",
+      "sha256": "9b86eabb17b11f2e0c8f8b1a65fe59a978c19120d45e0723bb101084afebb326"
+    },
+    {
       "dependencies": [
         "texture.checker"
       ],

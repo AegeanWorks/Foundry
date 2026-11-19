@@ -10,3 +10,4 @@ without modifying or quarantining that file; older versions migrate when a migra
 
 ## Rules
 - **G-001** (user): Publish only through python aikit.py publish foundry; never create or push the repository with raw gh or git commands.
+- **G-002** (user): Foundry exists to accelerate game creation with reusable, validated asset packs: prefer a generic, versioned install path and coverage of the asset kinds games actually use over one-off per-game content.

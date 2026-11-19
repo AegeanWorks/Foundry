@@ -1,150 +1,23 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "foundry-publish-standards",
-    "last_phase": "in_progress",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1794090768.4604168,
-    "owner": "opencode:goal",
-    "started_by": "opencode:goal",
+    "task_id": "foundry-reusable-pack-installer",
+    "last_phase": "phase 4",
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1795119893.9581313,
+    "owner": "opencode:session",
+    "lease_until": 1795127093.9581313,
+    "started_by": "opencode:session",
     "continuations": [],
-    "completed_at": 1794090769.0918207
+    "workspaces": [
+      {
+        "name": "foundry",
+        "path": "projects/foundry"
+      }
+    ]
   },
   "checkpoints": [
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[2/4] Target facts, read-only adapters and registry for nine consumers",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794088082.211371,
-      "timestamp_str": "2026-11-08 00:48:02",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[3/4] Target schema, manifest generator/validator, CLI, tests and docs",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794088082.2175121,
-      "timestamp_str": "2026-11-08 00:48:02",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "in_progress",
-      "phase_num": 4,
-      "description": "[4/4] Phase 4 gates pass; checklists: passed; target projects read-only",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794088088.596576,
-      "timestamp_str": "2026-11-08 00:48:08",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "in_progress",
-      "phase_num": 4,
-      "description": "[4/4] Phase 4 gates pass after final docs; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794088142.061922,
-      "timestamp_str": "2026-11-08 00:49:02",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-target-registry",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'foundry-target-registry' completed successfully.",
-      "status": "completed",
-      "timestamp": 1794088146.2844992,
-      "timestamp_str": "2026-11-08 00:49:06",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-keystone-assets",
-      "phase": "in_progress",
-      "phase_num": 2,
-      "description": "[1/4] Plan Keystone asset-pack mode for foundry",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794089135.6519961,
-      "timestamp_str": "2026-11-08 01:05:35",
-      "agent": "opencode:goal",
-      "impact_assessment": {
-        "why": "The user asked whether foundry can become a Keystone asset pipeline; foundry currently emits game-rule JSON only, while Keystone games need file-backed meshes, textures, materials and prefabs.",
-        "benefits": "One deterministic asset pack format with digests, dependency order and a runtime proof through Keystone's real AssetRegistry; Keystone and the games stay read-only.",
-        "risks": "contract: new pack schema and CLI; dependency: Keystone only for the optional runtime proof; concurrency: none; state: baseline pack under packs/keystone/starter plus target manifest and ledger",
-        "mitigation": "Generate with stdlib (OBJ, PNG, KPREFAB), validate hashes and dependencies, load/instantiate through Keystone, run the foundry suite and aikit check."
-      },
-      "plan_digest": "5e6855d15f3d504207d07fd112d85bea62c9f6f2ba90b9fb8de2e35b6106f320"
-    },
-    {
-      "task_id": "foundry-keystone-assets",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[3/4] Pack validator, runtime verifier, tests, README and ADR",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794089143.2952788,
-      "timestamp_str": "2026-11-08 01:05:43",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-keystone-assets",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[2/4] Keystone target adapter and deterministic asset-pack generator",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794089143.554901,
-      "timestamp_str": "2026-11-08 01:05:43",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-keystone-assets",
-      "phase": "in_progress",
-      "phase_num": 4,
-      "description": "[4/4] Phase 4 gates pass; checklists: passed; Keystone pack loads with 9 assets and 5 prefab nodes",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794089177.8323433,
-      "timestamp_str": "2026-11-08 01:06:17",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-keystone-assets",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'foundry-keystone-assets' completed successfully.",
-      "status": "completed",
-      "timestamp": 1794089177.9017239,
-      "timestamp_str": "2026-11-08 01:06:17",
-      "agent": "opencode:goal"
-    },
-    {
-      "task_id": "foundry-portfolio-analysis",
-      "phase": "in_progress",
-      "phase_num": 2,
-      "description": "[1/4] Inventory and classify every project in the portfolio",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1794089688.5358708,
-      "timestamp_str": "2026-11-08 01:14:48",
-      "agent": "opencode:goal",
-      "impact_assessment": {
-        "why": "The user asked to continue analyzing the projects after the first target and Keystone slices; the remaining playable projects were not yet registered in foundry.",
-        "benefits": "A complete portfolio map that separates game/content targets from tools, science and apps, backed by source-derived content surfaces rather than guesses.",
-        "risks": "contract: registry grows to 14 targets plus the Keystone engine; dependency: stdlib only for adapters; concurrency: none; state: four new adapters and manifests",
-        "mitigation": "Read each candidate project's README and source, add only targets with authored content surfaces, validate counts, run the suite and aikit check."
-      },
-      "plan_digest": "31afc1115e4ac3a4a303b623c4a844994abbbe866a5e973fa1c4aa63281cc6ab"
-    },
     {
       "task_id": "foundry-portfolio-analysis",
       "phase": "in_progress",
@@ -254,6 +127,297 @@
       "timestamp": 1794090769.0918226,
       "timestamp_str": "2026-11-08 01:32:49",
       "agent": "opencode:goal"
+    },
+    {
+      "task_id": "foundry-shooter-keystone-surfaces",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/3] Plan: expose Shooter's four unrepresented data tables as read-only content surfaces and add Keystone's octahedron sample mesh to the generated asset pack",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795118685.1935055,
+      "timestamp_str": "2026-11-19 23:04:45",
+      "agent": "opencode:session",
+      "impact_assessment": {
+        "why": "Foundry currently reads only enemies/weapons/levels from Shooter and generates only cube/plane/crystal for Keystone, so real authored content from both projects stays outside the pipeline",
+        "benefits": "Shooter manifests cover engagement, grade, juice and core material graph; Keystone pack gains a fourth deterministic mesh with a failing-first test",
+        "risks": "contract: target manifest shape and pack manifest shape change; dependency: adapters read sibling files at import time; concurrency: none; state: checked-in manifests and pack must be regenerated byte-identically",
+        "mitigation": "add tests first, reuse existing generator APIs, validate manifests and pack with existing validators, and keep all source projects unmodified"
+      },
+      "plan_digest": "a75cc2fcaaed3a774caa3155c3a068eb1e4d37aa3d031895ea409a9b5f9ac5ed",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-shooter-keystone-surfaces",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[2/3] Implemented: eight Shooter surfaces in the adapter and regenerated manifest; deterministic octahedron mesh in the Keystone pack generator and regenerated pack; failing-first tests updated",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795118887.5135396,
+      "timestamp_str": "2026-11-19 23:08:07",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-shooter-keystone-surfaces",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[3/3] Verification: 17 focused tests green, full suite 21 tests with only the 4 pre-existing import errors; 3/4 gates pass (test gate infra-red on missing sibling projects)",
+      "files_affected": [
+        ".aikit/codebase_map.md",
+        ".aikit/task_ledger.json",
+        "README.md",
+        "adapters/shooter.py",
+        "generators/keystone_assets.py",
+        "packs/keystone/starter/keystone-assets.json",
+        "packs/keystone/starter/meshes/mesh_crystal.obj",
+        "packs/keystone/starter/meshes/mesh_cube.obj",
+        "packs/keystone/starter/meshes/mesh_plane.obj",
+        "packs/keystone/starter/prefabs/prefab_starter.kprefab",
+        "targets/shooter.json",
+        "tests/test_keystone_assets.py",
+        "tests/test_targets.py",
+        ".aikit/task_ledger_archive.jsonl",
+        "packs/keystone/starter/meshes/mesh_octahedron.obj",
+        "tests/test_shooter_surfaces.py"
+      ],
+      "status": "in_progress",
+      "timestamp": 1795118947.3950443,
+      "timestamp_str": "2026-11-19 23:09:07",
+      "agent": "opencode:session",
+      "checklists": "failed:test",
+      "handoff": {
+        "next": "commit and push when authorized",
+        "failed": "test gate (crypt-crawler module and afterimage/game.js absent)",
+        "evidence": "17 focused tests OK"
+      },
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-shooter-keystone-surfaces",
+      "phase": "suspended",
+      "phase_num": 4,
+      "description": "Task 'foundry-shooter-keystone-surfaces' suspended: uncommitted Shooter/Keystone surface work left in place; switching to the reusable asset-pack program",
+      "status": "suspended",
+      "timestamp": 1795119227.5213757,
+      "timestamp_str": "2026-11-19 23:13:47",
+      "agent": "opencode:session"
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/5] Plan: define a generic versioned game-asset pack format and consumer-side install path, covering the asset kinds games actually author, with Shooter as the first consumer",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795119246.7135959,
+      "timestamp_str": "2026-11-19 23:14:06",
+      "agent": "opencode:session",
+      "impact_assessment": {
+        "why": "Foundry's purpose is faster game creation through reusable assets, but today packs are engine-specific and no generic install hook exists outside crypt-crawler",
+        "benefits": "one validated pack can be installed into any new game in minutes; material/state/camera-path assets become reusable instead of game-local",
+        "risks": "contract: new pack schema and versioning affect existing Keystone pack; dependency: consumer projects may be absent; concurrency: installer must be idempotent; state: installed files must be digest-verified and never silently overwritten",
+        "mitigation": "keep the existing Keystone pack v1 untouched, add a new schema/version, drive everything from failing-first tests, and prove install into a temp scaffold before touching any game"
+      },
+      "plan_digest": "116cbfc6361ef8a8dd4d34788eb72b5069651298f74e521959e3e7f0fe51273b",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[2/5] Added game_assets v2 schema and stdlib validator (provenance, six kinds, digests, load order) plus deterministic generator from Shooter's 5 runtime files; 12 failing-first tests green",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795119504.3469045,
+      "timestamp_str": "2026-11-19 23:18:24",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[3/5] Added tools/game_assets.py installer: dry-run plan, overwrite refusal, copy-only install, post-install validation",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795119505.2712247,
+      "timestamp_str": "2026-11-19 23:18:25",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[4/5] Proved reuse end-to-end: dry run wrote nothing, install copied 5 assets into a temp game dir, check reported OK",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795119506.2122865,
+      "timestamp_str": "2026-11-19 23:18:26",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[5/5] Verification: 12/12 new pack tests green, full suite 33 tests with only the 4 pre-existing import errors, 3/4 gates pass (test gate infra-red on missing sibling sources), README and codebase map synced",
+      "files_affected": [
+        ".aikit/codebase_map.md",
+        ".aikit/decisions.md",
+        ".aikit/guidelines.md",
+        ".aikit/task_ledger.json",
+        "README.md",
+        "adapters/shooter.py",
+        "generators/keystone_assets.py",
+        "packs/keystone/starter/keystone-assets.json",
+        "packs/keystone/starter/meshes/mesh_crystal.obj",
+        "packs/keystone/starter/meshes/mesh_cube.obj",
+        "packs/keystone/starter/meshes/mesh_plane.obj",
+        "packs/keystone/starter/prefabs/prefab_starter.kprefab",
+        "targets/shooter.json",
+        "tests/test_keystone_assets.py",
+        "tests/test_targets.py",
+        ".aikit/task_ledger_archive.jsonl",
+        "generators/game_assets.py",
+        "packs/keystone/starter/meshes/mesh_octahedron.obj",
+        "packs/shooter/runtime/camera_paths/campaign_clear.kpath",
+        "packs/shooter/runtime/game-assets.json",
+        "packs/shooter/runtime/materials/cache_material.kmaterial",
+        "packs/shooter/runtime/meshes/cache_crate.obj",
+        "packs/shooter/runtime/prefabs/pickup_beacon.kprefab",
+        "packs/shooter/runtime/states/warden_core.kstate",
+        "schemas/game_assets.schema.json",
+        "tests/test_game_assets.py",
+        "tests/test_shooter_surfaces.py",
+        "tools/game_assets.py",
+        "validators/game_assets.py"
+      ],
+      "status": "in_progress",
+      "timestamp": 1795119514.211297,
+      "timestamp_str": "2026-11-19 23:18:34",
+      "agent": "opencode:session",
+      "checklists": "failed:test",
+      "handoff": {
+        "next": "commit and push when authorized",
+        "failed": "test gate (crypt-crawler module and afterimage/game.js absent)",
+        "evidence": "install proof OK into temp game dir"
+      },
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "Extension: parameterized generator by source game; added Keystone runtime pack (octahedron mesh + engine texture) and cross-game install test; 16/16 pack tests green",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795119892.889818,
+      "timestamp_str": "2026-11-19 23:24:52",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-reusable-pack-installer",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "Re-verification: 37 tests run with only the 4 pre-existing import errors, 3/4 gates pass, two packs installed into two temp game dirs and both validated",
+      "files_affected": [
+        ".aikit/codebase_map.md",
+        ".aikit/decisions.md",
+        ".aikit/guidelines.md",
+        ".aikit/task_ledger.json",
+        "README.md",
+        "adapters/shooter.py",
+        "generators/keystone_assets.py",
+        "packs/keystone/starter/keystone-assets.json",
+        "packs/keystone/starter/meshes/mesh_crystal.obj",
+        "packs/keystone/starter/meshes/mesh_cube.obj",
+        "packs/keystone/starter/meshes/mesh_plane.obj",
+        "packs/keystone/starter/prefabs/prefab_starter.kprefab",
+        "targets/shooter.json",
+        "tests/test_keystone_assets.py",
+        "tests/test_targets.py",
+        ".aikit/task_ledger_archive.jsonl",
+        "generators/game_assets.py",
+        "packs/keystone/runtime/game-assets.json",
+        "packs/keystone/runtime/meshes/octahedron.obj",
+        "packs/keystone/runtime/textures/engine.png",
+        "packs/keystone/starter/meshes/mesh_octahedron.obj",
+        "packs/shooter/runtime/camera_paths/campaign_clear.kpath",
+        "packs/shooter/runtime/game-assets.json",
+        "packs/shooter/runtime/materials/cache_material.kmaterial",
+        "packs/shooter/runtime/meshes/cache_crate.obj",
+        "packs/shooter/runtime/prefabs/pickup_beacon.kprefab",
+        "packs/shooter/runtime/states/warden_core.kstate",
+        "schemas/game_assets.schema.json",
+        "tests/test_game_assets.py",
+        "tests/test_shooter_surfaces.py",
+        "tools/game_assets.py",
+        "validators/game_assets.py"
+      ],
+      "status": "in_progress",
+      "timestamp": 1795119893.9581313,
+      "timestamp_str": "2026-11-19 23:24:53",
+      "agent": "opencode:session",
+      "checklists": "failed:test",
+      "handoff": {
+        "next": "commit/push when gate is green or explicitly overridden",
+        "failed": "test gate (missing sibling projects)"
+      },
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
     }
   ]
 }

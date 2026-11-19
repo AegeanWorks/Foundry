@@ -170,3 +170,10 @@
   `aikit topics foundry --review` reports no policy problem; publishing the
   committed tree runs the full AIKit sequence. The AegeanWorks dossier media
   files are committed in their own repository.
+
+### ADR-014: reusable asset packs are the acceleration strategy
+- **Date**: 2026-11-19
+- **Status**: Accepted
+- **Context**: The user's purpose for Foundry is to use assets to speed up future game creation. Today Foundry generates validated Keystone packs but has only one documented consumer install hook (crypt-crawler); Shooter has none, and Keystone's registry recognizes only mesh, texture and prefab while games already author material, state and camera-path files.
+- **Decision**: Treat a generic, versioned pack format plus a consumer-side install path and broader asset-kind coverage as the program's north star. Work proceeds in bounded milestones, starting with the pack schema and installer, with Shooter as the first real consumer.
+- **Consequences**: New pack schema, generator and installer surfaces with deterministic tests; per-game one-off content work is deprioritized. The uncommitted Shooter/Keystone surface change set stays suspended and is not folded into this program.

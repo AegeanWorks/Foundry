@@ -61,6 +61,23 @@ python validators/keystone_assets.py
 python tools/keystone_assets.py --verify
 ```
 
+Reusable game-asset packs (engine-agnostic files plus a digest-verified
+manifest; keep the source project read-only):
+
+```powershell
+python generators/game_assets.py --source shooter --out packs/shooter/runtime
+python generators/game_assets.py --source keystone --out packs/keystone/runtime
+python generators/game_assets.py --check
+python validators/game_assets.py packs/shooter/runtime
+python tools/game_assets.py install --pack packs/shooter/runtime --dest <game-dir> --dry-run
+python tools/game_assets.py install --pack packs/shooter/runtime --dest <game-dir>
+python tools/game_assets.py check --pack <game-dir>
+```
+
+The installer copies files and the manifest only; it never edits consumer
+code. It refuses to overwrite an existing install unless `--force` is given,
+and re-validates the destination after writing.
+
 ## What's Inside
 
 ```text
@@ -78,7 +95,8 @@ foundry/
 │   ├── guidelines.md
 │   ├── media.json
 │   ├── project.json
-│   └── task_ledger.json
+│   ├── task_ledger.json
+│   └── task_ledger_archive.jsonl
 ├── adapters/
 │   ├── __init__.py
 │   ├── base.py
@@ -103,10 +121,12 @@ foundry/
 ├── generators/
 │   ├── __init__.py
 │   ├── boss.py
+│   ├── game_assets.py
 │   ├── keystone_assets.py
 │   └── target.py
 ├── schemas/
 │   ├── boss.schema.json
+│   ├── game_assets.schema.json
 │   ├── keystone_assets.schema.json
 │   └── target.schema.json
 ├── targets/
@@ -125,49 +145,78 @@ foundry/
 │   ├── prism-relay.json
 │   └── voidfarer.json
 ├── tests/
+│   ├── test_game_assets.py
 │   ├── test_generator.py
 │   ├── test_keystone_assets.py
 │   ├── test_portfolio_analysis.py
+│   ├── test_shooter_surfaces.py
 │   ├── test_targets.py
 │   └── test_validator.py
 ├── tools/
 │   ├── bot_clear.py
+│   ├── game_assets.py
 │   ├── keystone_assets.py
 │   ├── portfolio_analysis.py
 │   └── targets.py
 ├── validators/
 │   ├── __init__.py
 │   ├── boss.py
+│   ├── game_assets.py
 │   ├── keystone_assets.py
 │   └── target.py
 └── packs/
-    └── keystone/
-        └── starter/
-            ├── keystone-assets.json
+    ├── keystone/
+    │   ├── runtime/
+    │   │   ├── game-assets.json
+    │   │   ├── meshes/
+    │   │   │   └── octahedron.obj
+    │   │   └── textures/
+    │   │       └── engine.png
+    │   └── starter/
+    │       ├── keystone-assets.json
+    │       ├── meshes/
+    │       │   ├── mesh_cube.obj
+    │       │   ├── mesh_crystal.obj
+    │       │   ├── mesh_octahedron.obj
+    │       │   └── mesh_plane.obj
+    │       ├── prefabs/
+    │       │   └── prefab_starter.kprefab
+    │       └── textures/
+    │           ├── texture_checker.png
+    │           └── texture_gradient.png
+    └── shooter/
+        └── runtime/
+            ├── game-assets.json
+            ├── camera_paths/
+            │   └── campaign_clear.kpath
+            ├── materials/
+            │   └── cache_material.kmaterial
             ├── meshes/
-            │   ├── mesh_cube.obj
-            │   ├── mesh_crystal.obj
-            │   └── mesh_plane.obj
+            │   └── cache_crate.obj
             ├── prefabs/
-            │   └── prefab_starter.kprefab
-            └── textures/
-                ├── texture_checker.png
-                └── texture_gradient.png
+            │   └── pickup_beacon.kprefab
+            └── states/
+                └── warden_core.kstate
 ```
 
 - `schemas/boss.schema.json` — canonical boss format (slice-1 envelope).
 - `schemas/target.schema.json` — canonical target manifest.
 - `schemas/keystone_assets.schema.json` — canonical Keystone asset pack.
+- `schemas/game_assets.schema.json` — canonical reusable game-asset pack (v2).
 - `validators/boss.py` — gatekeeper: every pack validates, failures name
   `field: reason`.
 - `validators/target.py` — target gate: registered id, safe project/source
   paths, non-empty unique content surfaces.
 - `validators/keystone_assets.py` — Keystone pack gate: manifest shape,
   file digests, dependency order and prefab references.
+- `validators/game_assets.py` — generic pack gate: provenance, kinds, digests
+  and dependency order.
 - `generators/boss.py` — seeded, deterministic, valid-by-construction.
 - `generators/target.py` — canonical target manifests, byte-identical on
   regeneration.
 - `generators/keystone_assets.py` — seeded OBJ/PNG/KPREFAB pack generator.
+- `generators/game_assets.py` — deterministic copy generator for authored
+  game files.
 - `adapters/registry.py` — every consumer foundry can target.
 - `adapters/keystone.py` — Keystone asset kinds, suffixes, primitives and
   material-graph node kinds.
@@ -177,11 +226,16 @@ foundry/
 - `adapters/<game>.py` — read-only facts for the other targets; source
   readers parse JSON, Python AST or JavaScript without importing the game.
 - `packs/keystone/starter/` — baselined Keystone assets (seed 42).
+- `packs/shooter/runtime/` — baselined Shooter runtime assets (5 kinds).
+- `packs/keystone/runtime/` — baselined Keystone mesh and texture, proving
+  the format works across two source games.
 - `targets/` — checked-in manifests for every registered target.
 - `tools/bot_clear.py` — bot-clear proof against the shipped engine.
 - `tools/keystone_assets.py` — validate and load a pack through Keystone.
 - `tools/portfolio_analysis.py` — classify every project and check target coverage.
 - `tools/targets.py` — list targets, write manifests, verify freshness.
+- `tools/game_assets.py` — validate and install a generic pack (dry-run,
+  overwrite protection, post-install verification).
 - `.aikit/decisions.md` — ADRs, append-only.
 
 ## Registered Targets
@@ -192,7 +246,7 @@ foundry/
 | keystone | `projects/keystone` | active | asset kinds, file suffixes, primitives, material nodes |
 | afterimage | `projects/afterimage` | active | modes, scripts |
 | aldervale | `projects/archive/aldervale` | archived | items, shop stock, weapons, armor |
-| shooter | `projects/shooter` | active | enemies, weapons, waves, arena covers |
+| shooter | `projects/shooter` | active | enemies, weapons, waves, arena covers, engagement, grade, juice, core material |
 | weft | `projects/weft` | active | chambers, sizes |
 | iris | `projects/archive/iris` | archived | episodes, chambers |
 | primordia | `projects/primordia` | active | genes, shocks, hunter traits |

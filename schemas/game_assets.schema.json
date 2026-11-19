@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portable-agent-kit/foundry/schemas/game_assets.schema.json",
+  "title": "Foundry generic game asset pack",
+  "description": "A versioned, digest-verified pack of file-backed assets copied from one game so any other game can install them. Every asset kind is a real file; the consumer chooses how to load it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "pack", "generator", "source", "assets"],
+  "properties": {
+    "schema": {"const": 2},
+    "pack": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}$"},
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "integer", "minimum": 1}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "root"],
+      "properties": {
+        "project": {"type": "string", "pattern": "^projects/[A-Za-z0-9._/-]+$"},
+        "root": {"type": "string", "minLength": 1}
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "path", "sha256", "source", "dependencies"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{1,63}$"},
+          "kind": {
+            "type": "string",
+            "enum": ["mesh", "texture", "material", "prefab", "state", "camera_path"]
+          },
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "source": {"type": "string", "minLength": 1},
+          "dependencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    }
+  }
+}

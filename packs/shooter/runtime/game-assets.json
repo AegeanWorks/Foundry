@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "dependencies": [],
+      "id": "mesh.cache_crate",
+      "kind": "mesh",
+      "path": "meshes/cache_crate.obj",
+      "sha256": "a0de0a1c9b0f0c52557c996e1dae9e504f00805f558b77daefac00a8c2dd7ee5",
+      "source": "shooter/data/cache_crate.obj"
+    },
+    {
+      "dependencies": [],
+      "id": "material.cache",
+      "kind": "material",
+      "path": "materials/cache_material.kmaterial",
+      "sha256": "052e6d413acc6e112bc692e7a00010903dcf698facbec4c72b603163ba4f40e8",
+      "source": "shooter/data/cache_material.kmaterial"
+    },
+    {
+      "dependencies": [],
+      "id": "camera_path.campaign_clear",
+      "kind": "camera_path",
+      "path": "camera_paths/campaign_clear.kpath",
+      "sha256": "35bbab848d8d08389c2bfc27dc0f58aecf8a095b17bccf2007ef0a377f4923a0",
+      "source": "shooter/data/campaign_clear.kpath"
+    },
+    {
+      "dependencies": [],
+      "id": "prefab.pickup_beacon",
+      "kind": "prefab",
+      "path": "prefabs/pickup_beacon.kprefab",
+      "sha256": "f0b09e98c10fc46228530f8a8a1a3564ee3109cad3c6a14d981058fd8236ef2d",
+      "source": "shooter/data/pickup_beacon.kprefab"
+    },
+    {
+      "dependencies": [],
+      "id": "state.warden_core",
+      "kind": "state",
+      "path": "states/warden_core.kstate",
+      "sha256": "ec61276cd34a5a86ec5b6ca3e436e2b2fa6ef645d92b1a5988283f56676ef4d3",
+      "source": "shooter/data/warden_core.kstate"
+    }
+  ],
+  "generator": {
+    "name": "foundry.game-assets",
+    "version": 1
+  },
+  "pack": "runtime",
+  "schema": 2,
+  "source": {
+    "project": "projects/shooter",
+    "root": "shooter/data"
+  }
+}

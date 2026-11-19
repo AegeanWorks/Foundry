@@ -52,6 +52,11 @@
         "mortar",
         "widower",
         "husk",
+        "mender",
+        "seeker",
+        "jammer",
+        "cutter",
+        "snarer",
         "hunter"
       ],
       "kind": "catalog",
@@ -94,7 +99,10 @@
         "engineer",
         "scavenger",
         "arcanist",
-        "squadleader"
+        "bulwark",
+        "squadleader",
+        "raider",
+        "corpsman"
       ],
       "kind": "catalog",
       "sources": [
@@ -121,7 +129,9 @@
         "elite",
         "fog",
         "vampiric",
-        "bounty"
+        "bounty",
+        "frontline",
+        "tithe"
       ],
       "kind": "catalog",
       "sources": [

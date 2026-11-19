@@ -62,7 +62,15 @@ class TestKeystonePackGenerator(unittest.TestCase):
             paths = {asset["path"] for asset in manifest["assets"] if asset["path"]}
             for relative in paths:
                 self.assertTrue((out / relative).is_file(), relative)
-            self.assertEqual(len(paths), 6)
+            self.assertEqual(len(paths), 7)
+
+    def test_pack_includes_octahedron_mesh(self):
+        pack = generate(DEFAULT_SEED)
+        assets = {asset["id"]: asset for asset in pack.manifest["assets"]}
+        self.assertIn("mesh.octahedron", assets)
+        octahedron = assets["mesh.octahedron"]
+        self.assertEqual(octahedron["kind"], "mesh")
+        self.assertEqual(pack.files[octahedron["path"]].count(b"f "), 8)
 
 
 class TestKeystonePackValidation(unittest.TestCase):
@@ -145,7 +153,7 @@ class TestKeystoneRuntime(unittest.TestCase):
     def test_mesh_winding_matches_normals(self):
         from keystone.obj_loader import load_obj
 
-        for name in ("mesh_cube", "mesh_plane", "mesh_crystal"):
+        for name in ("mesh_cube", "mesh_plane", "mesh_crystal", "mesh_octahedron"):
             with self.subTest(mesh=name):
                 mesh = load_obj(DEFAULT_OUT / "meshes" / f"{name}.obj")
                 for offset in range(0, len(mesh.indices), 3):

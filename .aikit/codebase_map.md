@@ -6,14 +6,14 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `37`
-- **Total Classes**: `16`
-- **Total Top-Level Functions**: `110`
-- **Total Class Methods**: `85`
-- **Total Source Lines**: `3897`
+- **Total Python Modules**: `42`
+- **Total Classes**: `21`
+- **Total Top-Level Functions**: `129`
+- **Total Class Methods**: `105`
+- **Total Source Lines**: `4663`
 
 ## 🧭 Map Coverage
-- **Indexed**: python (`37` module(s))
+- **Indexed**: python (`42` module(s))
 - **Not indexed by this map**: none (no non-Python source files were found)
 
 ---
@@ -146,11 +146,12 @@
 ### [`adapters/shooter.py`](adapters/shooter.py)
 > *Shooter target: read-only JSON content tables.*
 
-**Size**: `51` lines
+**Size**: `69` lines
 
 **Functions:**
 - `def _load(name)`
 - `def _ids(payload, key)`
+- `def _fields(payload)` - *The tuned field names of a table, without metadata or prose.*
 
 ---
 
@@ -224,10 +225,28 @@
 
 ---
 
+### [`generators/game_assets.py`](generators/game_assets.py)
+> *Generic game-asset-pack generator: file-backed assets copied verbatim.*
+
+**Size**: `185` lines
+
+**Classes:**
+- `class GameAssetPack` - *A generated pack: relative file bytes plus the canonical manifest.*
+  - Method `.manifest_bytes()`
+
+**Functions:**
+- `def generate(name, source)` - *Build one deterministic asset pack from a source project's files.*
+- `def write_pack(out_dir, name, source)` - *Write the generated pack, creating directories as needed.*
+- `def check_pack(out_dir, name, source)` - *Return one ``path: reason`` line per stale or missing pack file.*
+- `def _canonical_json(payload)`
+- `def main(argv)`
+
+---
+
 ### [`generators/keystone_assets.py`](generators/keystone_assets.py)
 > *Keystone asset-pack generator: deterministic meshes, textures, materials, prefab.*
 
-**Size**: `447` lines
+**Size**: `469` lines
 
 **Classes:**
 - `class KeystonePack` - *A generated pack: relative file bytes plus the canonical manifest.*
@@ -244,6 +263,7 @@
 - `def _obj_cube(size)`
 - `def _obj_plane(size)`
 - `def _obj_crystal(seed)`
+- `def _obj_octahedron(radius)` - *The engine's flat-shaded unit octahedron, generated with UVs and normals.*
 - `def _obj_from_quads(name, quads)`
 - `def _obj_from_triangles(name, triangles)`
 - `def _index(values, value)`
@@ -274,6 +294,34 @@
 
 ---
 
+### [`tests/test_game_assets.py`](tests/test_game_assets.py)
+> *Generic game-asset packs: deterministic generation, validation and install.*
+
+**Size**: `164` lines
+
+**Classes:**
+- `class TestGameAssetPack`
+  - Method `.test_generated_pack_is_deterministic()`
+  - Method `.test_generated_pack_validates()`
+  - Method `.test_checked_in_pack_is_fresh()`
+  - Method `.test_every_runtime_asset_is_packed()`
+  - Method `.test_rejects_digest_mismatch()`
+  - Method `.test_rejects_path_traversal()`
+  - Method `.test_rejects_forward_dependency()`
+- `class TestSecondSourcePack`
+  - Method `.test_keystone_pack_generates_and_validates()`
+  - Method `.test_keystone_checked_in_pack_is_fresh()`
+  - Method `.test_provenance_names_the_owning_game()`
+  - Method `.test_one_installer_serves_two_games()`
+- `class TestGameAssetInstall`
+  - Method `.test_dry_run_writes_nothing()`
+  - Method `.test_install_copies_files_and_validates()`
+  - Method `.test_install_refuses_overwrite_without_force()`
+  - Method `.test_install_refuses_invalid_pack()`
+  - Method `.test_install_preserves_source_files()`
+
+---
+
 ### [`tests/test_generator.py`](tests/test_generator.py)
 > *Generator tests: determinism, validity, uniqueness, catalog honesty.*
 
@@ -296,7 +344,7 @@
 ### [`tests/test_keystone_assets.py`](tests/test_keystone_assets.py)
 > *Keystone asset-pack tests: determinism, integrity and engine compatibility.*
 
-**Size**: `178` lines
+**Size**: `186` lines
 
 **Classes:**
 - `class TestKeystonePackGenerator`
@@ -305,6 +353,7 @@
   - Method `.test_generated_pack_validates()`
   - Method `.test_checked_in_pack_is_fresh()`
   - Method `.test_manifest_records_every_file()`
+  - Method `.test_pack_includes_octahedron_mesh()`
 - `class TestKeystonePackValidation`
   - Method `.pack(tmp)`
   - Method `.test_rejects_tampered_texture()`
@@ -341,10 +390,22 @@
 
 ---
 
+### [`tests/test_shooter_surfaces.py`](tests/test_shooter_surfaces.py)
+> *Shooter target surfaces: every authored table is exposed read-only.*
+
+**Size**: `48` lines
+
+**Classes:**
+- `class TestShooterSurfaces`
+  - Method `.test_every_authored_table_is_a_surface()`
+  - Method `.test_rule_items_are_tuning_fields_not_prose()`
+
+---
+
 ### [`tests/test_targets.py`](tests/test_targets.py)
 > *Target registry tests: every requested consumer is present and read-only.*
 
-**Size**: `254` lines
+**Size**: `263` lines
 
 **Classes:**
 - `class TestTargetRegistry`
@@ -439,6 +500,17 @@
 
 ---
 
+### [`tools/game_assets.py`](tools/game_assets.py)
+> *Install a validated game asset pack into a consumer project.*
+
+**Size**: `98` lines
+
+**Functions:**
+- `def install(pack_dir, dest_dir, *, force, dry_run)` - *Validate, plan and optionally perform an install; return the plan lines.*
+- `def main(argv)`
+
+---
+
 ### [`tools/keystone_assets.py`](tools/keystone_assets.py)
 > *Keystone asset cockpit: validate a pack and prove it loads in the engine.*
 
@@ -497,6 +569,25 @@
 - `def max_theoretical_hit(attack)` - *Worst-case single-turn damage for a slice-1 boss: phase-3 attack.*
 - `def validate(pack)` - *Return a list of ``field: reason`` violations (empty == valid).*
 - `def validate_file(path)`
+- `def main(argv)`
+
+---
+
+### [`validators/game_assets.py`](validators/game_assets.py)
+> *Generic game-asset-pack validator: shape, provenance, digests and load order.*
+
+**Size**: `214` lines
+
+**Functions:**
+- `def _is_int(value)`
+- `def _safe_relative(value)`
+- `def validate_pack(pack_dir)` - *Validate one pack directory and return ``field: reason`` lines.*
+- `def validate_manifest(manifest, pack_dir)` - *Validate a parsed manifest against its pack directory.*
+- `def _validate_generator(generator, errors)`
+- `def _validate_source(source, errors)`
+- `def _validate_assets(assets, pack_dir, errors)`
+- `def _validate_dependencies(value, field, asset_id, seen, errors)`
+- `def _validate_file(asset, field, kind, pack_dir, errors)`
 - `def main(argv)`
 
 ---

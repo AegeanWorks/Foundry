@@ -29,18 +29,19 @@
   "ui_kind": "cli",
   "ui_evidence": [
     "generators/boss.py",
+    "generators/game_assets.py",
     "generators/keystone_assets.py",
     "generators/target.py",
     "tests/test_validator.py",
     "tools/bot_clear.py",
+    "tools/game_assets.py",
     "tools/keystone_assets.py",
     "tools/portfolio_analysis.py",
     "tools/targets.py",
     "validators/boss.py",
-    "validators/keystone_assets.py",
-    "validators/target.py"
+    "validators/game_assets.py"
   ],
-  "ui_checked_at": "2026-11-08",
+  "ui_checked_at": "2026-11-19",
   "ui_source": "detected",
   "topics_source": "manual",
   "topics_reviewed_at": "2026-11-08"

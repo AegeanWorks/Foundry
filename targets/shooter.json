@@ -55,6 +55,82 @@
       "sources": [
         "shooter/data/levels.json"
       ]
+    },
+    {
+      "id": "engagement",
+      "items": [
+        "near_miss",
+        "overdrive",
+        "reward",
+        "streak",
+        "surge_lock"
+      ],
+      "kind": "rules",
+      "sources": [
+        "shooter/data/engagement.json"
+      ]
+    },
+    {
+      "id": "grade",
+      "items": [
+        "renderer"
+      ],
+      "kind": "rules",
+      "sources": [
+        "shooter/data/grade.json"
+      ]
+    },
+    {
+      "id": "juice",
+      "items": [
+        "crosshair_hit_s",
+        "death_cinematic",
+        "death_fx_s",
+        "death_fx_scale",
+        "dry_fire_cd_s",
+        "flash_down",
+        "flash_forward",
+        "flash_life_s",
+        "flash_right",
+        "flash_scale",
+        "hit_flinch_push",
+        "hit_flinch_s",
+        "hit_flinch_scale",
+        "hitstop_ticks",
+        "hurt_cue_s",
+        "impact_burst",
+        "kick_decay",
+        "kick_deg",
+        "kill_burst",
+        "killmark_s",
+        "low_hp_cue",
+        "max_particles",
+        "pad_pulse",
+        "pickup_fx_rise",
+        "pickup_fx_s",
+        "pickup_fx_scale",
+        "reticle",
+        "score_pop_s",
+        "slam_ring",
+        "spawn_mark",
+        "tracer_life_s",
+        "viewmodel"
+      ],
+      "kind": "rules",
+      "sources": [
+        "shooter/data/juice.json"
+      ]
+    },
+    {
+      "id": "core_material",
+      "items": [
+        "checker",
+        "core"
+      ],
+      "kind": "catalog",
+      "sources": [
+        "shooter/data/core_material.json"
+      ]
     }
   ],
   "display_name": "Shooter",
