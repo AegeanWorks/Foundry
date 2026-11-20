@@ -3,8 +3,8 @@
   "active_task": {
     "task_id": "foundry-keystone-extension",
     "last_phase": "phase 4",
-    "active_phase": 4,
-    "status": "in_progress",
+    "active_phase": 5,
+    "status": "completed",
     "updated_at": 1795154778.228425,
     "owner": "opencode:session",
     "lease_until": 1795161978.228425,
@@ -15,26 +15,12 @@
         "name": "foundry",
         "path": "projects/foundry"
       }
-    ]
+    ],
+    "completed_at": 1795154797.156309,
+    "completed_head": "3e042d5dc725aab3ba442631bd8d2272eb15200f",
+    "completed_tree": "e003a2df3d9264878b6c1f9cf7374614d0c3cf90"
   },
   "checkpoints": [
-    {
-      "task_id": "foundry-reusable-pack-installer",
-      "phase": "phase 3",
-      "phase_num": 3,
-      "description": "[4/5] Proved reuse end-to-end: dry run wrote nothing, install copied 5 assets into a temp game dir, check reported OK",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795119506.2122865,
-      "timestamp_str": "2026-11-19 23:18:26",
-      "agent": "opencode:session",
-      "workspaces": [
-        {
-          "name": "foundry",
-          "path": "projects/foundry"
-        }
-      ]
-    },
     {
       "task_id": "foundry-reusable-pack-installer",
       "phase": "phase 4",
@@ -385,6 +371,23 @@
           "path": "projects/foundry"
         }
       ]
+    },
+    {
+      "task_id": "foundry-keystone-extension",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'foundry-keystone-extension' completed successfully.",
+      "status": "completed",
+      "timestamp": 1795154797.2200534,
+      "timestamp_str": "2026-11-20 09:06:37",
+      "agent": "opencode:session",
+      "head": "3e042d5dc725aab3ba442631bd8d2272eb15200f",
+      "delivery": {
+        "roots": [
+          "."
+        ],
+        "forced": false
+      }
     }
   ]
 }
