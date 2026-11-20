@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -42,6 +43,64 @@ class TestGameAssetPack(unittest.TestCase):
 
     def test_checked_in_pack_is_fresh(self):
         self.assertEqual(check_pack(DEFAULT_OUT), [])
+
+    def test_checked_in_pack_is_self_contained(self):
+        manifest = json.loads((DEFAULT_OUT / MANIFEST_NAME).read_text(encoding="utf-8"))
+        for asset in manifest["assets"]:
+            path = asset["path"]
+            with self.subTest(asset=asset["id"]):
+                self.assertFalse(Path(path).is_absolute())
+                self.assertNotIn("..", Path(path).parts)
+                target = DEFAULT_OUT / path
+                self.assertTrue(target.is_file())
+                self.assertEqual(
+                    hashlib.sha256(target.read_bytes()).hexdigest(), asset["sha256"]
+                )
+
+    def test_checked_in_pack_installs_without_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "game"
+            install(DEFAULT_OUT, dest)
+            self.assertEqual(validate_pack(dest), [])
+
+    def test_generation_leaves_the_source_unchanged(self):
+        from generators.game_assets import PACKS
+
+        root = PACKS["shooter"]["root"]
+
+        def snapshot():
+            return {
+                path.name: (
+                    path.stat().st_size,
+                    path.stat().st_mtime_ns,
+                    hashlib.sha256(path.read_bytes()).hexdigest(),
+                )
+                for path in root.iterdir()
+                if path.is_file()
+            }
+
+        before = snapshot()
+        generate()
+        self.assertEqual(snapshot(), before)
+
+    def test_relocating_the_source_does_not_change_the_pack(self):
+        from generators.game_assets import PACKS
+
+        spec = PACKS["shooter"]
+        baseline = generate()
+        with tempfile.TemporaryDirectory() as tmp:
+            relocated = Path(tmp) / "moved" / "data"
+            relocated.mkdir(parents=True)
+            for _, _, source_file, _, _ in spec["assets"]:
+                shutil.copy2(spec["root"] / source_file, relocated / source_file)
+            PACKS["shooter"] = {**spec, "root": relocated}
+            try:
+                moved = generate()
+            finally:
+                PACKS["shooter"] = spec
+        self.assertEqual(moved.files, baseline.files)
+        self.assertEqual(moved.manifest_bytes(), baseline.manifest_bytes())
+        self.assertEqual(moved.manifest_bytes(), (DEFAULT_OUT / MANIFEST_NAME).read_bytes())
 
     def test_every_runtime_asset_is_packed(self):
         manifest = generate().manifest

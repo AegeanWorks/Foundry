@@ -198,3 +198,17 @@
 - **Context**: Foundry's purpose is to speed up game creation with reusable packs. The generic pack pipeline briefly copied Keystone's octahedron mesh and engine PNG into packs/keystone/runtime, which made the engine both a source and a consumer.
 - **Decision**: Keep only Shooter as an import source for generic packs. Keystone is a consumer: Foundry generates deterministic Keystone packs that its AssetRegistry loads, reads its authored engine facts read-only, and never copies assets out of projects/keystone.
 - **Consequences**: packs/keystone/runtime is removed and the generator exposes only the shooter source. The Keystone starter pack and its runtime proof stay. Tests assert that Keystone is not a source and that the remaining pack installs and validates.
+
+### ADR-018: an archived sibling stays a read-only source
+- **Date**: 2026-11-20
+- **Status**: Accepted
+- **Context**: Shooter was archived from `projects/shooter` to `projects/archive/shooter` and its GitHub repo marked read-only. Foundry's adapter and pack generator still resolved the source under `projects/`, so the suite failed with 14 loader errors and one stale-pack failure; the target manifest and README still named the pre-archive path.
+- **Decision**: Keep Shooter as the sole import source but resolve consumer roots through `adapters/layout.project_root`, which prefers the active checkout and falls back to `projects/archive/<name>`. Regenerate the target manifest from the live archived source, and keep the pack provenance as the owning game's identity. The reusable assets stay captured in the digest-verified pack (G-003); the seven source JSON tables are not vendored, because a self-referential baselined source would defeat the manifest freshness check ADR-015 protects.
+- **Consequences**: The suite is green and all four gates pass with Shooter archived. A regression test locks the archive fallback and the active-path precedence. The README and target manifest now name `projects/archive/shooter` as the current source. Archiving a future consumer needs no per-adapter path edit.
+
+### ADR-019: Material reuse outlives source paths
+- **Date**: 2026-11-20
+- **Status**: Accepted
+- **Context**: The user clarified that paths can change and that Foundry's purpose is to take material for other projects to use; a one-off archive-path fallback is not the durable contract.
+- **Decision**: Encode the mission as guideline G-003: the versioned, digest-verified pack and its checked-in manifest are the product; source projects stay read-only; sources resolve by project id with an active-path-first, archive-fallback lookup; a test must prove the pack installs with no source project present.
+- **Consequences**: The guideline is loaded by aikit status/resume for every future task in Foundry. All project lookups, including the Keystone runtime proof, now go through `adapters.layout.project_root`; no source-resolution path is hardcoded outside that resolver. Tests lock self-contained installation, source-read-only generation, the layout fallback and active-path precedence, and byte-identical regeneration after relocating the source, so a path change or archive cannot silently break reuse. The pack provenance stays the stable logical identity `projects/shooter`, so relocating a source never changes the shipped manifest bytes.

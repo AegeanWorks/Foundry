@@ -26,9 +26,9 @@ from validators.keystone_assets import validate_pack  # noqa: E402
 
 def _keystone_available() -> bool:
     try:
-        from adapters.layout import PORTFOLIO_ROOT
+        from adapters.layout import project_root
 
-        sys.path.insert(0, str(PORTFOLIO_ROOT / "projects" / "keystone"))
+        sys.path.insert(0, str(project_root("keystone")))
         from keystone.assets import AssetRegistry  # noqa: F401
     except ImportError:
         return False

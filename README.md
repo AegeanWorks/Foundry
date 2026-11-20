@@ -16,9 +16,10 @@ and validation are stdlib-only; the runtime proof loads Keystone when present.
 
 - **Runtime Prerequisites**: Python 3.10+ (Keystone's pinned stack only for
   `tools/keystone_assets.py --verify`; everything else is stdlib).
-- **Sibling projects**: `projects/shooter` and `projects/keystone` must be
-  checked out — the adapters read their authored files and the tests assert
-  those sources exist. No other project is required.
+- **Sibling projects**: `projects/keystone` and the Shooter source (`projects/shooter`,
+  or `projects/archive/shooter` once Shooter is archived) must be present — the
+  adapters read their authored files and the tests assert those sources exist.
+  No other project is required.
 - **Canonical Regression Shield Gate**:
   ```bash
   python -m unittest discover tests
@@ -101,6 +102,7 @@ foundry/
 ├── tests/
 │   ├── test_game_assets.py
 │   ├── test_keystone_assets.py
+│   ├── test_layout.py
 │   ├── test_shooter_surfaces.py
 │   └── test_targets.py
 ├── tools/
@@ -176,7 +178,7 @@ foundry/
 
 | Target | Project | Lifecycle | Authored surfaces |
 |---|---|---|---|
-| shooter | `projects/shooter` | active | enemies, weapons, waves, arena covers, engagement, grade, juice, core material |
+| shooter | `projects/archive/shooter` (was `projects/shooter`) | active | enemies, weapons, waves, arena covers, engagement, grade, juice, core material |
 | keystone | `projects/keystone` | active | asset kinds, file suffixes, primitives, material nodes |
 
 Foundry only reads these two projects; neither is ever written.

@@ -12,7 +12,7 @@ FOUNDRY_ROOT = Path(__file__).resolve().parent.parent
 if str(FOUNDRY_ROOT) not in sys.path:
     sys.path.insert(0, str(FOUNDRY_ROOT))
 
-from adapters.layout import PORTFOLIO_ROOT  # noqa: E402
+from adapters.layout import project_root  # noqa: E402
 from generators.keystone_assets import (  # noqa: E402
     DEFAULT_NAME,
     DEFAULT_OUT,
@@ -21,7 +21,7 @@ from generators.keystone_assets import (  # noqa: E402
 )
 from validators.keystone_assets import validate_pack  # noqa: E402
 
-KEYSTONE_ROOT = PORTFOLIO_ROOT / "projects" / "keystone"
+KEYSTONE_ROOT = project_root("keystone")
 
 
 def _import_keystone():

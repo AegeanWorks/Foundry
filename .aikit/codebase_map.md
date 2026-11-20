@@ -6,14 +6,14 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `23`
-- **Total Classes**: `15`
+- **Total Python Modules**: `24`
+- **Total Classes**: `16`
 - **Total Top-Level Functions**: `98`
-- **Total Class Methods**: `59`
-- **Total Source Lines**: `2782`
+- **Total Class Methods**: `65`
+- **Total Source Lines**: `2888`
 
 ## 🧭 Map Coverage
-- **Indexed**: python (`23` module(s))
+- **Indexed**: python (`24` module(s))
 - **Not indexed by this map**: none (no non-Python source files were found)
 
 ---
@@ -47,7 +47,7 @@
 ### [`adapters/layout.py`](adapters/layout.py)
 > *Filesystem boundaries shared by the target adapters (read-only).*
 
-**Size**: `14` lines
+**Size**: `27` lines
 
 **Functions:**
 - `def project_root(*parts)` - *Resolve a consumer project below the portfolio's projects/ directory.*
@@ -173,13 +173,17 @@
 ### [`tests/test_game_assets.py`](tests/test_game_assets.py)
 > *Generic game-asset packs: deterministic generation, validation and install.*
 
-**Size**: `148` lines
+**Size**: `207` lines
 
 **Classes:**
 - `class TestGameAssetPack`
   - Method `.test_generated_pack_is_deterministic()`
   - Method `.test_generated_pack_validates()`
   - Method `.test_checked_in_pack_is_fresh()`
+  - Method `.test_checked_in_pack_is_self_contained()`
+  - Method `.test_checked_in_pack_installs_without_source()`
+  - Method `.test_generation_leaves_the_source_unchanged()`
+  - Method `.test_relocating_the_source_does_not_change_the_pack()`
   - Method `.test_every_runtime_asset_is_packed()`
   - Method `.test_rejects_digest_mismatch()`
   - Method `.test_rejects_path_traversal()`
@@ -227,6 +231,18 @@
 - `def _sub(a, b)`
 - `def _cross(a, b)`
 - `def _dot(a, b)`
+
+---
+
+### [`tests/test_layout.py`](tests/test_layout.py)
+> *Consumer source resolution: an archived sibling still backs a live target.*
+
+**Size**: `34` lines
+
+**Classes:**
+- `class TestConsumerSourceResolution`
+  - Method `.test_shooter_source_resolves_to_an_existing_directory()`
+  - Method `.test_active_location_wins_over_archive()`
 
 ---
 
