@@ -106,7 +106,8 @@ foundry/
 ├── tools/
 │   ├── game_assets.py
 │   ├── keystone_assets.py
-│   └── targets.py
+│   ├── targets.py
+│   └── verify.py
 ├── validators/
 │   ├── __init__.py
 │   ├── game_assets.py
@@ -167,6 +168,8 @@ foundry/
 - `tools/keystone_assets.py` — validate and load a pack through Keystone.
 - `tools/game_assets.py` — validate and install a generic pack (dry-run,
   overwrite protection, post-install verification).
+- `tools/verify.py` — canonical gate: full suite plus Keystone AssetRegistry
+  proof.
 - `.aikit/decisions.md` — ADRs, append-only.
 
 ## Registered Targets

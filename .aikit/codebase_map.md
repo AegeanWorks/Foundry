@@ -6,14 +6,14 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `22`
+- **Total Python Modules**: `23`
 - **Total Classes**: `15`
-- **Total Top-Level Functions**: `96`
+- **Total Top-Level Functions**: `99`
 - **Total Class Methods**: `59`
-- **Total Source Lines**: `2743`
+- **Total Source Lines**: `2794`
 
 ## 🧭 Map Coverage
-- **Indexed**: python (`22` module(s))
+- **Indexed**: python (`23` module(s))
 - **Not indexed by this map**: none (no non-Python source files were found)
 
 ---
@@ -315,6 +315,18 @@
 **Functions:**
 - `def list_targets()`
 - `def _selected(targets, out_dir, check)`
+- `def main(argv)`
+
+---
+
+### [`tools/verify.py`](tools/verify.py)
+> *Canonical Foundry verification: full suite plus the Keystone load proof.*
+
+**Size**: `51` lines
+
+**Functions:**
+- `def run_suite()`
+- `def run_keystone_proof()`
 - `def main(argv)`
 
 ---
