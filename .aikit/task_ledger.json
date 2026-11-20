@@ -3,8 +3,8 @@
   "active_task": {
     "task_id": "foundry-test-gate-fix",
     "last_phase": "phase 4",
-    "active_phase": 4,
-    "status": "in_progress",
+    "active_phase": 5,
+    "status": "completed",
     "updated_at": 1795155190.5189552,
     "owner": "opencode:session",
     "lease_until": 1795162390.5189552,
@@ -15,21 +15,12 @@
         "name": "foundry",
         "path": "projects/foundry"
       }
-    ]
+    ],
+    "completed_at": 1795155203.4485934,
+    "completed_head": "fed428de1625197029ed43ab796e79744f807cdb",
+    "completed_tree": "ff2271e24090fc6b87474f4f6e2c8bbf5b42cd86"
   },
   "checkpoints": [
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 4",
-      "phase_num": 3,
-      "description": "Reforge stage 4: stage 4 host review reviewed; run active; coverage 27/27",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795122997.404823,
-      "timestamp_str": "2026-11-20 00:16:37",
-      "agent": "opencode",
-      "operator_task": "foundry-reusable-pack-installer"
-    },
     {
       "task_id": "reforge:run-1",
       "phase": "reforge stage 4",
@@ -339,6 +330,23 @@
           "path": "projects/foundry"
         }
       ]
+    },
+    {
+      "task_id": "foundry-test-gate-fix",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'foundry-test-gate-fix' completed successfully.",
+      "status": "completed",
+      "timestamp": 1795155203.54058,
+      "timestamp_str": "2026-11-20 09:13:23",
+      "agent": "opencode:session",
+      "head": "fed428de1625197029ed43ab796e79744f807cdb",
+      "delivery": {
+        "roots": [
+          "."
+        ],
+        "forced": false
+      }
     }
   ]
 }
