@@ -191,3 +191,10 @@
 - **Context**: ADR-015's transient restoration of eight sibling repos was reverted at the user's request; those projects are not part of this pipeline. Retaining adapters and tests for absent projects kept the suite red at four loader errors.
 - **Decision**: Keep only `projects/shooter` and `projects/keystone` as targets, remove the other adapters, manifests, tests and the boss/portfolio tooling, and assert the registry contains exactly those two ids.
 - **Consequences**: The suite is 55/55 green and all four gates pass with only the two sibling checkouts present. The dustline/MemoryReconstruction count changes from ADR-015 were removed with their targets; ADR-015 remains as the record of the discarded alternative.
+
+### ADR-017: Foundry is a Keystone extension, not a Keystone importer
+- **Date**: 2026-11-20
+- **Status**: Accepted
+- **Context**: Foundry's purpose is to speed up game creation with reusable packs. The generic pack pipeline briefly copied Keystone's octahedron mesh and engine PNG into packs/keystone/runtime, which made the engine both a source and a consumer.
+- **Decision**: Keep only Shooter as an import source for generic packs. Keystone is a consumer: Foundry generates deterministic Keystone packs that its AssetRegistry loads, reads its authored engine facts read-only, and never copies assets out of projects/keystone.
+- **Consequences**: packs/keystone/runtime is removed and the generator exposes only the shooter source. The Keystone starter pack and its runtime proof stay. Tests assert that Keystone is not a source and that the remaining pack installs and validates.

@@ -1,8 +1,9 @@
 """Generic game-asset-pack generator: file-backed assets copied verbatim.
 
-Every source file stays in its owning game; the pack carries exact bytes plus
-provenance and digests so any consumer can install and verify it. Generation
-is deterministic from the source files alone.
+Foundry is a Keystone extension: it generates Keystone-consumable packs and
+copies authored files from game projects such as Shooter. Keystone's own assets
+are never imported here; they stay owned by the engine. Each pack carries exact
+bytes, provenance and digests so a consumer can install and verify it.
 """
 
 from __future__ import annotations
@@ -28,7 +29,6 @@ GENERATOR_VERSION = 1
 DEFAULT_NAME = "runtime"
 DEFAULT_SOURCE = "shooter"
 DEFAULT_OUT = FOUNDRY_ROOT / "packs" / "shooter" / DEFAULT_NAME
-DEFAULT_OUT_KEYSTONE = FOUNDRY_ROOT / "packs" / "keystone" / DEFAULT_NAME
 
 # (asset id, kind, source file relative to root, path inside the pack, dependencies)
 PACKS: Dict[str, Dict] = {
@@ -66,15 +66,6 @@ PACKS: Dict[str, Dict] = {
                 "states/warden_core.kstate",
                 (),
             ),
-        ),
-    },
-    "keystone": {
-        "root": project_root("keystone") / "assets",
-        "project": "projects/keystone",
-        "source_dir": "assets",
-        "assets": (
-            ("mesh.octahedron", "mesh", "octahedron.obj", "meshes/octahedron.obj", ()),
-            ("texture.engine", "texture", "engine.png", "textures/engine.png", ()),
         ),
     },
 }

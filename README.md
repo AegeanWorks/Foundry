@@ -5,11 +5,12 @@
 <p align="center"><a href="LICENSE"><img src="https://img.shields.io/badge/license-AL--1.1-1c7ed6" alt="License"></a> <a href="https://github.com/AegeanWorks/AIKit"><img src="https://img.shields.io/badge/AIKit-integrated-6f42c1" alt="AIKit Integrated"></a></p>
 <!-- aegean:media:end -->
 
-Read-only content pipeline for **Shooter** and **Keystone** only. It emits
-canonical target manifests, deterministic Keystone asset packs, and generic
-game-asset packs that a consumer can install as files plus a digest-verified
-manifest. Generation and validation are stdlib-only; the Keystone runtime
-proof loads the sibling engine when present.
+A **Keystone extension** for faster game creation. It emits canonical target
+manifests, deterministic Keystone asset packs that Keystone loads through its
+real registry, and generic asset packs copied from Shooter that a consumer can
+install as files plus a digest-verified manifest. Keystone is a consumer here,
+never an import source: its own assets stay owned by the engine. Generation
+and validation are stdlib-only; the runtime proof loads Keystone when present.
 
 ## Cold-Start Quick Reference
 
@@ -41,12 +42,11 @@ python validators/keystone_assets.py
 python tools/keystone_assets.py --verify
 ```
 
-Reusable game-asset packs (engine-agnostic files plus a digest-verified
-manifest; the source project is never written):
+Reusable game-asset packs (Shooter is the only import source; Keystone consumes
+packs, its own assets are not copied. The source project is never written):
 
 ```powershell
 python generators/game_assets.py --source shooter --out packs/shooter/runtime
-python generators/game_assets.py --source keystone --out packs/keystone/runtime
 python generators/game_assets.py --check
 python validators/game_assets.py packs/shooter/runtime
 python tools/game_assets.py install --pack packs/shooter/runtime --dest <game-dir> --dry-run
@@ -114,12 +114,6 @@ foundry/
 │   └── target.py
 └── packs/
     ├── keystone/
-    │   ├── runtime/
-    │   │   ├── game-assets.json
-    │   │   ├── meshes/
-    │   │   │   └── octahedron.obj
-    │   │   └── textures/
-    │   │       └── engine.png
     │   └── starter/
     │       ├── keystone-assets.json
     │       ├── meshes/
@@ -166,8 +160,8 @@ foundry/
   material-graph nodes.
 - `adapters/shooter.py` — read-only authored JSON tables and tuning fields.
 - `packs/keystone/starter/` — baselined Keystone assets (seed 42).
-- `packs/keystone/runtime/`, `packs/shooter/runtime/` — baselined generic
-  packs from the two source games.
+- `packs/shooter/runtime/` — baselined generic pack copied from Shooter;
+  Keystone's own assets are never imported.
 - `targets/` — checked-in manifests for both registered targets.
 - `tools/targets.py` — list targets, write manifests, verify freshness.
 - `tools/keystone_assets.py` — validate and load a pack through Keystone.
@@ -193,7 +187,7 @@ Foundry only reads these two projects; neither is ever written.
 4. The Keystone starter pack is fresh and valid (`python generators/keystone_assets.py
    --check`, `python validators/keystone_assets.py`), and the runtime proof
    loads the starter pack (`python tools/keystone_assets.py --verify`).
-5. Both generic packs are valid (`python generators/game_assets.py --check` for Shooter, and `python generators/game_assets.py --source keystone --out packs/keystone/runtime --check` for Keystone)
+5. The Shooter generic pack is valid (`python generators/game_assets.py --check`)
    and an installed copy re-validates after install.
 
 <!-- aegean:brand-assets:start -->

@@ -9,8 +9,8 @@
 - **Total Python Modules**: `22`
 - **Total Classes**: `15`
 - **Total Top-Level Functions**: `96`
-- **Total Class Methods**: `61`
-- **Total Source Lines**: `2767`
+- **Total Class Methods**: `59`
+- **Total Source Lines**: `2743`
 
 ## 🧭 Map Coverage
 - **Indexed**: python (`22` module(s))
@@ -104,7 +104,7 @@
 ### [`generators/game_assets.py`](generators/game_assets.py)
 > *Generic game-asset-pack generator: file-backed assets copied verbatim.*
 
-**Size**: `188` lines
+**Size**: `179` lines
 
 **Classes:**
 - `class GameAssetPack` - *A generated pack: relative file bytes plus the canonical manifest.*
@@ -173,7 +173,7 @@
 ### [`tests/test_game_assets.py`](tests/test_game_assets.py)
 > *Generic game-asset packs: deterministic generation, validation and install.*
 
-**Size**: `163` lines
+**Size**: `148` lines
 
 **Classes:**
 - `class TestGameAssetPack`
@@ -184,11 +184,9 @@
   - Method `.test_rejects_digest_mismatch()`
   - Method `.test_rejects_path_traversal()`
   - Method `.test_rejects_forward_dependency()`
-- `class TestSecondSourcePack`
-  - Method `.test_keystone_pack_generates_and_validates()`
-  - Method `.test_keystone_checked_in_pack_is_fresh()`
+- `class TestShooterSourcePack`
   - Method `.test_provenance_names_the_owning_game()`
-  - Method `.test_one_installer_serves_two_games()`
+  - Method `.test_keystone_is_not_an_import_source()`
 - `class TestGameAssetInstall`
   - Method `.test_dry_run_writes_nothing()`
   - Method `.test_install_copies_files_and_validates()`

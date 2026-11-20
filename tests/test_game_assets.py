@@ -19,7 +19,6 @@ if str(FOUNDRY_ROOT) not in sys.path:
 
 from generators.game_assets import (  # noqa: E402
     DEFAULT_OUT,
-    DEFAULT_OUT_KEYSTONE,
     MANIFEST_NAME,
     check_pack,
     generate,
@@ -84,32 +83,18 @@ class TestGameAssetPack(unittest.TestCase):
             self.assertTrue(any("later-loaded asset" in line for line in validate_pack(out)))
 
 
-class TestSecondSourcePack(unittest.TestCase):
-    def test_keystone_pack_generates_and_validates(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            out = write_pack(Path(tmp) / "runtime", source="keystone")
-            self.assertEqual(validate_pack(out), [])
-
-    def test_keystone_checked_in_pack_is_fresh(self):
-        self.assertEqual(check_pack(DEFAULT_OUT_KEYSTONE, source="keystone"), [])
-
+class TestShooterSourcePack(unittest.TestCase):
     def test_provenance_names_the_owning_game(self):
-        shooter = generate().manifest["source"]
-        keystone = generate(source="keystone").manifest["source"]
-        self.assertEqual(shooter["project"], "projects/shooter")
-        self.assertEqual(keystone["project"], "projects/keystone")
-        self.assertNotEqual(shooter["root"], keystone["root"])
+        source = generate().manifest["source"]
+        self.assertEqual(source["project"], "projects/shooter")
+        self.assertEqual(source["root"], "shooter/data")
 
-    def test_one_installer_serves_two_games(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            shooter = write_pack(root / "shooter-pack")
-            keystone = write_pack(root / "keystone-pack", source="keystone")
-            for pack, game in ((shooter, "game-a"), (keystone, "game-b")):
-                with self.subTest(game=game):
-                    dest = root / game
-                    install(pack, dest)
-                    self.assertEqual(validate_pack(dest), [])
+    def test_keystone_is_not_an_import_source(self):
+        from generators.game_assets import PACKS
+
+        self.assertEqual(set(PACKS), {"shooter"})
+        with self.assertRaises(ValueError):
+            generate(source="keystone")
 
 
 class TestGameAssetInstall(unittest.TestCase):
