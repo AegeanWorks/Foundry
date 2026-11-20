@@ -1,26 +1,19 @@
-"""Canonical Foundry verification: full suite plus the Keystone load proof.
+"""Keystone proof gate: load the generated pack through the real AssetRegistry.
 
-`aikit check foundry` runs this as its `verify` gate. It first runs the same
-unittest discovery as `test_command`, then loads the generated starter pack
-through Keystone's real AssetRegistry. A failure in either half fails the gate.
+`aikit check foundry` runs this as its `verify` gate. The unittest suite is a
+separate `test` gate in .aikit/project.json, so the two checks do not repeat
+each other. A failure here means Foundry emitted a pack Keystone cannot use.
 """
 
 from __future__ import annotations
 
 import argparse
 import sys
-import unittest
 from pathlib import Path
 
 FOUNDRY_ROOT = Path(__file__).resolve().parent.parent
 if str(FOUNDRY_ROOT) not in sys.path:
     sys.path.insert(0, str(FOUNDRY_ROOT))
-
-
-def run_suite() -> int:
-    suite = unittest.defaultTestLoader.discover(str(FOUNDRY_ROOT / "tests"))
-    result = unittest.TextTestRunner(verbosity=1).run(suite)
-    return 0 if result.wasSuccessful() else 2
 
 
 def run_keystone_proof() -> int:
@@ -32,19 +25,14 @@ def run_keystone_proof() -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="Run Foundry's canonical verification gate.")
+    ap = argparse.ArgumentParser(description="Load the Foundry pack through Keystone.")
     ap.add_argument(
         "--verify",
         action="store_true",
-        help="also load the generated pack through Keystone's AssetRegistry",
+        help="explicit name for the Keystone load-proof gate",
     )
-    args = ap.parse_args(argv)
-    status = run_suite()
-    if status != 0:
-        return status
-    if args.verify:
-        return run_keystone_proof()
-    return 0
+    ap.parse_args(argv)
+    return run_keystone_proof()
 
 
 if __name__ == "__main__":

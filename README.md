@@ -168,8 +168,8 @@ foundry/
 - `tools/keystone_assets.py` — validate and load a pack through Keystone.
 - `tools/game_assets.py` — validate and install a generic pack (dry-run,
   overwrite protection, post-install verification).
-- `tools/verify.py` — canonical gate: full suite plus Keystone AssetRegistry
-  proof.
+- `tools/verify.py` — Keystone AssetRegistry proof gate; the suite runs as the
+  separate `test` gate.
 - `.aikit/decisions.md` — ADRs, append-only.
 
 ## Registered Targets

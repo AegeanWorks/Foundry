@@ -8,9 +8,9 @@
 ## 📊 Codebase Metrics
 - **Total Python Modules**: `23`
 - **Total Classes**: `15`
-- **Total Top-Level Functions**: `99`
+- **Total Top-Level Functions**: `98`
 - **Total Class Methods**: `59`
-- **Total Source Lines**: `2794`
+- **Total Source Lines**: `2782`
 
 ## 🧭 Map Coverage
 - **Indexed**: python (`23` module(s))
@@ -320,12 +320,11 @@
 ---
 
 ### [`tools/verify.py`](tools/verify.py)
-> *Canonical Foundry verification: full suite plus the Keystone load proof.*
+> *Keystone proof gate: load the generated pack through the real AssetRegistry.*
 
-**Size**: `51` lines
+**Size**: `39` lines
 
 **Functions:**
-- `def run_suite()`
 - `def run_keystone_proof()`
 - `def main(argv)`
 

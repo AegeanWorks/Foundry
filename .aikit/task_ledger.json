@@ -1,13 +1,13 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "foundry-keystone-verify-gate",
+    "task_id": "foundry-test-gate-fix",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1795155091.572263,
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1795155190.5189552,
     "owner": "opencode:session",
-    "lease_until": 1795162291.572263,
+    "lease_until": 1795162390.5189552,
     "started_by": "opencode:session",
     "continuations": [],
     "workspaces": [
@@ -15,58 +15,9 @@
         "name": "foundry",
         "path": "projects/foundry"
       }
-    ],
-    "completed_at": 1795155103.017344,
-    "completed_head": "766a2ff1fb3a012a51bd9b0770ccc32267fb48e6",
-    "completed_tree": "89bb6ca05a6080830e4283029c4b51e65686ead3"
+    ]
   },
   "checkpoints": [
-    {
-      "task_id": "foundry-reusable-pack-installer",
-      "phase": "resumed",
-      "phase_num": 4,
-      "description": "Resumed 'foundry-reusable-pack-installer' after a pause",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795120616.1802173,
-      "timestamp_str": "2026-11-19 23:36:56",
-      "agent": "opencode:session"
-    },
-    {
-      "task_id": "foundry-reusable-pack-installer",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "Phase 4 passed: suite 96/96 and 4/4 gates green; committed in f1831f1",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795120626.0840049,
-      "timestamp_str": "2026-11-19 23:37:06",
-      "agent": "opencode:session",
-      "checklists": "passed",
-      "workspaces": [
-        {
-          "name": "foundry",
-          "path": "projects/foundry"
-        }
-      ]
-    },
-    {
-      "task_id": "foundry-reusable-pack-installer",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'foundry-reusable-pack-installer' completed successfully.",
-      "status": "completed",
-      "timestamp": 1795120639.9463732,
-      "timestamp_str": "2026-11-19 23:37:19",
-      "agent": "opencode:session",
-      "head": "f1831f114b8c8673786e468865d0df75443c19dc",
-      "delivery": {
-        "roots": [
-          "."
-        ],
-        "forced": false
-      }
-    },
     {
       "task_id": "reforge:run-1",
       "phase": "reforge stage 4",
@@ -329,6 +280,65 @@
         ],
         "forced": false
       }
+    },
+    {
+      "task_id": "foundry-test-gate-fix",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/2] Plan: restore a gate named test while keeping the Keystone verify gate",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795155141.9552195,
+      "timestamp_str": "2026-11-20 09:12:21",
+      "agent": "opencode:session",
+      "impact_assessment": {
+        "why": "the pre-push guard requires a gate named test and replace_detected removed it, so the push was refused",
+        "benefits": "both the suite and the AssetRegistry proof run as separate gates with no duplicated work",
+        "risks": "contract: gate names and verify tool behavior change; dependency: Keystone checkout for the proof; concurrency: none; state: project.json and docs must match",
+        "mitigation": "keep the suite in the test gate, make verify.py run only the Keystone proof, then rerun all gates and push"
+      },
+      "plan_digest": "98f702cade575c2bd761043278f1e20c48c2cdd9a86733dab44668953e33b80f",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-test-gate-fix",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "[2/2] Split the canonical check into a test gate and a Keystone verify gate; both run independently",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795155189.434066,
+      "timestamp_str": "2026-11-20 09:13:09",
+      "agent": "opencode:session",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
+    },
+    {
+      "task_id": "foundry-test-gate-fix",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "Phase 4 passed: 5/5 gates including test and verify, no undocumented-command warning",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795155190.5189552,
+      "timestamp_str": "2026-11-20 09:13:10",
+      "agent": "opencode:session",
+      "checklists": "passed",
+      "workspaces": [
+        {
+          "name": "foundry",
+          "path": "projects/foundry"
+        }
+      ]
     }
   ]
 }

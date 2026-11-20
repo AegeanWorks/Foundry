@@ -22,9 +22,9 @@
     "game-tools"
   ],
   "gates": {
+    "test": "python -m unittest discover tests",
     "verify": "python tools/verify.py --verify"
   },
-  "replace_detected": ["test"],
   "ui_required": false,
   "mechanics_required": false,
   "created": "2026-11-04",
