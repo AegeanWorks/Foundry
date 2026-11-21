@@ -1,4 +1,11 @@
-# foundry
+# foundry (archived)
+
+> **This repository is archived.** Foundry is no longer a standalone project. Its
+> tooling was merged into **[AegeanWorks/Keystone](https://github.com/AegeanWorks/Keystone)**
+> at `projects/keystone/foundry/`, where it shares Keystone's repository, test command
+> and gates. This archive keeps the history readable; the GitHub repository is
+> read-only, so do not open new pull requests here. The merged tooling under Keystone
+> is the source of truth.
 
 <!-- aegean:media:start -->
 <p align="center"><img src="assets/social-preview.svg" alt="Foundry social preview" width="100%"></p>
